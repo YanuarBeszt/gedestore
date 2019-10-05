@@ -19,9 +19,9 @@ Route::get('/', 'IndexController@index');
 // });
 
 //Public Front ENd
-Route::get('/blog', 'BlogController@blog');
-Route::get('/blog/tentang', 'BlogController@tentang');
-Route::get('/blog/kontak', 'BlogController@kontak');
+// Route::get('/blog', 'BlogController@blog');
+// Route::get('/blog/tentang', 'BlogController@tentang');
+// Route::get('/blog/kontak', 'BlogController@kontak');
 
 // Route::get('halo', function () {
 // 	return "Halo ini gede store kita ";
