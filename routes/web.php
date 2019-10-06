@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', 'IndexController@index');
-
+Route::get('/shop', 'ShopController@index');
 
 
 // Route::get('/', function () {
