@@ -10,9 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Costomer Routes
 Route::get('/', 'IndexController@index');
 Route::get('/shop', 'ShopController@index');
+Route::get('/shop', 'ShopController@index');
 
+//Admin Routes
+Route::get('/admin/halaman-dashboard', 'co_admDashboard@index');
+Route::get('/admin/halaman-inventory-barang', 'co_admInventory@index');
+Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
+Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
+Route::get('/admin/halaman-transaksi-barang-masuk', 'co_admTransaksi@transMasuk');
+Route::get('/admin/halaman-transaksi-penjualan-barang', 'co_admTransaksi@transKeluar');
+Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
+Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
+
+//auth
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -37,7 +54,4 @@ Route::get('/shop', 'ShopController@index');
 // //route irfan controller
 // Route::get('/irfan','IrfanController@index');
 
-//auth
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
