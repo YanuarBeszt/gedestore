@@ -19,6 +19,7 @@ Route::get('/shop/showProduct', [
 ]);
 Route::get('/shop', 'ShopController@index');
 Route::get('/shop', 'ShopController@index');
+Route::get('/shop', 'ShopController@index');
 
 //Admin Routes
 Route::get('/admin/halaman-dashboard', 'co_admDashboard@index');
@@ -57,5 +58,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/test/{uri}','TestController@index');
 // //route irfan controller
 // Route::get('/irfan','IrfanController@index');
-
-
