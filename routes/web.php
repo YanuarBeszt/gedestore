@@ -18,8 +18,6 @@ Route::get('/shop/showProduct/{id}', [
     'uses' => 'ShopController@showProduct'
 ]);
 Route::get('/shop', 'ShopController@index');
-Route::get('/shop', 'ShopController@index');
-Route::get('/shop', 'ShopController@index');
 
 //Admin Routes
 Route::get('/admin/halaman-dashboard', 'co_admDashboard@index');
