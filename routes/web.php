@@ -13,7 +13,10 @@
 
 //Costomer Routes
 Route::get('/', 'IndexController@index');
-Route::get('/shop', 'ShopController@index');
+Route::get('/shop/showProduct/{id}', [
+    'as' => 'showProduct',
+    'uses' => 'ShopController@showProduct'
+]);
 Route::get('/shop', 'ShopController@index');
 
 //Admin Routes
@@ -54,5 +57,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/test/{uri}','TestController@index');
 // //route irfan controller
 // Route::get('/irfan','IrfanController@index');
-
-

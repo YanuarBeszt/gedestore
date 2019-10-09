@@ -41,8 +41,6 @@
 @endsection
 @section('konten')
 
-
-
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
 	<div class="container">
@@ -241,7 +239,9 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/{{ $b->gambarBrg }}" alt="">
 							<div class="product-details">
-								<h6>{{ $b->namaBrg }}</h6>
+								<a href="{{ route('showProduct', $b->idBrg) }}">
+									<h6>{{ $b->namaBrg }}</h6>
+								</a>
 								<div class="price">
 									<h6>{{ number_format($b->hargaJual) }}</h6>
 									<h6 class="l-through">{{ number_format($b->hargaJual) }}</h6>
@@ -250,19 +250,11 @@
 
 									<a href="" class="social-info">
 										<span class="ti-bag"></span>
-										<p class="hover-text">add to bag</p>
+										<p class="hover-text">tambah ke keranjang</p>
 									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-heart"></span>
-										<p class="hover-text">Wishlist</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-sync"></span>
-										<p class="hover-text">compare</p>
-									</a>
-									<a href="" class="social-info">
+									<a href="{{ route('showProduct', $b->idBrg) }}" class="social-info">
 										<span class="lnr lnr-move"></span>
-										<p class="hover-text">view more</p>
+										<p class="hover-text">detail produk</p>
 									</a>
 								</div>
 							</div>
