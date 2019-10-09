@@ -17,7 +17,8 @@ Route::get('/shop', 'ShopController@index');
 Route::get('/shop', 'ShopController@index');
 
 //Admin Routes
-Route::get('/admin/halaman-dashboard', 'co_admDashboard@index');
+Route::get('/admin/halaman-dashboard', 'co_admAdmin@index');
+Route::get('/admin/halaman-profile-admin', 'co_admAdmin@profile');
 Route::get('/admin/halaman-inventory-barang', 'co_admInventory@index');
 Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
 Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
