@@ -13,7 +13,7 @@
 
 //Costomer Routes
 Route::get('/', 'IndexController@index');
-Route::get('/shop/showProduct', [
+Route::get('/shop/showProduct/{id}', [
     'as' => 'showProduct',
     'uses' => 'ShopController@showProduct'
 ]);
