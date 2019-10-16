@@ -31,9 +31,12 @@ Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
 Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
 
 //auth
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/login', 'AuthController@index');
+Route::get('/cek', 'AuthController@pass');
+Route::post('/post-login', 'AuthController@postLogin');
 
 // Route::get('/', function () {
 //     return view('welcome');

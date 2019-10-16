@@ -12,7 +12,7 @@
                   <p>Orders</p>
                </div>
                <div class="col s5 m5 right-align">
-                  <h5 class="mb-0 white-text">Inventory</h5>
+                  <h5 class="mb-0 white-text">{{ Session::get('namaUser') }}</h5>
                   <p>6,00,00</p>
                </div>
             </div>
