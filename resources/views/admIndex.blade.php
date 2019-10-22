@@ -19,7 +19,11 @@
     <!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/vertical-menu-nav-dark-template/materialize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/vertical-menu-nav-dark-template/style.css') }}">
+    <!-- Dashboard CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/dashboard.css') }}">
+    <!-- Pemesanan Online CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/app-sidebar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/app-email.css') }}">
     <!-- END: Page Level CSS-->
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/custom/custom.css') }}">
@@ -155,19 +159,13 @@
     <!-- BEGIN VENDOR JS-->
     <script src="{{ asset('admin/js/vendors.min.js') }}" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script src="{{ asset('admin/vendors/sparkline/jquery.sparkline.min.js') }}"></script>
-    <script src="{{ asset('admin/vendors/chartjs/chart.min.js') }}"></script>
-    <script src="{{ asset('admin/vendors/jquery-jvectormap/jquery-jvectormap.min.js') }}"></script>
-    <script src="{{ asset('admin/vendors/jquery-jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <!-- END PAGE VENDOR JS-->
+    @yield('customjs')
     <!-- BEGIN THEME  JS-->
     <script src="{{ asset('admin/js/plugins.js') }}" type="text/javascript"></script>
     <script src="{{ asset('admin/js/custom/custom-script.js') }}" type="text/javascript"></script>
     <!-- END THEME  JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="{{ asset('admin/js/scripts/dashboard-analytics.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/js/scripts/vectormap-script.js') }}" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
+    <script src="{{ asset('admin/js/scripts/advance-ui-modals.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin/js/scripts/app-email.js') }}" type="text/javascript"></script>
   </body>
 </html>

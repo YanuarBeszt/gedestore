@@ -12,6 +12,7 @@
         <div class="col s12 center-align">
           <img class="responsive-img circle z-depth-5" width="200" src="{{ asset('admin/images/user/12.jpg') }}" alt="">
           <br>
+          <a class="waves-effect waves-light btn mt-5 border-radius-4 btn modal-trigger" href="#updatedata"> Update</a>
         </div>
       </div>
       <div class="row mt-5">
@@ -64,5 +65,37 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal -->
+<div id="updatedata" class="modal">
+  <form action="/admin/edit-data-admin" method="post">
+  <div class="modal-content">
+    <h5>Update Data Admin</h5>
+        {{ csrf_field() }} 
+        @foreach($dataAdmin as $dtadmm)
+        <input type="hidden" value="{{ $dtadmm->idAdmin }}" name="edtidadmin" id="edtidadmin">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="edtnama" name="edtnama" type="text" class="validate" value="{{ $dtadmm->namaAdmin }}" required>
+            <label for="edtnama">Nama</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="edtusername" name="edtusername" type="text" class="validate" value="{{ $dtadmm->usernameAdm }}" required>
+          <label for="edtusername">Username</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="edtpassword" name="edtpassword" type="password" class="validate">
+          <label for="edtpassword">Password</label>
+        </div>
+      </div>
+      @endforeach
+  </div>
+  <div class="modal-footer">
+    <button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit">Update</button>
+  </div>
+  </form>
 </div>
 @endsection

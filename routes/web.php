@@ -30,6 +30,9 @@ Route::get('/admin/halaman-transaksi-penjualan-barang', 'co_admTransaksi@transKe
 Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
 Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
 
+//Route Proses
+Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
+
 //auth
 Auth::routes();
 
