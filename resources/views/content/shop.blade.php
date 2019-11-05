@@ -237,14 +237,14 @@
 					<!-- single product -->
 					<div class="col-lg-4 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="img/product/{{ $b->gambarBrg }}" alt="">
+							<img class="img-fluid" src="img/product/{{ $b->barang_gambar }}" alt="">
 							<div class="product-details">
-								<a href="{{ route('showProduct', $b->idBrg) }}">
-									<h6>{{ $b->namaBrg }}</h6>
+								<a href="{{ route('showProduct', $b->barang_id) }}">
+									<h6>{{ $b->barang_nama }}</h6>
 								</a>
 								<div class="price">
-									<h6>{{ number_format($b->hargaJual) }}</h6>
-									<h6 class="l-through">{{ number_format($b->hargaJual) }}</h6>
+									<h6>{{ number_format($b->barang_harga_jual) }}</h6>
+									<h6 class="l-through">{{ number_format($b->barang_harga_jual) }}</h6>
 								</div>
 								<div class="prd-bottom">
 

@@ -11,10 +11,16 @@ class IndexController extends Controller
 	{
 
 		// mengambil data dari fbsql_database
-		$data['latest'] = DB::table('tb_barang')
-			->orderBy('barang_id', 'desc')
-			->limit(8)
+
+		$barang = DB::table('tb_stok')
+			->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
+			->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
+			->groupBy('barang_id')
 			->get();
+
+		$data = [
+			'barang' => $barang
+		];
 
 		return view('content/index', $data);
 	}

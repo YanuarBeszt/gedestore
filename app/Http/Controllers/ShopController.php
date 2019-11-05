@@ -9,21 +9,35 @@ class ShopController extends Controller
 {
     public function index()
     {
+        $barang = DB::table('tb_stok')
+            ->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
+            ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
+            ->groupBy('barang_id')
+            ->get();
 
-        $data['barang'] = DB::table('tb_barang')->get();
+        $data = [
+            'barang' => $barang
+        ];
 
         return view('content/shop', $data);
     }
 
     public function showProduct($id)
     {
-        $product = DB::table('tb_barang')->where('idBrg', $id)->get();
+        $barang = DB::table('tb_stok')
+            ->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
+            ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
+            ->join('tb_kategori', 'tb_barang.barang_kategori_id', '=', 'tb_kategori.kategori_id')
+            ->where('barang_id', $id)
+            ->get();
 
-        foreach ($product as $p) {
-            $data['namaBrg'] = $p->namaBrg;
-            $data['hargaJual'] = $p->hargaJual;
-            $data['deskripsi'] = $p->deskripsi;
-            $data['gambarBrg'] = $p->gambarBrg;
+
+        foreach ($barang as $p) {
+            $data['barang_nama'] = $p->barang_nama;
+            $data['barang_harga_jual'] = $p->barang_harga_jual;
+            $data['barang_deskripsi'] = $p->barang_deskripsi;
+            $data['barang_gambar'] = $p->barang_gambar;
+            $data['kategori_nama'] = $p->kategori_nama;
         }
         return view('content/details', $data);
     }
