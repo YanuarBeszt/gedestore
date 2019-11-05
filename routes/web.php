@@ -19,14 +19,27 @@ Route::get('/shop/showProduct/{id}', [
 ]);
 Route::get('/shop', 'ShopController@index');
 
-//Admin Routes
+//Admin
 Route::get('/admin/halaman-dashboard', 'co_admAdmin@index');
 Route::get('/admin/halaman-profile-admin', 'co_admAdmin@profile');
-Route::get('/admin/halaman-inventory-barang', 'co_admInventory@index');
+
+//inventory
+Route::get('/admin/halaman-inventory-barang', 'InventoryController@index');
+Route::get('/admin/halaman-tambah-barang', 'InventoryController@addBarang');
+Route::post('/admin/store-barang', 'InventoryController@storeBarang');
+Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
+Route::post('/admin/store-kategori', 'InventoryController@storeKategori');
+
+//laporan
 Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
 Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
-Route::get('/admin/halaman-transaksi-barang-masuk', 'co_admTransaksi@transMasuk');
-Route::get('/admin/halaman-transaksi-penjualan-barang', 'co_admTransaksi@transKeluar');
+
+//transaksi
+Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
+Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
+Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');
+
+
 Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
 Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
 
