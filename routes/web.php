@@ -19,40 +19,42 @@ Route::get('/shop/showProduct/{id}', [
 ]);
 Route::get('/shop', 'ShopController@index');
 
-//Admin
-Route::get('/admin/halaman-dashboard', 'co_admAdmin@index');
-Route::get('/admin/halaman-profile-admin', 'co_admAdmin@profile');
-
-//inventory
-Route::get('/admin/halaman-inventory-barang', 'InventoryController@index');
-Route::get('/admin/halaman-tambah-barang', 'InventoryController@addBarang');
-Route::post('/admin/store-barang', 'InventoryController@storeBarang');
-Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
-Route::post('/admin/store-kategori', 'InventoryController@storeKategori');
-
-//laporan
-Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
-Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
-
-//transaksi
-Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
-Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
-Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');
-
-
-Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
-Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
-
-//Route Proses
-Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
-
-//auth
-// Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/login', 'AuthController@index');
 Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
+
+
+Route::group(['middleware' => 'usersession'], function () {
+    //Admin
+    Route::get('/admin/halaman-dashboard', 'co_admAdmin@index');
+    Route::get('/admin/halaman-profile-admin', 'co_admAdmin@profile');
+
+    //inventory
+    Route::get('/admin/halaman-inventory-barang', 'InventoryController@index');
+    Route::get('/admin/halaman-tambah-barang', 'InventoryController@addBarang');
+    Route::post('/admin/store-barang', 'InventoryController@storeBarang');
+    Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
+    Route::post('/admin/store-kategori', 'InventoryController@storeKategori');
+
+    //laporan
+    Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
+    Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
+
+    //transaksi
+    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
+    Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
+    Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');
+
+
+    Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
+    Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
+
+    //Route Proses
+    Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
+});
+//auth
+// Auth::routes();
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -155,6 +155,7 @@
 				</div>
 			</div>
 			<div class="row">
+				@if(!empty($barang))
 				@foreach($barang as $b)
 				<!-- single product -->
 				<div class="col-lg-3 col-md-6">
@@ -182,6 +183,7 @@
 					</div>
 				</div>
 				@endforeach
+				@endif
 				<!-- end singgle product -->
 
 			</div>

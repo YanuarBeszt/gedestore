@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Helper\Table;
 
 class ShopController extends Controller
 {
     public function index()
     {
+        $kategori = DB::table('tb_barang')
+            ->select('*', DB::raw('count(barang_kategori_id) as kategoriTotal'))
+            ->join('tb_kategori', 'tb_barang.barang_kategori_id', '=', 'tb_kategori.kategori_id')
+            ->get();
+
         $barang = DB::table('tb_stok')
             ->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
             ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
@@ -16,7 +22,8 @@ class ShopController extends Controller
             ->get();
 
         $data = [
-            'barang' => $barang
+            'barang' => $barang,
+            'kategori' => $kategori
         ];
 
         return view('content/shop', $data);
