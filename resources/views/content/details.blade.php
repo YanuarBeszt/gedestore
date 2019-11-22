@@ -76,6 +76,7 @@
 					</div>
 					<div class="card_area d-flex align-items-center">
 						<a class="primary-btn" href="#">Tambah ke keranjang</a>
+						<a class="btn btn-outline-info" href="#">+ Wishlist</a>
 					</div>
 				</div>
 			</div>

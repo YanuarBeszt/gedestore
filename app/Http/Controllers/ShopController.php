@@ -48,4 +48,6 @@ class ShopController extends Controller
         }
         return view('content/details', $data);
     }
+
+    
 }

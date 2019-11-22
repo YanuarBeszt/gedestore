@@ -53,6 +53,9 @@ Route::group(['middleware' => 'usersession'], function () {
     //Route Proses
     Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
 });
+
+    Route::get('/wishlists/{wishlist}','WishlistsController@index');
+
 //auth
 // Auth::routes();
 
