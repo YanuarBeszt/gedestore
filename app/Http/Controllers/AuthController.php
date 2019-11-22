@@ -54,7 +54,7 @@ class AuthController extends Controller
 			return redirect('admin/halaman-dashboard');
 		} else {
 			//gagal login
-			return redirect('login')->with('alert', 'Password atau Email, Salah !');
+			return redirect('admin/login')->with('alert', 'Password atau Email, Salah !');
 		}
 	}
 

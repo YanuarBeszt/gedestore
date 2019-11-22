@@ -17,6 +17,8 @@ Route::get('/shop/showProduct/{id}', [
     'as' => 'showProduct',
     'uses' => 'ShopController@showProduct'
 ]);
+
+// Route::get('/pass', 'AuthController@pass');
 Route::get('/shop', 'ShopController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
