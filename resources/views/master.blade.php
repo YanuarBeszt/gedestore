@@ -36,6 +36,15 @@
 </head>
 
 <body>
+		<div class="row">
+  
+				@if(Session('alert'))
+				<div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
+				@elseif (Session('success'))
+				<div class="flash-data" data-flashdata="{{Session('success')}}"></div>
+				@endif
+		  
+			  </div>
 	<!-- konten -->
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
@@ -71,8 +80,16 @@
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
-							<li class="nav-item"><a href="{{ url('/customer/login') }}" class="cart"><span>Daftar</span></a></li>
-							<li class="nav-item"><a href="#" class="cart"><span>Masuk</span></a></li>
+							@if (session('login_user'))
+							<li class="nav-item"><a href="/logout-user" class="cart"><span>Logout</span></a></li>
+							<li class="nav-item"><span>{{session('user_nama')}}</span></li>
+
+							</div>
+							@else
+							<li class="nav-item"><a href="{{ url('/customer/register') }}" class="cart"><span>Daftar</span></a></li>
+							<li class="nav-item"><a href="{{ url('/customer/login') }}" class="cart"><span>Masuk</span></a></li>
+						@endif
+
 						</ul>
 					</div>
 				</div>
@@ -177,7 +194,34 @@
 	@yield('filejs')
 	<!-- code js -->
 	@yield('codejs')
+	<script src="{{ asset('admin/js/scripts/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
+	<!-- script sweetalert2 -->
+	<script type="text/javascript">
+	  const flash = $('.flash-data').data('flashdata');
+	  if (flash) {
+		Swal.fire({
+		  title: 'Data',
+		  text: 'Berhasil ' + flash,
+		  type: 'success',
+		  showConfirmButton: false,
+		  timer: 1500
+		});
+	  }
+	</script>
+	<!-- script sweetalert2 -->
+	<script type="text/javascript">
+	  const alert = $('.flash-alert').data('flashalert');
+	  if (alert) {
+		Swal.fire({
+		  type: 'error',
+		  title: 'Oops...',
+		  text: 'Gagal ' + alert,
+		  showConfirmButton: false,
+		  timer: 1500
+		});
+	  }
+	</script>
 </body>
 
 </html>

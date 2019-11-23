@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
-use Illuminate\Http\Facades\DB;
-
+use DB; 
+use App\Tb_users;
 use Session;
+use Illuminate\Support\Facades\Auth;
+
+use DateTime;
 
 class CustAuthController extends Controller
 {
@@ -17,77 +20,95 @@ class CustAuthController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->session()->exists('login')) {
+        if($request->session()->exists('login_user')) {
             //can't find any sessionn
             return redirect()->back()->with('alert','Silahkan Logout Terlebih Dahulu');
         }
         return view('cust-auth/login');
         
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function register_user(Request $request)
     {
-        //
+
+        if($request->session()->exists('login_user')) {
+            //can't find any sessionn
+            return redirect()->back()->with('alert','Silahkan Logout Terlebih Dahulu');
+        }
+        return view('cust-auth/register');
+
+    }
+    public function proses_register(Request $request)
+    {
+        $now = new DateTime();
+		$messages = [
+			'required' => 'Form :attribute wajib di isi *',
+			'email' => 'Tolong gunakan :attribute yang sah *',
+			'max' => ':attribute max 100',
+		];
+
+		//validasi form
+
+        $this->validate($request,[
+			'email' => 'required|email|max:100',
+            'password' => 'required',
+			'nama' => 'required',
+
+        ], $messages);
+        DB::table('tb_users')->insert([
+            'namaUser' => $request->nama,
+            'emailUser' => $request->email,
+            'password' => md5($request->password),
+            'created_at' => $now,
+        ]);
+
+        return redirect('customer/login')->with('success', 'Daftar silahkan login');
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	// public function pass(){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Customer $customer)
-    {
-        //
-    }
+	// 	$passw = md5('123123');
+	// 	return print_r($passw);
+	// }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
-    }
+	public function postLogin(Request $request)
+	{
+		//isi allert
+		$messages = [
+			'required' => 'Form : attribute wajib di isi *',
+			'email' => 'Tolong gunakan : attribute yang sah *',
+			'max' => ': attribute max 100',
+		];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Customer $customer)
-    {
-        //
-    }
+		//validasi form
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customer $customer)
-    {
-        //
-    }
+        $this->validate($request,[
+			'email' => 'required|email|max:100',
+			'password' => 'required',
+        ], $messages);
+
+		//fungsi login
+		$user = Tb_users::where('emailUser', $request->email)
+			->where('password', md5($request->password))
+			->first();
+
+		if (!empty($user)) {
+			//membuat session user logged in
+			Session::put('user_nama', $user->namaUser);
+			Session::put('user_email', $user->emailUser);
+			Session::put('user_id', $user->idUser);
+			Session::put('login_user', TRUE);
+			return redirect('/');
+		} else {
+			//gagal login
+			return redirect('customer/login')->with('alert', 'Password atau Email, Salah !');
+		}
+	}
+
+	public function keluar()
+	{
+
+		Session::flush();
+        return redirect()->back()->with('success','Logout');
+	}
 }

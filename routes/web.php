@@ -26,7 +26,14 @@ Route::get('/admin/login', 'AuthController@index');
 Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
 
+// COSTUMER
 Route::get('/customer/login','CustAuthController@index');
+Route::get('/customer/register', 'CustAuthController@register_user');
+Route::post('/proses-register-user', 'CustAuthController@proses_register');
+Route::post('/proses-login-user', 'CustAuthController@postLogin');
+Route::get('/logout-user', 'CustAuthController@keluar');
+
+// endcostumer
 
 Route::group(['middleware' => 'usersession'], function () {
     //Admin
