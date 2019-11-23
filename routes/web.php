@@ -44,6 +44,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
 
     //transaksi
+    Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');
