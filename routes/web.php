@@ -17,6 +17,8 @@ Route::get('/shop/showProduct/{id}', [
     'as' => 'showProduct',
     'uses' => 'ShopController@showProduct'
 ]);
+
+// Route::get('/pass', 'AuthController@pass');
 Route::get('/shop', 'ShopController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,12 +39,20 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/store-barang', 'InventoryController@storeBarang');
     Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
     Route::post('/admin/store-kategori', 'InventoryController@storeKategori');
+    
+    Route::get('/admin/stok-barang', 'InventoryController@dataStok');
+    Route::get('/admin/detail-stok/{id}', 'InventoryController@detailStok')->name('detailStok');
+    Route::get('/admin/tambah-detail-stok/{id}', 'InventoryController@tambahStok');
+    Route::post('/admin/store-stok', 'InventoryController@storeStok');
+    Route::get('/admin/delete-stok/{id}/{detail}', 'InventoryController@deleteStok');
+    Route::post('/admin/edit-stok', 'InventoryController@editStok');
 
     //laporan
     Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
     Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
 
     //transaksi
+    Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');

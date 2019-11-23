@@ -13,6 +13,7 @@ class InventoryController extends Controller
         $barang = DB::table('tb_stok')
             ->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
             ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
+            ->join('tb_kategori', 'tb_barang.barang_kategori_id', '=', 'tb_kategori.kategori_id')
             ->groupBy('barang_id')
             ->get();
 
@@ -78,5 +79,76 @@ class InventoryController extends Controller
         ]);
 
         return redirect('/admin/halaman-tambah-barang')->with('success', 'Tambah Kategori');
+    }
+    
+    public function dataStok(){
+        $data = [
+            'title' => "Data Stok Barang",
+            'breadcrumb' => "Inventory - Data Stok Barang",
+            'barang' => DB::table('tb_barang')->get()
+        ];
+        
+        return view ('admin/inv_stok', $data);
+        
+    }
+    
+    public function detailStok($id) {
+        $data = [
+            'title' => "Detail Stok Barang",
+            'breadcrumb' => "Inventory - Data Stok Barang",
+            'nmBarang' => DB::table('tb_barang')->where('barang_id', $id)->get(),
+            'stok' => DB::table('tb_stok')->where('stok_barang_id', $id)->get()
+        ];
+        
+        return view ('admin/inv_stok_detail', $data);
+    }
+    
+    public function tambahStok($id) {               
+        $data = [
+            'title' => "Tambah Stok Barang",
+            'breadcrumb' => "Inventory - Tambah Stok Barang",
+            'nmBarang' => DB::table('tb_barang')->where('barang_id', $id)->get()
+        ];
+        
+        return view ('admin/inv_stok_tambah', $data);
+    }
+    
+    public function storeStok(Request $insert) {
+        $idbrg = $insert->idBrg;
+        $ukbrg = $insert->ukrBrg;
+        
+        $querychk = DB::table('tb_stok')
+            ->where('stok_barang_id', $idbrg)
+            ->where('stok_ukuran', $ukbrg)
+            ->select('*')
+            ->get();
+        
+        $total_row = $querychk->count();
+        if($total_row > 0){
+            return redirect()->route('detailStok', ['id' => $insert->idBrg]);
+        } else {
+            DB::table('tb_stok')->insert([
+                'stok_barang_id' => $insert->idBrg,
+                'stok_ukuran' => $insert->ukrBrg,
+                'stok_jumlah_stok' => $insert->jumlahStok
+            ]);
+        }
+        
+        return redirect()->route('detailStok', ['id' => $insert->idBrg]);
+        
+    }
+    
+    public function deleteStok($id, $detail) {
+        DB::table('tb_stok')->where('stok_id', $id)->delete();
+        
+        return redirect()->route('detailStok', ['id' => $detail]);
+    }
+    
+    public function editStok(Request $update) {
+        DB::table('tb_stok')->where('stok_id', $update->idStok)->update([
+            'stok_jumlah_stok' => $update->jumlahStok
+        ]);
+        
+        return redirect()->route('detailStok', ['id' => $update->idBrg]);
     }
 }

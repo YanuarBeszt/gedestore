@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="author" content="Triplets">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ $title }} | Gede Store - Grosir Textile Jember</title>
 
   <link rel="apple-touch-icon" href="{{ asset('admin/images/favicon/apple-touch-icon-152x152.png') }}">
@@ -29,11 +29,21 @@
   <!-- BEGIN: Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/custom/custom.css') }}">
   <!-- END: Custom CSS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <!-- END: Head-->
 
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-menu-nav-dark 2-columns  " data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
-
+    <div class="row">
+  
+        @if(Session('alert'))
+        <div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
+        @elseif (Session('success'))
+        <div class="flash-data" data-flashdata="{{Session('success')}}"></div>
+        @endif
+  
+      </div>
   <!-- BEGIN: Header-->
   <header class="page-topbar" id="header">
     <div class="navbar navbar-fixed">
@@ -138,6 +148,7 @@
         </div>
       </div>
       <div class="col s12">
+
         <div class="container">
           <!-- card stats start -->
           @yield('content')
@@ -170,6 +181,34 @@
   <script src="{{ asset('admin/js/scripts/advance-ui-modals.js') }}" type="text/javascript"></script>
   <script src="{{ asset('admin/js/scripts/app-email.js') }}" type="text/javascript"></script>
 
+  <script src="{{ asset('admin/js/scripts/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+  <!-- script sweetalert2 -->
+  <script type="text/javascript">
+    const flash = $('.flash-data').data('flashdata');
+    if (flash) {
+      Swal.fire({
+        title: 'Data',
+        text: 'Berhasil ' + flash,
+        type: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  </script>
+  <!-- script sweetalert2 -->
+  <script type="text/javascript">
+    const alert = $('.flash-alert').data('flashalert');
+    if (alert) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Gagal ' + alert,
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  </script>
 
 </body>
 
