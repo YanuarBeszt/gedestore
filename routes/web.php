@@ -11,7 +11,7 @@
 |
 */
 
-//Costomer Routes
+//Customer Routes
 Route::get('/', 'IndexController@index');
 Route::get('/shop/showProduct/{id}', [
     'as' => 'showProduct',
@@ -24,6 +24,7 @@ Route::get('/admin/login', 'AuthController@index');
 Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
 
+Route::get('/customer/login','CustAuthController@index');
 
 Route::group(['middleware' => 'usersession'], function () {
     //Admin
@@ -54,6 +55,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
 });
 
+    //Wishlist and Cart
     Route::get('/wishlists/{wishlist}','WishlistsController@index');
 
 //auth

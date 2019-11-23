@@ -71,7 +71,7 @@
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
-							<li class="nav-item"><a href="#" class="cart"><span>Daftar</span></a></li>
+							<li class="nav-item"><a href="{{ url('/customer/login') }}" class="cart"><span>Daftar</span></a></li>
 							<li class="nav-item"><a href="#" class="cart"><span>Masuk</span></a></li>
 						</ul>
 					</div>
