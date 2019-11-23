@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class co_admPemesanan extends Controller
+class PemesananController extends Controller
 {
     //
     public function pesanOnline() {

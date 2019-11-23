@@ -38,6 +38,13 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/store-barang', 'InventoryController@storeBarang');
     Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
     Route::post('/admin/store-kategori', 'InventoryController@storeKategori');
+    
+    Route::get('/admin/stok-barang', 'InventoryController@dataStok');
+    Route::get('/admin/detail-stok/{id}', 'InventoryController@detailStok')->name('detailStok');
+    Route::get('/admin/tambah-detail-stok/{id}', 'InventoryController@tambahStok');
+    Route::post('/admin/store-stok', 'InventoryController@storeStok');
+    Route::get('/admin/delete-stok/{id}/{detail}', 'InventoryController@deleteStok');
+    Route::post('/admin/edit-stok', 'InventoryController@editStok');
 
     //laporan
     Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');

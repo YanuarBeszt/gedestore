@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class co_admLaporan extends Controller
+class LaporanController extends Controller
 {
     //
     public function lapMasuk() {
