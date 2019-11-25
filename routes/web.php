@@ -73,7 +73,7 @@ Route::group(['middleware' => 'usersession'], function () {
 });
 
     //Wishlist and Cart
-    Route::get('/wishlists/{wishlist}','WishlistsController@index');
+    Route::get('/wishlists','WishlistsController@index');
 
 //auth
 // Auth::routes();

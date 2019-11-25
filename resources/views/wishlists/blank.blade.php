@@ -49,42 +49,11 @@
         <div class="single-product-slider">
 			<div class="container">
 				<div class="row">
-    
-                @if($wishlists->isEmpty())
-                    
-                    <h4>Maaf, Barang tidak ditemukan!</h4>
-                    
-                @else
-                
-                    @foreach($wishlists as $w)                    
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<img class="img-fluid" src="img/product/{{ $w->barang_gambar }}" alt="">
-							<div class="product-details">
-                            <a href="{{ route('showProduct', $w->barang_id) }}">
-									<h6>{{ $w->barang_nama }}</h6>
-								</a>
-								<div class="price">
-									<h6>{{ number_format($w->barang_harga_jual) }}</h6>
-									<h6 class="l-through">{{ number_format($w->barang_harga_jual) }}</h6>
-								</div>
-								<div class="prd-bottom">
-                                <a href="{{ route('showProduct', $w->barang_id) }}" class="social-info">
-										<span class="ti-bag"></span>
-										<p class="hover-text">beli</p>
-									</a>
-									<a href="" class="social-info">
-										<span class="lnr lnr-move"></span>
-										<p class="hover-text">hapus</p>
-									</a>
-								</div>
-							</div>
-						</div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Maaf, Barang tidak ditemukan! Silahkan Login Terlebih dahulu</h4>                        
                     </div>
-                    @endforeach
-                    
-                    @endif
+                    <div class="col-md-2 pb-4"></div>   
 				</div>
 			</div>
 		</div>

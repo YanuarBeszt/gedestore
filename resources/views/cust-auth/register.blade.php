@@ -34,7 +34,7 @@
 				<h1>Register Page</h1>
 				<nav class="d-flex align-items-center">
 					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-					<a href="#">register<span class="lnr lnr-arrow-right"></span></a>
+					<a href="#">register</a>
 				</nav>
 			</div>
 		</div>
@@ -61,7 +61,7 @@
             @endif
 							<h3>isi Form di bawah untuk daftar</h3>
 							<form class="row login_form" action="/proses-register-user" method="post" id="contactForm" novalidate="novalidate">
-@csrf
+								@csrf
 
 								<div class="col-md-6 form-group">
 										<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">

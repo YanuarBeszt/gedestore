@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-// use App\Wishlist;
+use App\Wishlist;
+use Session;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
+
 
 class WishlistsController extends Controller
 {
@@ -14,13 +15,24 @@ class WishlistsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        /*showing data from table to view
-        ['wishlists' => $wishlists] -> compact function , we can use compact function because same*/
         
-        $wishlists = DB::table('tb_wishlists')->leftJoin('tb_barang', 'tb_wishlists.barang_id' ,'=','tb_barang.barang_id')->get();
-        return view('wishlists.index',compact('wishlists'));
+        if($request->session()->exists('login_user')) {
+            /*showing data from table to view
+            ['wishlists' => $wishlists] -> compact function , we can use compact function because same*/
+            $wishlists = DB::table('tb_wishlists')
+            ->leftJoin('tb_barang','tb_wishlists.wishlist_barangId', '=' , 'tb_barang.barang_id')->get();
+            
+            return view('wishlists.index', compact('wishlists') );
+
+        } 
+        return view('wishlists.blank');
+
+
+        
+       
+        
     }
 
     /**

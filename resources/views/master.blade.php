@@ -44,7 +44,7 @@
 				<div class="flash-data" data-flashdata="{{Session('success')}}"></div>
 				@endif
 		  
-			  </div>
+		</div>
 	<!-- konten -->
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
@@ -76,10 +76,12 @@
 							<li class="nav-item"><a class="nav-link" href="">Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="{{ url('/wishlists') }}" class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
+
+							<!-- Customer Login -->
 							@if (session('login_user'))
 							<li class="nav-item"><a href="/logout-user" class="cart"><span>Logout</span></a></li>
 							<li class="nav-item"><span>{{session('user_nama')}}</span></li>

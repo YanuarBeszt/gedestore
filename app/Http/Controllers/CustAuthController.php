@@ -29,7 +29,7 @@ class CustAuthController extends Controller
     }
     public function register_user(Request $request)
     {
-
+        //for register if still login, need to logout
         if($request->session()->exists('login_user')) {
             //can't find any sessionn
             return redirect()->back()->with('alert','Silahkan Logout Terlebih Dahulu');
@@ -38,7 +38,8 @@ class CustAuthController extends Controller
 
     }
     public function proses_register(Request $request)
-    {
+    {   
+        //valdation messages
         $now = new DateTime();
 		$messages = [
 			'required' => 'Form :attribute wajib di isi *',
@@ -47,13 +48,14 @@ class CustAuthController extends Controller
 		];
 
 		//validasi form
-
         $this->validate($request,[
 			'email' => 'required|email|max:100',
             'password' => 'required',
 			'nama' => 'required',
 
         ], $messages);
+
+        //input to db
         DB::table('tb_users')->insert([
             'namaUser' => $request->nama,
             'emailUser' => $request->email,
