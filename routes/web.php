@@ -37,8 +37,8 @@ Route::get('/logout-user', 'CustAuthController@keluar');
 
 Route::group(['middleware' => 'usersession'], function () {
     //Admin
-    Route::get('/admin/halaman-dashboard', 'co_admAdmin@index');
-    Route::get('/admin/halaman-profile-admin', 'co_admAdmin@profile');
+    Route::get('/admin/halaman-dashboard', 'AdminController@index');
+    Route::get('/admin/halaman-profile-admin', 'AdminController@profile');
 
     //inventory
     Route::get('/admin/halaman-inventory-barang', 'InventoryController@index');
@@ -55,18 +55,20 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/edit-stok', 'InventoryController@editStok');
 
     //laporan
-    Route::get('/admin/halaman-laporan-barang-masuk', 'co_admLaporan@lapMasuk');
-    Route::get('/admin/halaman-laporan-penjualan-barang', 'co_admLaporan@lapKeluar');
+    Route::get('/admin/halaman-laporan-barang-masuk', 'LaporanController@lapMasuk');
+    Route::get('/admin/halaman-laporan-penjualan-barang', 'LaporanController@lapKeluar');
 
     //transaksi
     Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');
-    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
+//    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
+    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');
+    
+    
 
-
-    Route::get('/admin/halaman-pemesanan-online', 'co_admPemesanan@pesanOnline');
-    Route::get('/admin/halaman-pemesanan-offline', 'co_admPemesanan@pesanOffline');
+    Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');
+    Route::get('/admin/halaman-pemesanan-offline', 'PemesananController@pesanOffline');
 
     //Route Proses
     Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
