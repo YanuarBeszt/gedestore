@@ -63,7 +63,7 @@ Route::group(['middleware' => 'usersession'], function () {
 //    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
-    Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiController@transKeluar');
+    Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiKeluarController@index');
     
     
 
