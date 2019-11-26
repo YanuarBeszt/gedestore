@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 06, 2019 at 01:56 PM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 26, 2019 at 02:59 PM
 -- Server version: 10.4.6-MariaDB
--- PHP Version: 7.2.22
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_gede`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2019_10_16_021833_create_tb_users', 1),
+(2, '2019_11_21_145640_create_tb_wishlists', 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +84,8 @@ CREATE TABLE `tb_barang` (
 
 INSERT INTO `tb_barang` (`barang_id`, `barang_nama`, `barang_harga_beli`, `barang_harga_jual`, `barang_deskripsi`, `barang_kategori_id`, `barang_gambar`) VALUES
 ('5dc00fc76fa15', 'boxer', 20000, 22000, 'jadasd', 1, 'p1.jpg'),
-('5dc02df14b5ff', 'jeans biru', 110000, 150000, 'uhiugiyf', 1, 'p2.jpg');
+('5dc02df14b5ff', 'jeans biru', 110000, 150000, 'uhiugiyf', 1, 'p2.jpg'),
+('5dd8712959982', 'asdasd', 123123, 123123123, 'qweqweqwe', 1, 'q123123213');
 
 -- --------------------------------------------------------
 
@@ -92,6 +113,13 @@ CREATE TABLE `tb_detail_transaksi_masuk` (
   `detiltrans_masuk_stok` int(4) NOT NULL,
   `detiltrans_masuk_totalHarga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_detail_transaksi_masuk`
+--
+
+INSERT INTO `tb_detail_transaksi_masuk` (`detiltrans_masuk_idtrans`, `detiltrans_masuk_idstok`, `detiltrans_masuk_stok`, `detiltrans_masuk_totalHarga`) VALUES
+('TRX-000000001', 1, 5, 100000);
 
 -- --------------------------------------------------------
 
@@ -160,7 +188,12 @@ INSERT INTO `tb_stok` (`stok_id`, `stok_barang_id`, `stok_ukuran`, `stok_jumlah_
 (2, '5dc00fc76fa15', 'M', 21),
 (3, '5dc00fc76fa15', 'L', 24),
 (4, '5dc00fc76fa15', 'S', 21),
-(5, '5dc02df14b5ff', 'XL', 21);
+(5, '5dc02df14b5ff', 'XL', 21),
+(6, '5dc02df14b5ff', 'L', 22),
+(7, '5dc02df14b5ff', 'M', 32),
+(8, '5dc02df14b5ff', 'S', 10),
+(10, '5dd8712959982', 'XL', 123),
+(12, '5dd8712959982', 'L', 60);
 
 -- --------------------------------------------------------
 
@@ -190,8 +223,50 @@ CREATE TABLE `tb_transaksi_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `tb_transaksi_masuk`
+--
+
+INSERT INTO `tb_transaksi_masuk` (`trans_masuk_id`, `trans_masuk_tanggal`, `trans_masuk_suplier`, `trans_masuk_totalharga`) VALUES
+('TRX-000000001', '2019-11-26', 'qwqe', 111);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_users`
+--
+
+CREATE TABLE `tb_users` (
+  `idUser` int(10) UNSIGNED NOT NULL,
+  `namaUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emailUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_wishlists`
+--
+
+CREATE TABLE `tb_wishlists` (
+  `wishlist_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `barang_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_admins`
@@ -251,8 +326,32 @@ ALTER TABLE `tb_transaksi`
   ADD KEY `transaksi_member_id` (`transaksi_member_id`);
 
 --
+-- Indexes for table `tb_transaksi_masuk`
+--
+ALTER TABLE `tb_transaksi_masuk`
+  ADD PRIMARY KEY (`trans_masuk_id`);
+
+--
+-- Indexes for table `tb_users`
+--
+ALTER TABLE `tb_users`
+  ADD PRIMARY KEY (`idUser`);
+
+--
+-- Indexes for table `tb_wishlists`
+--
+ALTER TABLE `tb_wishlists`
+  ADD PRIMARY KEY (`wishlist_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori`
@@ -264,7 +363,19 @@ ALTER TABLE `tb_kategori`
 -- AUTO_INCREMENT for table `tb_stok`
 --
 ALTER TABLE `tb_stok`
-  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `tb_users`
+--
+ALTER TABLE `tb_users`
+  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_wishlists`
+--
+ALTER TABLE `tb_wishlists`
+  MODIFY `wishlist_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -280,7 +391,6 @@ ALTER TABLE `tb_barang`
 -- Constraints for table `tb_detail_transaksi`
 --
 ALTER TABLE `tb_detail_transaksi`
-  ADD CONSTRAINT `tb_detail_transaksi_ibfk_1` FOREIGN KEY (`dt_transaksi_nomor`) REFERENCES `tb_transaksi` (`transaksi_nomor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_detail_transaksi_ibfk_2` FOREIGN KEY (`dt_barang_id`) REFERENCES `tb_barang` (`barang_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

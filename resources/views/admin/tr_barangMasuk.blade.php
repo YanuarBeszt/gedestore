@@ -1,141 +1,82 @@
 @extends('admIndex')
 
-
 @section('content')
-
-            <!-- {{-- menampilkan error validasi --}} -->
-            <!-- {{-- menampilkan error validasi --}} -->
-            @if (count($errors) > 0)
-              @foreach ($errors->all() as $error)
-              <div class="card-alert card red">
-                <div class="card-content white-text">
-                  <p>{{ $error }}</p>
-                </div>
-                <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              @endforeach
-            @endif
-<!-- form  -->
+<!-- DataTables example -->
 <div class="row">
-    <div class="col s12">
-        <div id="custom-error" class="card card-tabs">
+    <div class="col s12 m12 l12">
+        <div id="button-trigger" class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="card-title">
-                    <div class="row">
-                        <div class="col s12">
-                            <ul class="tabs">
-                                <li class="tab col s6 p-0"><a class="active p-0" href="#view-custom-error">Tambah Stok</a></li>
-                                <li class="tab col s6 p-0"><a class="p-0" href="#html-custom-error">Tambah Ukuran Barang</a></li>
-                            </ul>
-                        </div>
+                <div class="col s12 m6 l7">
+                    <h4 class="card-title">Barang</h4>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        {{ $lastid }}
+                        <input type="text" name="search"><a class="waves-effect waves-light btn modal-trigger" href="#daftarbarang">Modal</a>
+                        <table id="data-table-simple" class="display">
+                            <thead>
+                                <tr style="background-color: orange">
+                                    <th>Nama Barang</th>
+                                    <th>Kategori</th>
+                                    <th>Harga Beli</th>
+                                    <th>Harga Jual</th>
+                                    <th>Total Stok</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @foreach($dtstok as $dtst)
+                                <tr>
+                                  <td>{{ $dtst->barang_id }}</td>
+                                  <td>{{ $dtst->barang_nama }}</td>
+                                  <td>{{ $dtst->stok_ukuran }}</td>
+                                  <td>{{ $dtst->detiltrans_masuk_stok }}</td>
+                                  <td>{{ $dtst->detiltrans_masuk_totalHarga }}</td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div id="view-custom-error">
-                    <form id="myform" method="POST" action="/admin/proses-trans-masuk" >
-                        @csrf
-                        <div class="row">
-                            <div class="input-field col s5">
-                                <select name="ktgBrg" id="ktgBrg" required>
-                                    <option value="1">--Nama Barang--</option>
-                                    @if(!empty($barang))
-                                    @foreach($barang as $brg)
-                                    <option value="{{$brg->barang_id}}">{{ $brg->barang_nama }}</option>
-                                    @endforeach
-                                    @endif
-                                </select>
-                                <label>Nama Barang</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input value="" name="hargaBeli" id="hargaBeli" type="text" class="validate">
-                                <label for="hargaBeli">Harga Beli</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input name="stokMsk" id="stokMsk" type="text" class="validate">
-                                <label for="stokMsk">Stok Masuk</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="deskripsi" name="deskripsi" type="text" class="validate">
-                                <label for="deskripsi">Deskripsi</label>
-                            </div>
-                        </div>
-                        <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light right submit" type="submit" name="action">simpan
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div id="html-custom-error">
-                <form id="myform" method="POST" action="/admin/proses-trans-masuk" >
-                    @csrf
-                        <div class="row">
-                            <div class="input-field col s5">
-                                <select name="ktgBrg" id="ktgBrg" required>
-                                    <option value="1">--Nama Barang--</option>
-                                    @if(!empty($barang))
-                                    @foreach($barang as $brg)
-                                    <option value="{{$brg->barang_id}}">{{ $brg->barang_nama }}</option>
-                                    @endforeach
-                                    @endif
-                                </select>
-                                <label>Nama Barang</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input  name="hargaBeli3" id="hargaBeli2" type="text" class="validate">
-                                <label for="hargaBeli">Harga Beli</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="S" />
-                                <span>S</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="M" />
-                                <span>M</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="L" />
-                                <span>L</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="XL" />
-                                <span>XL</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="XXL" />
-                                <span>XXL</span>
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input name="stok" id="stok" type="text" class="validate">
-                                <label for="stokMsk">Stok Masuk</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="deskripsi" name="deskripsi" type="text" class="validate">
-                                <label for="deskripsi">Deskripsi</label>
-                            </div>
-                        </div>
-                        <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light right submit-btn"  type="submit" >simpan
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Modal Barang -->
+<div id="daftarbarang" class="modal">
+    <div class="modal-content">
+      <table id="data-table-simple" class="display">
+        <thead>
+          <tr>
+            <th>Barcode</th>
+            <th>Nama Barang</th>
+            <th>Ukuran</th>
+            <th>Stok</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($dfstok as $dfst)
+          <tr>
+            <td>{{ $dfst->barang_id }}</td>
+            <td>{{ $dfst->barang_nama }}</td>
+            <td>{{ $dfst->stok_ukuran }}</td>
+            <td>{{ $dfst->stok_jumlah_stok }}</td>
+            <td>
+              <a href="">tambah</a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+  </div>
+  
+@endsection
+@section('customjs')
 
 @endsection
