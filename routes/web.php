@@ -17,6 +17,11 @@ Route::get('/shop/showProduct/{id}', [
     'as' => 'showProduct',
     'uses' => 'ShopController@showProduct'
 ]);
+Route::get('cart', 'CartController@cartView');
+Route::get('add-to-cart/{id}', [
+    'as' => 'add-to-cart',
+    'uses' => 'CartController@addCart'
+]);
 
 // Route::get('/pass', 'AuthController@pass');
 Route::get('/shop', 'ShopController@index');
@@ -27,7 +32,7 @@ Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
 
 // COSTUMER
-Route::get('/customer/login','CustAuthController@index');
+Route::get('/customer/login', 'CustAuthController@index');
 Route::get('/customer/register', 'CustAuthController@register_user');
 Route::post('/proses-register-user', 'CustAuthController@proses_register');
 Route::post('/proses-login-user', 'CustAuthController@postLogin');
@@ -47,7 +52,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/store-barang', 'InventoryController@storeBarang');
     Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
     Route::post('/admin/store-kategori', 'InventoryController@storeKategori');
-    
+
     Route::get('/admin/stok-barang', 'InventoryController@dataStok');
     Route::get('/admin/detail-stok/{id}', 'InventoryController@detailStok')->name('detailStok');
     Route::get('/admin/tambah-detail-stok/{id}', 'InventoryController@tambahStok');
@@ -61,12 +66,12 @@ Route::group(['middleware' => 'usersession'], function () {
 
     //transaksi
     Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');
-//    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
+    //    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiKeluarController@index');
-    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');    
-    
+    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');
+
 
     Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');
     Route::get('/admin/halaman-pemesanan-offline', 'PemesananController@pesanOffline');
@@ -75,8 +80,8 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');
 });
 
-    //Wishlist and Cart
-    Route::get('/wishlists','WishlistsController@index');
+//Wishlist and Cart
+Route::get('/wishlists', 'WishlistsController@index');
 
 //auth
 // Auth::routes();
