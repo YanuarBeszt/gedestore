@@ -33,6 +33,7 @@ Route::post('/proses-register-user', 'CustAuthController@proses_register');
 Route::post('/proses-login-user', 'CustAuthController@postLogin');
 Route::get('/logout-user', 'CustAuthController@keluar');
 
+
 // endcostumer
 
 Route::group(['middleware' => 'usersession'], function () {
@@ -64,7 +65,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiKeluarController@index');
-    
+    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');    
     
 
     Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');

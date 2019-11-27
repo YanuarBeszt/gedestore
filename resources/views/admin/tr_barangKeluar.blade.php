@@ -1,6 +1,7 @@
 @extends('admIndex')
 
 @section('content')
+
     <!-- BEGIN: Page Main-->
             <div class="section">
     <div class="card">
@@ -10,7 +11,7 @@
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">book</i>
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="icon_prefix" value="{{$kode_trans}}" readonly="" type="text" class="validate">
           <label for="icon_prefix">Kode Transaksi</label>
         </div>
         <div class="input-field col s6">
@@ -33,7 +34,7 @@
     <div class="col s12 m12 l12">
 
       <div id="basic-tabs" class="card card card-default scrollspy">
- <a href="#" class="waves-effect waves-light btn gradient-45deg-amber-amber gradient-shadow mt-2">CARI BARANG<i class="material-icons right">search</i></a>
+ <a href="#modal1" class="waves-effect waves-light btn gradient-45deg-amber-amber gradient-shadow mt-2 modal-trigger">CARI BARANG<i class="material-icons right">search</i></a>
         <div class="card-content pt-3 pr-3 pb-3 pl-3">
 
           <div id="invoice">
@@ -63,7 +64,7 @@
                         <td>$ 1,000.00</td>
                         <td>$ 1,000.00</td>
 
-                        <td>Edit | Delete</td>
+                        <td> <a href="#">EDIT</a> | <a href="#">DELETE</a></td>
 
                       </tr>
  
@@ -98,6 +99,75 @@
     </div>
   </div>
 </div>
+
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer open">
+    <div class="modal-content">
+      <h5>Pilih Barang</h5>
+<div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s12">
+              <table id="page-length-option" class="display">
+                <thead>
+                  <tr>
+                    <th>No</th>
+
+                    <th>Barcode</th>
+                    <th>Nama Barang</th>
+                    <th>Ukuran</th>
+                    <th>Stok</th>
+                    <th>Action</th>                   
+
+                  </tr>
+                </thead>
+                <tbody>
+@if(!empty($barang))
+              <?php $no = 1; ?>
+                @foreach($barang as $b)
+
+
+                  <tr>
+                 <form id="form{{$b->barang_id}}{{$b->stok_ukuran}}" action="/admin/add-cart" method="post">
+					@csrf
+
+					<input type="hidden" name="id" value="{{$b->barang_id}}">
+					<input type="hidden" name="nama" value="{{$b->barang_nama}}">
+					<input type="hidden" name="ukuran" value="{{$b->stok_ukuran}}">
+					<input type="hidden" name="qty" value="1">
+					<input type="hidden" name="total_stok" value="{{$b->stok_jumlah_stok}}">
+                    <td>{{$no++}}</td>
+
+                    <td>{{$b->barang_id}}</td>
+                    <td>{{$b->barang_nama}} - {{$b->stok_ukuran}}</td>
+                    <td>{{$b->stok_ukuran}}</td>
+                    <td>{{$b->stok_jumlah_stok}}</td>
+                    <td>
+<input id="{{$b->barang_id}}{{$b->stok_ukuran}}" type='button' class="waves-effect waves-light btn gradient-45deg-green-teal box-shadow-none mr-1 mb-2" value='Submit' onclick="addFunction('{{$b->barang_id}}{{$b->stok_ukuran}}');" >
+</td>
+
+				</form>
+                  </tr>
+               @endforeach
+@endif
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 
 
 
