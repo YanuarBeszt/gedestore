@@ -46,6 +46,7 @@
                     <thead>
                       <tr>
                         <th data-field="no">No</th>
+                        <th data-field="item">Kode Barang</th>
                         <th data-field="item">Nama</th>
                         <th data-field="uprice">Ukuran</th>
                         <th data-field="price">Jumlah</th>
@@ -56,17 +57,26 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1.</td>
-                        <td>Mobile App</td>
-                        <td>$ 500.00</td>
-                        <td>2</td>
-                        <td>$ 1,000.00</td>
-                        <td>$ 1,000.00</td>
+<?php $i = 1; ?>
+@if( $jml_crt > 0)
+	@foreach($cart as $c)
+	                      <tr>
+	                        <td>{{$i++}}</td>
+	                        <td>{{$c->attributes->kode_brg}}</td>
+	                        <td>{{$c->name}}</td>
+	                        <td>{{$c->attributes->size}}</td>
+	                        <td>{{number_format($c->quantity)}}</td>
+	                        <td>Rp.{{number_format($c->price)}}</td>
 
-                        <td> <a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+	                        <td>Rp.{{number_format($c->quantity*$c->price)}}</td>
 
-                      </tr>
+	                        <td> <a href="#">EDIT</a> | <a href="/admin/delete-cart/{{$c->id}}">DELETE</a></td>
+
+	                      </tr>
+	@endforeach
+@else
+<td style="text-align: center;" colspan="8" >Keranjang Kosong , Pilih Barang Terlebih Dahulu !</td>
+@endif
  
                       <tr class="border-none">
                         <td>Sub Total:</td>
@@ -121,6 +131,8 @@
                     <th>Nama Barang</th>
                     <th>Ukuran</th>
                     <th>Stok</th>
+                    <th>Harga</th>
+
                     <th>Action</th>                   
 
                   </tr>
@@ -139,6 +151,7 @@
 					<input type="hidden" name="nama" value="{{$b->barang_nama}}">
 					<input type="hidden" name="ukuran" value="{{$b->stok_ukuran}}">
 					<input type="hidden" name="qty" value="1">
+					<input type="hidden" name="harga" value="{{$b->barang_harga_jual}}">
 					<input type="hidden" name="total_stok" value="{{$b->stok_jumlah_stok}}">
                     <td>{{$no++}}</td>
 
@@ -146,8 +159,10 @@
                     <td>{{$b->barang_nama}} - {{$b->stok_ukuran}}</td>
                     <td>{{$b->stok_ukuran}}</td>
                     <td>{{$b->stok_jumlah_stok}}</td>
+                    <td>Rp.{{number_format($b->barang_harga_jual)}}</td>
+
                     <td>
-<input id="{{$b->barang_id}}{{$b->stok_ukuran}}" type='button' class="waves-effect waves-light btn gradient-45deg-green-teal box-shadow-none mr-1 mb-2" value='Submit' onclick="addFunction('{{$b->barang_id}}{{$b->stok_ukuran}}');" >
+<input id="{{$b->barang_id}}{{$b->stok_ukuran}}" type='button' class="waves-effect waves-light btn gradient-45deg-green-teal box-shadow-none mr-1 mb-2" value='Pilih' onclick="addFunction('{{$b->barang_id}}{{$b->stok_ukuran}}');" >
 </td>
 
 				</form>

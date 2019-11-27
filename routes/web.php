@@ -66,7 +66,8 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiKeluarController@index');
     Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');    
-    
+    Route::get('/admin/destroy-cart', 'TransaksiKeluarController@destroy_cart');
+    Route::get('/admin/delete-cart/{id}', 'TransaksiKeluarController@delete_cart');
 
     Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');
     Route::get('/admin/halaman-pemesanan-offline', 'PemesananController@pesanOffline');
