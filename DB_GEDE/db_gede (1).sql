@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2019 at 02:59 PM
+-- Generation Time: Nov 27, 2019 at 05:57 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -108,6 +108,7 @@ CREATE TABLE `tb_detail_transaksi` (
 --
 
 CREATE TABLE `tb_detail_transaksi_masuk` (
+  `detiltrans_masuk_id` int(11) NOT NULL,
   `detiltrans_masuk_idtrans` varchar(13) NOT NULL,
   `detiltrans_masuk_idstok` int(11) NOT NULL,
   `detiltrans_masuk_stok` int(4) NOT NULL,
@@ -118,8 +119,9 @@ CREATE TABLE `tb_detail_transaksi_masuk` (
 -- Dumping data for table `tb_detail_transaksi_masuk`
 --
 
-INSERT INTO `tb_detail_transaksi_masuk` (`detiltrans_masuk_idtrans`, `detiltrans_masuk_idstok`, `detiltrans_masuk_stok`, `detiltrans_masuk_totalHarga`) VALUES
-('TRX-000000001', 1, 5, 100000);
+INSERT INTO `tb_detail_transaksi_masuk` (`detiltrans_masuk_id`, `detiltrans_masuk_idtrans`, `detiltrans_masuk_idstok`, `detiltrans_masuk_stok`, `detiltrans_masuk_totalHarga`) VALUES
+(1, 'TRX-000000001', 1, 5, 100000),
+(7, 'TRX-000000002', 1, 1, 20000);
 
 -- --------------------------------------------------------
 
@@ -185,9 +187,9 @@ CREATE TABLE `tb_stok` (
 
 INSERT INTO `tb_stok` (`stok_id`, `stok_barang_id`, `stok_ukuran`, `stok_jumlah_stok`) VALUES
 (1, '5dc00fc76fa15', 'XL', 24),
-(2, '5dc00fc76fa15', 'M', 21),
+(2, '5dc00fc76fa15', 'M', 22),
 (3, '5dc00fc76fa15', 'L', 24),
-(4, '5dc00fc76fa15', 'S', 21),
+(4, '5dc00fc76fa15', 'S', 22),
 (5, '5dc02df14b5ff', 'XL', 21),
 (6, '5dc02df14b5ff', 'L', 22),
 (7, '5dc02df14b5ff', 'M', 32),
@@ -290,6 +292,12 @@ ALTER TABLE `tb_detail_transaksi`
   ADD KEY `dt_barang_id` (`dt_barang_id`);
 
 --
+-- Indexes for table `tb_detail_transaksi_masuk`
+--
+ALTER TABLE `tb_detail_transaksi_masuk`
+  ADD PRIMARY KEY (`detiltrans_masuk_id`);
+
+--
 -- Indexes for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
@@ -352,6 +360,12 @@ ALTER TABLE `tb_wishlists`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_detail_transaksi_masuk`
+--
+ALTER TABLE `tb_detail_transaksi_masuk`
+  MODIFY `detiltrans_masuk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori`

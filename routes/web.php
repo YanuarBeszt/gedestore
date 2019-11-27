@@ -68,6 +68,9 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');
     //    Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiController@transMasuk');
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
+    Route::get('/admin/tambah-detail-masuk/{id}/{idtr}', 'TransaksiMasukController@tambah_detail');
+    Route::get('/admin/delete-detail-masuk/{id}', 'TransaksiMasukController@delete_detail');
+    
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
 
     // transaksi keluar

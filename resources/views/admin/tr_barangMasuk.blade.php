@@ -11,16 +11,14 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        {{ $lastid }}
-                        <input type="text" name="search"><a class="waves-effect waves-light btn modal-trigger" href="#daftarbarang">Modal</a>
-                        <table id="data-table-simple" class="display">
+                        <table id="page-length-option" class="display">
                             <thead>
-                                <tr style="background-color: orange">
-                                    <th>Nama Barang</th>
-                                    <th>Kategori</th>
-                                    <th>Harga Beli</th>
-                                    <th>Harga Jual</th>
-                                    <th>Total Stok</th>
+                                <tr>
+                                    <th>Barcode</th>
+                                    <th>Nama</th>
+                                    <th>Ukuran</th>
+                                    <th>Jumlah Masuk</th>
+                                    <th>Total Harga</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -30,8 +28,32 @@
                                   <td>{{ $dtst->barang_id }}</td>
                                   <td>{{ $dtst->barang_nama }}</td>
                                   <td>{{ $dtst->stok_ukuran }}</td>
-                                  <td>{{ $dtst->detiltrans_masuk_stok }}</td>
+                                  <td>
+                                      <a class="modal-trigger waves-effect waves-light btn red white-text" href="#modal{{ $dtst->detiltrans_masuk_id }}">{{ $dtst->detiltrans_masuk_stok }}</a>
+                                      <div id="modal{{ $dtst->detiltrans_masuk_id }}" class="modal">
+                                        <div class="modal-content">
+                                          <p>Masukkan Jumlah Barang</p>
+                                          <hr>
+                                          <div class="row">
+                                            <div class="input-field col s6 l6">
+                                              <input placeholder="Jumlah Pembelian" id="updatedetail" type="text" class="validate" required value="{{ $dtst->detiltrans_masuk_stok }}">
+                                              <label for="updatedetail">Jumlah Barang</label>
+                                            </div>
+                                            <div class="input-field col s6 l6">
+                                              <button class="btn cyan waves-effect waves-light" type="submit" name="action">
+                                                <i class="material-icons left">autorenew</i> update
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </td>
                                   <td>{{ $dtst->detiltrans_masuk_totalHarga }}</td>
+                                  <td>
+                                      <a class="btn-floating mb-1 btn-flat waves-effect waves-light red accent-2 white-text" href="/admin/delete-detail-masuk/{{ $dtst->detiltrans_masuk_id }}">
+                                        <i class="material-icons">delete</i>
+                                      </a>
+                                  </td>
                                 </tr>
                               @endforeach
                             </tbody>
@@ -42,7 +64,7 @@
         </div>
     </div>
 </div>
-
+<a class="waves-effect waves-light btn modal-trigger" href="#daftarbarang">Modal</a>
 <!-- Modal Barang -->
 <div id="daftarbarang" class="modal">
     <div class="modal-content">
@@ -64,7 +86,9 @@
             <td>{{ $dfst->stok_ukuran }}</td>
             <td>{{ $dfst->stok_jumlah_stok }}</td>
             <td>
-              <a href="">tambah</a>
+              <a class="btn-floating mb-1 btn-flat waves-effect waves-light orange accent-2 white-text" href="/admin/tambah-detail-masuk/{{ $dfst->stok_id }}/{{ $lastid }}">
+                <i class="material-icons">add_shopping_cart</i>
+              </a>
             </td>
           </tr>
           @endforeach
