@@ -3,29 +3,7 @@
 @section('content')
 
     <!-- BEGIN: Page Main-->
-            <div class="section">
-    <div class="card">
-        <div class="card-content">
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">book</i>
-          <input id="icon_prefix" value="{{$kode_trans}}" readonly="" type="text" class="validate">
-          <label for="icon_prefix">Kode Transaksi</label>
-        </div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">people</i>
-          <input id="icon_telephone" type="tel" class="validate">
-          <label for="icon_telephone">Member</label>
-        </div>
-      </div>
-    </form>
-  </div>
-  
-        </div>
-    </div>
-</div>
+
             <div class="seaction">
   <!--Invoice-->
 
@@ -35,6 +13,8 @@
 
       <div id="basic-tabs" class="card card card-default scrollspy">
  <a href="#modal1" class="waves-effect waves-light btn gradient-45deg-amber-amber gradient-shadow mt-2 modal-trigger">CARI BARANG<i class="material-icons right">search</i></a>
+
+
         <div class="card-content pt-3 pr-3 pb-3 pl-3">
 
           <div id="invoice">
@@ -42,6 +22,7 @@
             <div class="invoice-table">
               <div class="row">
                 <div class="col s12 m12 l12">
+
                   <table class="highlight responsive-table">
                     <thead>
                       <tr>
@@ -70,31 +51,57 @@
 
 	                        <td>Rp.{{number_format($c->quantity*$c->price)}}</td>
 
-	                        <td> <a href="#">EDIT</a> | <a href="/admin/delete-cart/{{$c->id}}">DELETE</a></td>
+	                        <td> <a href="#modaledit{{$c->id}}" class="modal-trigger">EDIT</a> | <a href="/admin/delete-cart/{{$c->id}}">DELETE</a></td>
 
 	                      </tr>
+						<!-- modal edit -->
+						  <div id="modaledit{{$c->id}}" class="modal">
+						    <div class="modal-content">
+						      <h4>Edit Barang {{$c->name}} - {{$c->attributes->size}}</h4>
+						     <form action="/admin/edit-cart" method="post">
+						      	@csrf
+								      <input value="{{$c->id}}" id="id_row" name="id_row" type="hidden" class="validate">
+								      <input value="{{$c->quantity}}" id="jml_skrg" name="jml_skrg" type="hidden" class="validate">
+
+						      	  <div class="row">
+								    <div class="input-field col s12">
+								      <input  id="qty" name="qty" value="" type="number" class="validate">
+								      <label class="active" for="qty">Tambahkan Jumlah Barang</label>
+								    </div>
+								  </div>
+						    </div>
+						    <div class="modal-footer">
+						<button type='submit' class="waves-effect waves-light btn gradient-45deg-deep-purple-blue  box-shadow-none mr-1 mb-2" value='Submit' >SUBMIT</button> 					
+    						</div>
+						  </form>
+
+						  </div>
+						  <!-- End Modal Edit -->
+
 	@endforeach
 @else
 <td style="text-align: center;" colspan="8" >Keranjang Kosong , Pilih Barang Terlebih Dahulu !</td>
 @endif
  
-                      <tr class="border-none">
+<!--                       <tr class="border-none">
                         <td>Sub Total:</td>
                         <td>$ 5,290.00</td>
 
-                      </tr>
-                      <tr class="border-none">
+                      </tr> -->
+<!--                       <tr class="border-none">
                         <td>Service Tax</td>
                         <td>11.00%</td>
-                      </tr>
+                      </tr> -->
                       <tr class="border-none">
                         <td class="cyan white-text pl-1">Grand Total</td>
-                        <td class="cyan strong white-text">$ 5,871.90</td>
+                        <td class="cyan strong white-text">Rp.{{number_format($jml_total)}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
 	                   <td></td>
-<td>                <a href="#" class="mb-6 btn btn-large waves-effect waves-light btn gradient-45deg-deep-purple-blue mt-2">PROSES TRANSAKSI</a>
+<td>                
+</td>
+<td>                <a href="/admin/destroy-cart" class="mb-6 btn btn-large waves-effect waves-light red accent-2">RESET<i class="material-icons dp48 right">refresh</i></a>
 </td>
                       </tr>
                     </tbody>
@@ -108,6 +115,34 @@
       </div>
     </div>
   </div>
+</div>
+            <div class="section">
+    <div class="card">
+        <div class="card-content">
+  <div class="row">
+    <form action="/admin/proses-transaksi-keluar" id="form_trans" method="post" class="col s12">
+    	@csrf
+      <div class="row">
+        <div class="input-field col s5">
+          <i class="material-icons prefix">book</i>
+          <input id="icon_prefix" name="kode_trans" value="{{$kode_trans}}" readonly="" type="text" class="validate">
+          <label for="icon_prefix">Kode Transaksi</label>
+        </div>
+        <div class="input-field col s4">
+          <i class="material-icons prefix">people</i>
+          <input id="icon_telephone" name="member" type="tel" class="validate">
+          <label for="icon_telephone">Member</label>
+        </div>
+        <div class="input-field col s3">
+<button type="submit" value="submit" class="mb-6 btn btn-large waves-effect waves-light btn gradient-45deg-deep-purple-blue mt-2">PROSES TRANSAKSI<i class="material-icons dp48 right">check</i></button>
+        </div>
+
+      </div>
+
+  </div>
+  
+        </div>
+    </div>
 </div>
 
 

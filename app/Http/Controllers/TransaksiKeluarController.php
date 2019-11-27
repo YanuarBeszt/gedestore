@@ -35,6 +35,7 @@ class TransaksiKeluarController extends Controller
 
         $cart = \Cart::getContent();
         $jml_crt = \Cart::getContent()->count();
+        $total = \Cart::getSubTotal();
 
         $data = [
             'title' => "Transaksi",
@@ -43,9 +44,65 @@ class TransaksiKeluarController extends Controller
             'barang' => $brg,
             'cart' => $cart,
             'jml_crt' => $jml_crt,
+            'jml_total' => $total, 
         ];
 
         return view('admin/tr_barangKeluar', $data);
+    }
+
+    public function proses_transaksi(Request $request){
+
+        $jml_crt = \Cart::getContent()->count();
+
+        if ($jml_crt > 0) {
+                //isi allert
+                $messages = [
+                    'required' => 'Form : attribute wajib di isi *',
+
+                ];
+
+                //validasi form
+                request()->validate([
+                    'kode_trans' => 'required',
+                ], $messages);
+
+                $brg = \Cart::getContent();
+                $total = \Cart::getSubTotal();
+
+
+
+                DB::table('tb_transaksi')->insert([
+                    'transaksi_nomor' => $request->kode_trans,
+                    'transaksi_member_id' => 0,
+                    'transaksi_tanggal' => date('Y-m-d'),
+                    'transaksi_alamat_pengiriman' => '-',
+                    'transaksi_jumlah_uang' => $total
+                ]);
+
+
+                foreach ($brg as $key) {
+
+                    $detail = [
+                         'dt_transaksi_nomor' => $request->kode_trans,
+                        'dt_barang_id' => $key->attributes->kode_brg,
+                        'dt_barang_ukuran' => $key->attributes->size,
+                     'dt_jumlah_barang' => $key->quantity,
+                     'dt_jumlah_harga' => $key->quantity*$key->price
+
+                    ];
+
+                    DB::table('tb_detail_transaksi')->insert($detail);
+                }
+
+
+               \Cart::clear();  
+
+                return redirect('/admin/halaman-transaksi-penjualan-barang')->with('success', 'Transaksi');
+        }else{
+                return redirect('/admin/halaman-transaksi-penjualan-barang')->with('alert', ',Pilih Barang Dulu !');
+
+        }
+
     }
     public function add_cart(Request $request){
 
@@ -116,7 +173,24 @@ class TransaksiKeluarController extends Controller
        return redirect('/admin/halaman-transaksi-penjualan-barang');
 
     }
+    public function edit_cart(Request $request){
+        // if ($request->jml_skrg > $request->qty) {
+        //     \Cart::update($request->id_row, array(
+        //                       'quantity' => -$request->qty, 
+        //                     ));
+        // } else {
+        //     \Cart::update($request->id_row, array(
+        //                       'quantity' => $request->qty, 
+        //                     ));
+        // }
+        
+            \Cart::update($request->id_row, array(
+                              'quantity' => $request->qty, 
+                            ));
 
+       return redirect('/admin/halaman-transaksi-penjualan-barang');
+
+    }
     public function destroy_cart(){
 
        \Cart::clear();  
