@@ -40,6 +40,7 @@ class ShopController extends Controller
 
 
         foreach ($barang as $p) {
+            $data['barang_id'] = $p->barang_id;
             $data['barang_nama'] = $p->barang_nama;
             $data['barang_harga_jual'] = $p->barang_harga_jual;
             $data['barang_deskripsi'] = $p->barang_deskripsi;
@@ -48,6 +49,4 @@ class ShopController extends Controller
         }
         return view('content/details', $data);
     }
-
-    
 }

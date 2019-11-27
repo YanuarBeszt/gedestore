@@ -170,7 +170,7 @@
 								<h6 class="l-through">Rp. {{ number_format($b->barang_harga_jual) }} </h6>
 							</div>
 							<div class="prd-bottom">
-								<a href="" class="social-info">
+								<a href="add-to-cart/{{$b->barang_id}}" class="social-info">
 									<span class="ti-bag"></span>
 									<p class="hover-text">tambah ke keranjang</p>
 								</a>
