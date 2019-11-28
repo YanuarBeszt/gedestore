@@ -220,13 +220,13 @@
       });
     }
   </script>
-<script type="text/javascript"> 
+<!-- <script type="text/javascript"> 
 function addFunction(e) {
 
   console.log(e);
 document.getElementById('form'+e).submit();   
 }
-</script>
+</script> -->
 
 </body>
 

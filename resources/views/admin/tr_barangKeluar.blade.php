@@ -151,12 +151,7 @@
   <div id="modal1" class="modal modal-fixed-footer open">
     <div class="modal-content">
       <h5>Pilih Barang</h5>
-<div class="row">
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content">
-          <div class="row">
-            <div class="col s12">
+
               <table id="page-length-option" class="display">
                 <thead>
                   <tr>
@@ -179,15 +174,7 @@
 
 
                   <tr>
-                 <form id="form{{$b->barang_id}}{{$b->stok_ukuran}}" action="/admin/add-cart" method="post">
-					@csrf
 
-					<input type="hidden" name="id" value="{{$b->barang_id}}">
-					<input type="hidden" name="nama" value="{{$b->barang_nama}}">
-					<input type="hidden" name="ukuran" value="{{$b->stok_ukuran}}">
-					<input type="hidden" name="qty" value="1">
-					<input type="hidden" name="harga" value="{{$b->barang_harga_jual}}">
-					<input type="hidden" name="total_stok" value="{{$b->stok_jumlah_stok}}">
                     <td>{{$no++}}</td>
 
                     <td>{{$b->barang_id}}</td>
@@ -197,21 +184,17 @@
                     <td>Rp.{{number_format($b->barang_harga_jual)}}</td>
 
                     <td>
-<input id="{{$b->barang_id}}{{$b->stok_ukuran}}" type='button' class="waves-effect waves-light btn gradient-45deg-green-teal box-shadow-none mr-1 mb-2" value='Pilih' onclick="addFunction('{{$b->barang_id}}{{$b->stok_ukuran}}');" >
-</td>
+						<a href="/admin/add-cart/{{$b->stok_id}}" class="waves-effect waves-light btn gradient-45deg-green-teal box-shadow-none mr-1 mb-2" >Pilih</a>
+					</td>
 
-				</form>
+
                   </tr>
                @endforeach
 @endif
                 </tbody>
 
               </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
     </div>
     <div class="modal-footer">
