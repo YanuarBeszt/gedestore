@@ -37,7 +37,7 @@
 
 <body>
 		<div class="row">
-  
+				<!-- session login -->
 				@if(Session('alert'))
 				<div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
 				@elseif (Session('success'))

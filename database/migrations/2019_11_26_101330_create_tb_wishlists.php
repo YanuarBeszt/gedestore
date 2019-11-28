@@ -13,17 +13,16 @@ class CreateTbWishlists extends Migration
      */
     public function up()
     {
+        
         Schema::create('tb_wishlists', function (Blueprint $table) {
-            $table->Increments('wishlist_id');
+            $table->Increments('wishlist_id')->unsigned();
             $table->Integer('wishlist_userid');
+            $table->foreign('wishlist_userid')->references('tb_users')->on('idUser');
             $table->string('wishlist_barangid',13);
+            $table->foreign('wishlist_barang_id')->references('tb_barang')->on('barang_id');
             $table->timestamps();
         });
-
-        Schema::table('tb_wishlists', function($table) {
-            $table->foreign('wishlist_userid')->references('tb_users')->on('idUser');
-            $table->foreign('wishlist_barangid')->references('tb_barang')->on('barang_id');
-        });
+        
     }
 
     /**

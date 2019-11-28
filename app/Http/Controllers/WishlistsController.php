@@ -21,18 +21,19 @@ class WishlistsController extends Controller
         if($request->session()->exists('login_user')) {
             /*showing data from table to view
             ['wishlists' => $wishlists] -> compact function , we can use compact function because same*/
-            $wishlists = DB::table('tb_wishlists')
+            $wishlists = DB::table('tb_wishlists')->where('wishlist_userid', session('user_id'))
             ->leftJoin('tb_barang','tb_wishlists.wishlist_barangId', '=' , 'tb_barang.barang_id')->get();
-            
-            return view('wishlists.index', compact('wishlists') );
+              
+            return view('wishlists.index', compact('wishlists'));
 
         } 
         return view('wishlists.blank');
-
-
         
-       
+    }
+
+    {
         
+
     }
 
     /**

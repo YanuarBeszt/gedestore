@@ -76,7 +76,14 @@
 					</div>
 					<div class="card_area d-flex align-items-center">
 						<a class="primary-btn" href="#">Tambah ke keranjang</a>
-						<a class="btn btn-outline-info" href="#">+ Wishlist</a>
+
+						<!-- add to wishlist -->
+						@csrf	
+						<form action="/addToWishlists'">
+							<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
+							<input type="text" value="{{ $value->barang_id }}"/>
+							<input type="submit" value="Tambah ke Wishlist" class="btn btn-outline-info">
+						</form>
 					</div>
 				</div>
 			</div>
