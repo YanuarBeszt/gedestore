@@ -87,7 +87,7 @@
 						</form>
 
 						<a class="primary-btn" href="{{ route('add-to-cart', $barang_id) }}">Tambah ke keranjang</a>
-						<a class="btn btn-outline-info" href="#">+ Wishlist</a>
+						<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
 
 					</div>
 				</div>
