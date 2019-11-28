@@ -31,6 +31,7 @@ class WishlistsController extends Controller
         
     }
 
+    public function addToWishlist(Request $request)
     {
         
 
