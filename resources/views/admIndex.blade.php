@@ -16,10 +16,16 @@
   <!-- BEGIN: VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/vendors.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/jquery-jvectormap/jquery-jvectormap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/flag-icon/css/flag-icon.min.css') }}">
+
   <!-- END: VENDOR CSS-->
   <!-- BEGIN: Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/vertical-menu-nav-dark-template/materialize.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/vertical-menu-nav-dark-template/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/css/select.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/data-tables.css') }}">
   <!-- Dashboard CSS -->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/dashboard.css') }}">
   <!-- Pemesanan Online CSS -->
@@ -182,6 +188,11 @@
   <script src="{{ asset('admin/js/scripts/app-email.js') }}" type="text/javascript"></script>
 
   <script src="{{ asset('admin/js/scripts/sweetalert2/sweetalert2.all.min.js') }}"></script>
+      <!-- BEGIN PAGE VENDOR JS-->
+    <script src="{{ asset('admin/vendors/data-tables/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin/vendors/data-tables/js/dataTables.select.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin/js/scripts/data-tables.js') }}" type="text/javascript"></script>
 
   <!-- script sweetalert2 -->
   <script type="text/javascript">
@@ -209,6 +220,13 @@
       });
     }
   </script>
+<script type="text/javascript"> 
+function addFunction(e) {
+
+  console.log(e);
+document.getElementById('form'+e).submit();   
+}
+</script>
 
 </body>
 

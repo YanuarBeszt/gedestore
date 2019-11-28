@@ -75,6 +75,7 @@
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 					</div>
 					<div class="card_area d-flex align-items-center">
+
 						<a class="primary-btn" href="#">Tambah ke keranjang</a>
 
 						<!-- add to wishlist -->
@@ -84,6 +85,10 @@
 							<input type="text" value="{{ $value->barang_id }}"/>
 							<input type="submit" value="Tambah ke Wishlist" class="btn btn-outline-info">
 						</form>
+
+						<a class="primary-btn" href="{{ route('add-to-cart', $barang_id) }}">Tambah ke keranjang</a>
+						<a class="btn btn-outline-info" href="#">+ Wishlist</a>
+
 					</div>
 				</div>
 			</div>

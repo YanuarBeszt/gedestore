@@ -1,141 +1,106 @@
 @extends('admIndex')
 
-
 @section('content')
-
-            <!-- {{-- menampilkan error validasi --}} -->
-            <!-- {{-- menampilkan error validasi --}} -->
-            @if (count($errors) > 0)
-              @foreach ($errors->all() as $error)
-              <div class="card-alert card red">
-                <div class="card-content white-text">
-                  <p>{{ $error }}</p>
-                </div>
-                <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              @endforeach
-            @endif
-<!-- form  -->
+<!-- DataTables example -->
 <div class="row">
-    <div class="col s12">
-        <div id="custom-error" class="card card-tabs">
+    <div class="col s12 m12 l12">
+        <div id="button-trigger" class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="card-title">
-                    <div class="row">
-                        <div class="col s12">
-                            <ul class="tabs">
-                                <li class="tab col s6 p-0"><a class="active p-0" href="#view-custom-error">Tambah Stok</a></li>
-                                <li class="tab col s6 p-0"><a class="p-0" href="#html-custom-error">Tambah Ukuran Barang</a></li>
-                            </ul>
-                        </div>
+                <div class="col s12 m6 l7">
+                    <h4 class="card-title">Barang</h4>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <table id="page-length-option" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Barcode</th>
+                                    <th>Nama</th>
+                                    <th>Ukuran</th>
+                                    <th>Jumlah Masuk</th>
+                                    <th>Total Harga</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @foreach($dtstok as $dtst)
+                                <tr>
+                                  <td>{{ $dtst->barang_id }}</td>
+                                  <td>{{ $dtst->barang_nama }}</td>
+                                  <td>{{ $dtst->stok_ukuran }}</td>
+                                  <td>
+                                      <a class="modal-trigger waves-effect waves-light btn red white-text" href="#modal{{ $dtst->detiltrans_masuk_id }}">{{ $dtst->detiltrans_masuk_stok }}</a>
+                                      <div id="modal{{ $dtst->detiltrans_masuk_id }}" class="modal">
+                                        <div class="modal-content">
+                                          <p>Masukkan Jumlah Barang</p>
+                                          <hr>
+                                          <div class="row">
+                                            <div class="input-field col s6 l6">
+                                              <input placeholder="Jumlah Pembelian" id="updatedetail" type="text" class="validate" required value="{{ $dtst->detiltrans_masuk_stok }}">
+                                              <label for="updatedetail">Jumlah Barang</label>
+                                            </div>
+                                            <div class="input-field col s6 l6">
+                                              <button class="btn cyan waves-effect waves-light" type="submit" name="action">
+                                                <i class="material-icons left">autorenew</i> update
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </td>
+                                  <td>{{ $dtst->detiltrans_masuk_totalHarga }}</td>
+                                  <td>
+                                      <a class="btn-floating mb-1 btn-flat waves-effect waves-light red accent-2 white-text" href="/admin/delete-detail-masuk/{{ $dtst->detiltrans_masuk_id }}">
+                                        <i class="material-icons">delete</i>
+                                      </a>
+                                  </td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div id="view-custom-error">
-                    <form id="myform" method="POST" action="/admin/proses-trans-masuk" >
-                        @csrf
-                        <div class="row">
-                            <div class="input-field col s5">
-                                <select name="ktgBrg" id="ktgBrg" required>
-                                    <option value="1">--Nama Barang--</option>
-                                    @if(!empty($barang))
-                                    @foreach($barang as $brg)
-                                    <option value="{{$brg->barang_id}}">{{ $brg->barang_nama }}</option>
-                                    @endforeach
-                                    @endif
-                                </select>
-                                <label>Nama Barang</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input value="" name="hargaBeli" id="hargaBeli" type="text" class="validate">
-                                <label for="hargaBeli">Harga Beli</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input name="stokMsk" id="stokMsk" type="text" class="validate">
-                                <label for="stokMsk">Stok Masuk</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="deskripsi" name="deskripsi" type="text" class="validate">
-                                <label for="deskripsi">Deskripsi</label>
-                            </div>
-                        </div>
-                        <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light right submit" type="submit" name="action">simpan
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div id="html-custom-error">
-                <form id="myform" method="POST" action="/admin/proses-trans-masuk" >
-                    @csrf
-                        <div class="row">
-                            <div class="input-field col s5">
-                                <select name="ktgBrg" id="ktgBrg" required>
-                                    <option value="1">--Nama Barang--</option>
-                                    @if(!empty($barang))
-                                    @foreach($barang as $brg)
-                                    <option value="{{$brg->barang_id}}">{{ $brg->barang_nama }}</option>
-                                    @endforeach
-                                    @endif
-                                </select>
-                                <label>Nama Barang</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input  name="hargaBeli3" id="hargaBeli2" type="text" class="validate">
-                                <label for="hargaBeli">Harga Beli</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="S" />
-                                <span>S</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="M" />
-                                <span>M</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="L" />
-                                <span>L</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="XL" />
-                                <span>XL</span>
-                            </label>
-                            <label>
-                                <input class="with-gap" name="ukuran" type="radio" value="XXL" />
-                                <span>XXL</span>
-                            </label>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s4">
-                                <input name="stok" id="stok" type="text" class="validate">
-                                <label for="stokMsk">Stok Masuk</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="deskripsi" name="deskripsi" type="text" class="validate">
-                                <label for="deskripsi">Deskripsi</label>
-                            </div>
-                        </div>
-                        <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light right submit-btn"  type="submit" >simpan
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<a class="waves-effect waves-light btn modal-trigger" href="#daftarbarang">Modal</a>
+<!-- Modal Barang -->
+<div id="daftarbarang" class="modal">
+    <div class="modal-content">
+      <table id="data-table-simple" class="display">
+        <thead>
+          <tr>
+            <th>Barcode</th>
+            <th>Nama Barang</th>
+            <th>Ukuran</th>
+            <th>Stok</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($dfstok as $dfst)
+          <tr>
+            <td>{{ $dfst->barang_id }}</td>
+            <td>{{ $dfst->barang_nama }}</td>
+            <td>{{ $dfst->stok_ukuran }}</td>
+            <td>{{ $dfst->stok_jumlah_stok }}</td>
+            <td>
+              <a class="btn-floating mb-1 btn-flat waves-effect waves-light orange accent-2 white-text" href="/admin/tambah-detail-masuk/{{ $dfst->stok_id }}/{{ $lastid }}">
+                <i class="material-icons">add_shopping_cart</i>
+              </a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+  </div>
+  
+@endsection
+@section('customjs')
 
 @endsection
