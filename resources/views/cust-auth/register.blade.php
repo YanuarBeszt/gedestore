@@ -29,60 +29,51 @@
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
 	<div class="container">
-		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-			<div class="col-first">
-				<h1>Register Page</h1>
-				<nav class="d-flex align-items-center">
-					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-					<a href="#">register</a>
-				</nav>
-			</div>
-		</div>
 	</div>
 </section>
-	<!--================Login Box Area =================-->
-	<section class="login_box_area section_gap">
-			<div class="container">
+<!--================Login Box Area =================-->
+<section class="login_box_areaprodu">
+	<div class="container">
 
-					<div class="col-lg-12">
-						<div class="login_form_inner">
-            <!-- {{-- menampilkan error validasi --}} -->
-            @if (count($errors) > 0)
-              @foreach ($errors->all() as $error)
-              <div class="card-alert card red">
-                <div class="card-content white-text">
-                  <p>{{ $error }}</p>
-                </div>
-                <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              @endforeach
-            @endif
-							<h3>isi Form di bawah untuk daftar</h3>
-							<form class="row login_form" action="/proses-register-user" method="post" id="contactForm" novalidate="novalidate">
-								@csrf
+		<div class="col-lg-12">
+			<div class="login_form_inner">
+				<!-- {{-- menampilkan error validasi --}} -->
+				@if (count($errors) > 0)
+				@foreach ($errors->all() as $error)
+				<div class="card-alert card red">
+					<div class="card-content white-text">
+						<p>{{ $error }}</p>
+					</div>
+					<button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				@endforeach
+				@endif
+				<h3>isi Form di bawah untuk daftar</h3>
+				<form class="row login_form" action="/proses-register-user" method="post" id="contactForm" novalidate="novalidate">
+					@csrf
 
-								<div class="col-md-6 form-group">
-										<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">
-									</div>
-									<div class="col-md-6 form-group">
-											<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
-										</div>
-								<div class="col-md-12 form-group">
-									<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-								</div>
-
-								<div class="col-md-12 form-group">
-									<button type="submit" value="submit" class="primary-btn">Daftar</button>
-								</div>
-							</form>
-						</div>
+					<div class="col-md-6 form-group">
+						<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">
+					</div>
+					<div class="col-md-6 form-group">
+						<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+					</div>
+					<div class="col-md-12 form-group">
+						<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 					</div>
 
+					<div class="col-md-12 form-group">
+						<button type="submit" value="submit" class="primary-btn">Daftar</button>
+					</div>
+				</form>
 			</div>
-		</section>
-		<!--================End Login Box Area =================-->
+		</div>
+
+	</div>
+</section>
+<!--================End Login Box Area =================-->
 
 <!-- End related-product Area -->
 @endsection

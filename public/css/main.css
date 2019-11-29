@@ -1300,7 +1300,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 100px; }
 
 .breadcrumb-banner {
-  padding: 90px 0 100px 0; }
+  padding: 50px 0 70px 0; }
   .breadcrumb-banner h1 {
     font-weight: 600;
     color: #fff; }
@@ -1321,7 +1321,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 15px; }
     @media (max-width: 1680px) {
       .breadcrumb-banner .col-first {
-        padding-right: 40px; } }
+        padding-right: 80px; } }
     @media (max-width: 991px) {
       .breadcrumb-banner .col-first {
         width: 48%; } }
@@ -4748,7 +4748,7 @@ label {
   box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.07);
   height: 100%;
   text-align: center;
-  padding-top: 115px; }
+  padding-top: 30px; }
   .login_form_inner h3 {
     color: #222222;
     text-transform: uppercase;
