@@ -37,6 +37,7 @@ Route::get('/customer/register', 'CustAuthController@register_user');
 Route::post('/proses-register-user', 'CustAuthController@proses_register');
 Route::post('/proses-login-user', 'CustAuthController@postLogin');
 Route::get('/logout-user', 'CustAuthController@keluar');
+Route::get('/contact', 'ContactController@index');
 
 
 // endcostumer
@@ -70,16 +71,20 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/tambah-detail-masuk/{id}/{idtr}', 'TransaksiMasukController@tambah_detail');
     Route::get('/admin/delete-detail-masuk/{id}', 'TransaksiMasukController@delete_detail');
-    
+    Route::post('/admin/update-detail-masuk', 'TransaksiMasukController@update_detail');
+    Route::post('/admin/transaksi-selesai', 'TransaksiMasukController@transaksi_baru');
+
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
 
     // transaksi keluar
-    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');    
+    // Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');    
+    Route::get('/admin/add-cart/{id}', 'TransaksiKeluarController@add_cart');
+
     Route::get('/admin/destroy-cart', 'TransaksiKeluarController@destroy_cart');
     Route::get('/admin/delete-cart/{id}', 'TransaksiKeluarController@delete_cart');
     Route::post('/admin/edit-cart', 'TransaksiKeluarController@edit_cart');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiKeluarController@index');
-    Route::post('/admin/proses-transaksi-keluar', 'TransaksiKeluarController@proses_transaksi');    
+    Route::post('/admin/proses-transaksi-keluar', 'TransaksiKeluarController@proses_transaksi');
 
 
     Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');
@@ -90,9 +95,9 @@ Route::group(['middleware' => 'usersession'], function () {
 });
 
 
-    //Wishlist and Cart
-    Route::get('/wishlists','WishlistsController@index');
-    Route::get('/addToWishlists','WishlistsController@addToWishlists');
+//Wishlist and Cart
+Route::get('/wishlists', 'WishlistsController@index');
+Route::get('/addToWishlists', 'WishlistsController@addToWishlists');
 
 
 //auth
