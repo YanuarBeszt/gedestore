@@ -62,7 +62,9 @@
 			<div class="col-lg-5 offset-lg-1">
 				<div class="s_product_text">
 					<h3>{{ $barang_nama }}</h3>
-					<h2>{{ $barang_harga_jual }}</h2>
+					<h3>{{ $stok_ukuran }}</h3>
+					<h3>{{ $stok_id }}</h3>
+					<h2>{{ $price }}</h2>
 					<ul class="list">
 						<li><a class="active" href="#"><span>Category</span> : {{ $kategori_nama }}</a></li>
 						<li><a href="#"><span>Availibility</span> : In Stock</a></li>
@@ -75,10 +77,25 @@
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 					</div>
 					<div class="card_area d-flex align-items-center">
-						<a class="primary-btn" href="{{ route('add-to-cart', $barang_id) }}">Tambah ke keranjang</a>
+					<!-- add to wishlist -->
+						
+						<form action="{{route('keranjang.store')}}" method="POST">
+<!--						@csrf -->
+						{{ csrf_field()}}
+							<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
+							<input type="text" name="stok_id" value="{{ $stok_id }}" />
+							<input type="text" name="stok_ukuran" value="{{ $stok_ukuran }}" />
+							<input type="text" name="price" value="{{ $price }}" />
+							<input type="submit" value="Tambah ke Keranjang" class="btn btn-outline-info">
+						</form>
+						<hr>
+<!--						<a class="primary-btn" href="{{ route('add-to-cart', $barang_id) }}">Tambah ke keranjang</a>-->
 						<!-- add to wishlist -->
-						@csrf
+						
 						<form action="/addToWishlists'">
+<!--						csrf di dalam form yad-->
+						@csrf 
+						
 							<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
 							<input type="hidden" value="{{ $barang_id }}" />
 							<input type="submit" value="Tambah ke Wishlist" class="btn btn-outline-info">
@@ -86,6 +103,7 @@
 						<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
 
 					</div>
+					
 				</div>
 			</div>
 		</div>

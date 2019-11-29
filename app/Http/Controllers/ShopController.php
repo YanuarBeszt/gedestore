@@ -40,9 +40,11 @@ class ShopController extends Controller
 
 
         foreach ($barang as $p) {
+            $data['stok_id'] = $p->stok_id;
+            $data['stok_ukuran'] = $p->stok_ukuran;
             $data['barang_id'] = $p->barang_id;
             $data['barang_nama'] = $p->barang_nama;
-            $data['barang_harga_jual'] = $p->barang_harga_jual;
+            $data['price'] = $p->barang_harga_jual;
             $data['barang_deskripsi'] = $p->barang_deskripsi;
             $data['barang_gambar'] = $p->barang_gambar;
             $data['kategori_nama'] = $p->kategori_nama;

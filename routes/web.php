@@ -1,5 +1,7 @@
 <?php
-
+use Gloudemans\Shoppingcart\Facades\Cart;
+//use Darryldecode\Cart\Cart;
+//use Darryldecode\Cart\Facades\CartFacade;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,11 +97,15 @@ Route::group(['middleware' => 'usersession'], function () {
 });
 
 
-//Wishlist and Cart
+//Wishlist 
 Route::get('/wishlists', 'WishlistsController@index');
 Route::get('/addToWishlists', 'WishlistsController@addToWishlists');
-
-
+//Cart
+Route::get('/keranjang', 'KeranjangController@index')->name('keranjang.index');
+Route::post('/keranjang', 'KeranjangController@store')->name('keranjang.store');
+Route::get('empty', function(){
+    Cart::instance('default')->destroy();
+});
 //auth
 // Auth::routes();
 
