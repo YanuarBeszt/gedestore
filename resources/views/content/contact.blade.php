@@ -45,19 +45,15 @@
 <!--================Contact Area =================-->
 <section class="contact_area section_gap_bottom">
     <div class="container">
-        <div id="map" class="map"></div>
+        <div id="mymap"></div>
         <script type="text/javascript">
-            var map = new ol.Map({
-                target: 'map',
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.OSM()
-                    })
-                ],
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([0, 0]),
-                    zoom: 4
-                })
+            map.addMarker({
+                lat: -12.043333,
+                lng: -77.028333,
+                title: 'Lima',
+                click: function(e) {
+                    alert('You clicked in this marker');
+                }
             });
         </script>
         <div class="row">
