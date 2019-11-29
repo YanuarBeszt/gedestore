@@ -37,6 +37,7 @@ Route::get('/customer/register', 'CustAuthController@register_user');
 Route::post('/proses-register-user', 'CustAuthController@proses_register');
 Route::post('/proses-login-user', 'CustAuthController@postLogin');
 Route::get('/logout-user', 'CustAuthController@keluar');
+Route::get('/contact', 'ContactController@index');
 
 
 // endcostumer
