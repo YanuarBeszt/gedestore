@@ -102,7 +102,7 @@
 
 									@endforeach
 								</select>
-							<input type="submit" value="Tambah Keranjang" class="btn btn-outline-info ">
+							<input type="submit" value="Tambah ke Keranjang" class="btn btn-outline-info">
 						</div>
 						</form>
 						<hr>
