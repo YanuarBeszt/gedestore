@@ -46,42 +46,79 @@
 
 <!--================Single Product Area =================-->
 <div class="product_image_area">
-    <div class="container">
-        <div class="row s_product_inner">
-            <div class="col-lg-6">
-                <div class="s_Product_carousel">
-                    <div class="single-prd-item">
-                        <img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
-                    </div>
-                    <div class="single-prd-item">
-                        <img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
-                    </div>
-                    <div class="single-prd-item">
-                        <img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 offset-lg-1">
-                <div class="s_product_text">
-                    <h3>{{ $barang_nama }}</h3>
-                    <h2>{{ $barang_harga_jual }}</h2>
-                    <ul class="list">
-                        <li><a class="active" href="#"><span>Category</span> : {{ $kategori_nama }}</a></li>
-                        <li><a href="#"><span>Availibility</span> : In Stock</a></li>
-                    </ul>
-                    <p>{{ $barang_deskripsi }}</p>
-                    <div class="product_count">
-                        <label for="qty">Quantity:</label>
-                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                            class="input-text qty">
-                        <button
-                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                        <button
-                            onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                    </div>
-                    <div class="card_area d-flex align-items-center">
+
+	<div class="container">
+		<div class="row s_product_inner">
+			<div class="col-lg-6">
+				<div class="s_Product_carousel">
+					<div class="single-prd-item">
+						<img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
+					</div>
+					<div class="single-prd-item">
+						<img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
+					</div>
+					<div class="single-prd-item">
+						<img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5 offset-lg-1">
+				<div class="s_product_text">
+					<h3>{{ $barang_nama }}</h3>
+					{{-- <h3>{{ $stok_ukuran }}</h3>
+					<h3>{{ $stok_id }}</h3> --}}
+					<h2>Rp.{{ number_format($price) }}</h2>
+					<ul class="list">
+						<li><a class="active" href="#"><span>Category</span> : {{ $kategori_nama }}</a></li>
+						<li><a href="#"><span>Availibility</span> : In Stock</a></li>
+					</ul>
+					<p>{{ $barang_deskripsi }}</p>
+					{{-- <div class="product_count">
+						<label for="qty">Quantity:</label>
+						<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+					</div> --}}
+					<div class="card_area d-flex align-items-center">
+					<!-- add to wishlist -->
+						
+						<form action="/tambah-cart" method="POST">
+<!--						@csrf -->
+						{{ csrf_field()}}
+							<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
+							{{-- <input type="hidden" name="stok_id" value="{{ $stok_id }}" /> --}}
+							{{-- <input type="hidden" name="stok_ukuran" value="{{ $stok_ukuran }}" /> --}}
+							<input type="hidden" name="price" value="{{ $price }}" />
+							<input type="hidden" name="barang_nama" value="{{ $barang_nama }}" />
+							<input type="hidden" name="barang_id" value="{{ $barang_id }}" />
+							<input type="hidden" name="barang_gambar" value="{{ $barang_gambar }}" />
+
+							<div class="row">
+								<select name="stok_ukuran" id="stok_ukuran">
+
+									@foreach($ukuran_stok as $u)
+
+									<option value="{{$u->stok_ukuran}}">{{$u->stok_ukuran}} - stok {{$u->stok_jumlah_stok}}</option>
+
+									@endforeach
+								</select>
+							<input type="submit" value="Tambah ke Keranjang" class="btn btn-outline-info">
+						</div>
+						</form>
+						<hr>
+<!--						<a class="primary-btn" href="{{ route('add-to-cart', $barang_id) }}">Tambah ke keranjang</a>-->
+						<!-- add to wishlist -->
+						
+						<form action="/addToWishlists'">
+<!--						csrf di dalam form yad-->
+						@csrf 
+						
+							<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
+							<input type="hidden" value="{{ $barang_id }}" />
+							<input type="submit" value="Tambah ke Wishlist" class="btn btn-outline-info">
+						</form>
+						<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
+
 
 
                         <!-- add to cart -->

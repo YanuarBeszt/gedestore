@@ -90,15 +90,10 @@ Route::group(['middleware' => 'usersession'], function () {
 });
 
 
-    //Wishlist and Cart
-    Route::get('/wishlists','WishlistsController@index');
-    Route::post('/wishlists/addToWishlists','WishlistsController@addToWishlists');
-    Route::delete('/wishlists/delWishlists/{wishlists}','WishlistsController@delWishlists');
+//Wishlist 
+Route::get('/wishlists', 'WishlistsController@index');
+Route::get('/addToWishlists', 'WishlistsController@addToWishlists');
 
-    Route::get('/wishlists/cart','WishlistsController@cart');
-    Route::get('/wishlists/cart/confirm','WishlistsController@confirm');
-    Route::post('/wishlists/cart/checkout','WishlistsController@checkout');
-    
 
 //auth
 // Auth::routes();
@@ -125,3 +120,14 @@ Route::group(['middleware' => 'usersession'], function () {
 // Route::get('/test/{uri}','TestController@index');
 // //route irfan controller
 // Route::get('/irfan','IrfanController@index');
+//Cart
+Route::post('/tambah-cart', 'KeranjangController@tambah_cart');
+Route::get('/keranjang-shop', 'KeranjangController@index');
+
+Route::get('/destroy-cart', 'KeranjangController@destroy_cart');
+Route::get('/hapus-cart/{id}', 'KeranjangController@delete_cart');
+Route::post('/edit-cart', 'KeranjangController@edit_cart');
+Route::get('/checkout-shop', 'CheckoutController@index');
+Route::post('/proses-checkout', 'CheckoutController@proses_transaksi');
+Route::get('/invoice/{id}', 'CheckoutController@invoice');
+

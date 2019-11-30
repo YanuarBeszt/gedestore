@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Gloudemans\Shoppingcart\Facades\Cart;
-//use Darryldecode\Cart\Cart;
-//use Darryldecode\Cart\Facades\CartFacade;
+use Darryldecode\Cart\Facades\CartFacade;
+use Darryldecode\Cart\Cart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Session;
 class KeranjangController extends Controller
 {
     /**
@@ -15,7 +15,12 @@ class KeranjangController extends Controller
      */
     public function index()
     {
-        return view('keranjang/keranjang');
+        $data['jml_crt'] = \Cart::getContent()->count();
+
+        $data['cart'] = \Cart::getContent();
+        $data['total'] = \Cart::getSubTotal();
+
+        return view('keranjang/keranjang', $data);
     }
 
     /**
@@ -34,23 +39,62 @@ class KeranjangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-//        echo $request.'<hr>';
-        Cart::add($request->stok_id, $request->stok_ukuran, 1, $request->price);
-//        Cart::add(1, 'xl' , 1, 1);
-        foreach(Cart::content() as $item) {
-//               if($item > 0) {
-//                   $detail = new Detail([
-//                        'product_id' => $item->model->id,
-//                       'product_name' => $item->model->price * $item->qty,
-//                       'product_price' => $item->model->price,
-//                       'product_qty' => $item->qty
-//                   ]);
-               echo $item . "<br>";
+    public function tambah_cart(Request $request){
+
+
+
+        $jml_crt = \Cart::getContent()->count();
+
+        $brg = \Cart::getContent();
+
+
+        if ($jml_crt > 0) {
+
+            foreach ($brg as $key ) {
+
+
+                if ($key->attributes->size == $request->stok_ukuran && $key->attributes->kode_brg == $request->barang_id) {
+
+                        \Cart::update($key->id, array(
+                          'quantity' => 1, 
+                        ));
+                    break;
+                } else {
+                    \Cart::add(array(
+                          'id' => uniqid(),
+                          'name' => $request->barang_nama,
+                          'price' => $request->price,
+                          'quantity' => 1,
+                          'attributes' => array(
+                                        'kode_brg' => $request->barang_id,
+                                         'size' => $request->stok_ukuran,
+                                         'gambar' => $request->barang_gambar,
+                          )
+                    ));
+                    break;
+                }
+                    
+            }
+
+        } else {
+                    \Cart::add(array(
+                          'id' => uniqid(),
+                          'name' => $request->barang_nama,
+                          'price' => $request->price,
+                          'quantity' => 1,
+                          'attributes' => array(
+                                        'kode_brg' => $request->barang_id,
+                                         'size' => $request->stok_ukuran,
+                                         'gambar' => $request->barang_gambar,
+
+                          )
+                    ));
         }
-//        echo $request->stok_id;
-//        return redirect()->route('keranjang.index')->with('success_message', 'Barang sudah ditambahkan ke dalam keranjang!');
+        
+
+        // $items = \Cart::getContent();
+        // return $brg;
+        return redirect()->back()->with('success', 'Tambah Barang Kedalam keranjang');
     }
 
     /**
@@ -59,9 +103,10 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function delete_cart($id){
+        \Cart::remove($id);
+       return redirect('/keranjang-shop');
+
     }
 
     /**
@@ -82,9 +127,23 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function edit_cart(Request $request){
+        // if ($request->jml_skrg > $request->qty) {
+        //     \Cart::update($request->id_row, array(
+        //                       'quantity' => -$request->qty, 
+        //                     ));
+        // } else {
+        //     \Cart::update($request->id_row, array(
+        //                       'quantity' => $request->qty, 
+        //                     ));
+        // }
+        
+            \Cart::update($request->row_id, array(
+                              'quantity' => $request->qty_edit, 
+                            ));
+
+       return redirect('/keranjang-shop');
+
     }
 
     /**
@@ -93,8 +152,11 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    public function destroy_cart(){
+
+        \Cart::clear();  
+        return redirect('/keranjang-shop');
+         // $items = \Cart::getContent();
+         // return var_dump($items);
+     }
 }
