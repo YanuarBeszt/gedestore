@@ -33,7 +33,7 @@
 <style>
     #btn-submit
     {
-      
+        display:none;
         background: none;
         padding: 0px;
         border: none;
@@ -104,7 +104,7 @@
                                         @method('delete')
                                         @csrf
                                         
-                                        <button type="submit" value="hapus" id="btn-submit" class="button button5" onclick="do_change(); return false;">                                           
+                                        <button type="submit" value="hapus" id="btn-submit" class="btn btn-primary btn-sm" onclick="do_change(); return false;">                                           
                                             <a class="social-info">
                                                 <span class="ti-trash"></span>    
                                                 <p class="hover-text" id="hover-delete">hapus</p>

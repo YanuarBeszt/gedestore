@@ -103,7 +103,13 @@
 			<!-- Start Best Seller -->
 			<section class="lattest-product-area pb-40 category-list">
 				<div class="row">
-					@if(!empty($barang))
+					
+					@if($barang->isEmpty())
+						
+						<h4>Maaf, Barang tidak ditemukan!</h4>
+
+					@else
+
 					@foreach($barang as $b)
 					<!-- single product -->
 					<div class="col-lg-4 col-md-6">
@@ -137,6 +143,7 @@
 						</div>
 					</div>
 					@endforeach
+
 					@endif
 				</div>
 			</section>

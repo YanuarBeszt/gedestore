@@ -117,7 +117,7 @@
                             <input type="hidden" value="{{ $barang_id }}" name="wishlist_barangid">
                             <input type="hidden" value="{{ session('user_id') }}" name="wishlist_userid">
                                
-                            <button type="submit" value="submit" class="btn btn-outline-info ml-2">Tambah ke Wishlist</button>
+                            <input type="submit" value="Tambah ke Wishlist" class="btn btn-outline-info ml-2">
                             
                         </form>
 

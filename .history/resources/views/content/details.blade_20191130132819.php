@@ -102,7 +102,7 @@
 
 									@endforeach
 								</select>
-							<input type="submit" value="Tambah Keranjang" class="btn btn-outline-info ml-2">
+							<input type="submit" value="Tambah Keranjang" class="btn btn-outline-info pl-2">
 						</div>
 						</form>
 						<hr>
@@ -117,7 +117,7 @@
                             <input type="hidden" value="{{ $barang_id }}" name="wishlist_barangid">
                             <input type="hidden" value="{{ session('user_id') }}" name="wishlist_userid">
                                
-                            <button type="submit" value="submit" class="btn btn-outline-info ml-2">Tambah ke Wishlist</button>
+                            <button type="submit" value="submit" class="btn btn-outline-info">Tambahkan ke wishlist</button>
                             
                         </form>
 

@@ -92,8 +92,8 @@ Route::group(['middleware' => 'usersession'], function () {
 
 //Wishlist 
 Route::get('/wishlists', 'WishlistsController@index');
-Route::post('/wishlists/addToWishlists', 'WishlistsController@addToWishlists');
-Route::delete('/wishlists/delWishlists/{wishlists}','WishlistsController@delWishlists');
+Route::post('/addToWishlists', 'WishlistsController@addToWishlists');
+   Route::delete('/wishlists/delWishlists/{wishlists}','WishlistsController@delWishlists');
 
 
 //auth
