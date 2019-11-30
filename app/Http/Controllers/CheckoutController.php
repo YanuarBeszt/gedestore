@@ -99,7 +99,7 @@ class CheckoutController extends Controller
                 }
 
 
-            //    \Cart::clear();  
+               \Cart::clear();  
 
                return redirect('/invoice/'.$request->kode_trans.'')->with('success', 'Checkout');
             }else{
