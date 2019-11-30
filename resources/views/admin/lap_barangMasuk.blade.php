@@ -21,26 +21,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($lap_masuk))
-                                @foreach($lap_masuk as $lap)
+                                @if(!empty($laporan_masuk))
+                                @foreach($laporan_masuk as $lap)
                                 <tr>
-                                    <td>{{ $lap->trans_masuk_id }}</td>
+                                    <td>{{ $lap->detiltrans_masuk_idtrans }}</td>
                                     <td>{{ $lap->trans_masuk_tanggal }}</td>
                                     <td>{{ $lap->trans_masuk_suplier }}</td>
-                                    <td>{{ $lap->trans_masuk_totalharga }}</td>
+                                    <td>{{ $lap->total }}</td>
                                 </tr>
-                                <!-- Modal Icons -->
-                                <div id="modaldelete{{ $brg->barang_id }}" class="modal">
-                                    <div class="modal-content">
-                                        <h5>Apakah Anda Yakin Untuk Menghapus Data Ini?</h5>
-                                        <hr>
-                                        <h4 class="mt-5"> &ensp; {{ $brg->barang_nama }}</h4>
-                                        <h6> &ensp; Data Ini Tidak Dapat Dikembalikan Setelah Proses Hapus, Apakah Anda Yakin?</h6>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="/admin/delete-grafik/{{ $brg->barang_id }}" class="modal-action modal-close waves-effect waves-light red accent-2 btn-flat" style="color: white">Delete</a>
-                                    </div>
-                                </div>
                                 @endforeach
                                 @endif
                             </tbody>
