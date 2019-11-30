@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Helper\Table;
-
+use Session;
 class ShopController extends Controller
 {
     public function index()
@@ -38,6 +38,7 @@ class ShopController extends Controller
             ->where('barang_id', $id)
             ->get();
 
+        $data['ukuran_stok'] = DB::table('tb_stok')->where('stok_barang_id', $id)->get();
 
         foreach ($barang as $p) {
             $data['stok_id'] = $p->stok_id;

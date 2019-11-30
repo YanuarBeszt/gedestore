@@ -100,12 +100,7 @@ Route::group(['middleware' => 'usersession'], function () {
 //Wishlist 
 Route::get('/wishlists', 'WishlistsController@index');
 Route::get('/addToWishlists', 'WishlistsController@addToWishlists');
-//Cart
-Route::get('/keranjang', 'KeranjangController@index')->name('keranjang.index');
-Route::post('/keranjang', 'KeranjangController@store')->name('keranjang.store');
-Route::get('empty', function(){
-    Cart::instance('default')->destroy();
-});
+
 //auth
 // Auth::routes();
 
@@ -131,3 +126,14 @@ Route::get('empty', function(){
 // Route::get('/test/{uri}','TestController@index');
 // //route irfan controller
 // Route::get('/irfan','IrfanController@index');
+//Cart
+Route::post('/tambah-cart', 'KeranjangController@tambah_cart');
+Route::get('/keranjang-shop', 'KeranjangController@index');
+
+Route::get('/destroy-cart', 'KeranjangController@destroy_cart');
+Route::get('/hapus-cart/{id}', 'KeranjangController@delete_cart');
+Route::post('/edit-cart', 'KeranjangController@edit_cart');
+Route::get('/checkout-shop', 'CheckoutController@index');
+Route::post('/proses-checkout', 'CheckoutController@proses_transaksi');
+Route::get('/invoice/{id}', 'CheckoutController@invoice');
+
