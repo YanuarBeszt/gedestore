@@ -111,7 +111,6 @@
                                             </a>
                                         </button>
 
-
                                          <!-- <a class="social-info" id="btn-submit" type="submit" onclick="do_change(); return false;"> 
                                             <span class="ti-trash"></span>                                                
                                             <p class="hover-text">hapus</p>
