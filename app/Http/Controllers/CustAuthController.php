@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
-use DB; 
+use DB;
 use App\Tb_users;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -13,34 +13,32 @@ use DateTime;
 
 class CustAuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        if($request->session()->exists('login_user')) {
-            //can't find any sessionn
-            return redirect()->back()->with('alert','Silahkan Logout Terlebih Dahulu');
-        }
-        return view('cust-auth/login');
-        
-    }
-    public function register_user(Request $request)
-    {
-        //for register if still login, need to logout
-        if($request->session()->exists('login_user')) {
-            //can't find any sessionn
-            return redirect()->back()->with('alert','Silahkan Logout Terlebih Dahulu');
-        }
-        return view('cust-auth/register');
-
-    }
-    public function proses_register(Request $request)
-    {   
-        //valdation messages
-        $now = new DateTime();
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index(Request $request)
+	{
+		if ($request->session()->exists('login_user')) {
+			//can't find any sessionn
+			return redirect()->back()->with('alert', 'Silahkan Logout Terlebih Dahulu');
+		}
+		return view('cust-auth/login');
+	}
+	public function register_user(Request $request)
+	{
+		//for register if still login, need to logout
+		if ($request->session()->exists('login_user')) {
+			//can't find any sessionn
+			return redirect()->back()->with('alert', 'Silahkan Logout Terlebih Dahulu');
+		}
+		return view('cust-auth/register');
+	}
+	public function proses_register(Request $request)
+	{
+		//valdation messages
+		$now = new DateTime();
 		$messages = [
 			'required' => 'Form :attribute wajib di isi *',
 			'email' => 'Tolong gunakan :attribute yang sah *',
@@ -48,24 +46,23 @@ class CustAuthController extends Controller
 		];
 
 		//validasi form
-        $this->validate($request,[
+		$this->validate($request, [
 			'email' => 'required|email|max:100',
-            'password' => 'required',
+			'password' => 'required',
 			'nama' => 'required',
 
-        ], $messages);
+		], $messages);
 
-        //input to db
-        DB::table('tb_users')->insert([
-            'namaUser' => $request->nama,
-            'emailUser' => $request->email,
-            'password' => md5($request->password),
-            'created_at' => $now,
-        ]);
+		//input to db
+		DB::table('tb_users')->insert([
+			'namaUser' => $request->nama,
+			'emailUser' => $request->email,
+			'password' => md5($request->password),
+			'created_at' => $now,
+		]);
 
-        return redirect('customer/login')->with('success', 'Daftar silahkan login');
-        
-    }
+		return redirect('customer/login')->with('success', 'Daftar silahkan login');
+	}
 
 	// public function pass(){
 
@@ -84,10 +81,10 @@ class CustAuthController extends Controller
 
 		//validasi form
 
-        $this->validate($request,[
+		$this->validate($request, [
 			'email' => 'required|email|max:100',
 			'password' => 'required',
-        ], $messages);
+		], $messages);
 
 		//fungsi login
 		$user = Tb_users::where('emailUser', $request->email)
@@ -100,7 +97,7 @@ class CustAuthController extends Controller
 			Session::put('user_email', $user->emailUser);
 			Session::put('user_id', $user->idUser);
 			Session::put('login_user', TRUE);
-			return redirect('/');
+			return redirect('/shop');
 		} else {
 			//gagal login
 			return redirect('customer/login')->with('alert', 'Password atau Email, Salah !');
@@ -111,6 +108,6 @@ class CustAuthController extends Controller
 	{
 
 		Session::flush();
-        return redirect()->back()->with('success','Logout');
+		return redirect()->back()->with('success', 'Logout');
 	}
 }

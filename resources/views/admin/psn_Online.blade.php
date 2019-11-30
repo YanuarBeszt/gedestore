@@ -131,5 +131,6 @@
 <script src="{{ asset('admin/vendors/sortable/jquery-sortable-min.js') }}"></script>
 <script src="{{ asset('admin/vendors/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('admin/vendors/waypoints/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('admin/js/scripts/app-email.js') }}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 @endsection

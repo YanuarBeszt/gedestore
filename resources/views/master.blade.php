@@ -32,19 +32,29 @@
 	<link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+	<script src="http://maps.google.com/maps/api/js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 
+
+	<style type="text/css">
+		#mymap {
+			border: 1px solid red;
+			width: 800px;
+			height: 500px;
+		}
+	</style>
 </head>
 
 <body>
-		<div class="row">
-				<!-- session login -->
-				@if(Session('alert'))
-				<div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
-				@elseif (Session('success'))
-				<div class="flash-data" data-flashdata="{{Session('success')}}"></div>
-				@endif
-		  
-		</div>
+	<div class="row">
+		<!-- session login -->
+		@if(Session('alert'))
+		<div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
+		@elseif (Session('success'))
+		<div class="flash-data" data-flashdata="{{Session('success')}}"></div>
+		@endif
+
+	</div>
 	<!-- konten -->
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
@@ -73,7 +83,7 @@
 									<li class="nav-item"><a class="nav-link" href="">Elements</a></li>
 								</ul>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="{{ url('/wishlists') }}" class="cart"><span class="ti-bag"></span></a></li>
@@ -86,16 +96,16 @@
 							<li class="nav-item"><a href="/logout-user" class="cart"><span>Logout</span></a></li>
 							<li class="nav-item"><span>{{session('user_nama')}}</span></li>
 
-							</div>
-							@else
-							<li class="nav-item"><a href="{{ url('/customer/register') }}" class="cart"><span>Daftar</span></a></li>
-							<li class="nav-item"><a href="{{ url('/customer/login') }}" class="cart"><span>Masuk</span></a></li>
-						@endif
-
-						</ul>
 					</div>
+					@else
+					<li class="nav-item"><a href="{{ url('/customer/register') }}" class="cart"><span>Daftar</span></a></li>
+					<li class="nav-item"><a href="{{ url('/customer/login') }}" class="cart"><span>Masuk</span></a></li>
+					@endif
+
+					</ul>
 				</div>
-			</nav>
+		</div>
+		</nav>
 		</div>
 		<div class="search_input" id="search_input_box">
 			<div class="container">
@@ -200,29 +210,29 @@
 
 	<!-- script sweetalert2 -->
 	<script type="text/javascript">
-	  const flash = $('.flash-data').data('flashdata');
-	  if (flash) {
-		Swal.fire({
-		  title: 'Data',
-		  text: 'Berhasil ' + flash,
-		  type: 'success',
-		  showConfirmButton: false,
-		  timer: 1500
-		});
-	  }
+		const flash = $('.flash-data').data('flashdata');
+		if (flash) {
+			Swal.fire({
+				title: 'Data',
+				text: 'Berhasil ' + flash,
+				type: 'success',
+				showConfirmButton: false,
+				timer: 1500
+			});
+		}
 	</script>
 	<!-- script sweetalert2 -->
 	<script type="text/javascript">
-	  const alert = $('.flash-alert').data('flashalert');
-	  if (alert) {
-		Swal.fire({
-		  type: 'error',
-		  title: 'Oops...',
-		  text: 'Gagal ' + alert,
-		  showConfirmButton: false,
-		  timer: 1500
-		});
-	  }
+		const alert = $('.flash-alert').data('flashalert');
+		if (alert) {
+			Swal.fire({
+				type: 'error',
+				title: 'Oops...',
+				text: 'Gagal ' + alert,
+				showConfirmButton: false,
+				timer: 1500
+			});
+		}
 	</script>
 </body>
 
