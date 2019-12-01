@@ -37,6 +37,8 @@ Route::get('/customer/register', 'CustAuthController@register_user');
 Route::post('/proses-register-user', 'CustAuthController@proses_register');
 Route::post('/proses-login-user', 'CustAuthController@postLogin');
 Route::get('/logout-user', 'CustAuthController@keluar');
+Route::get('/profil', 'ProfilController@index');
+Route::post('/update-profil', 'ProfilController@updateProfil');
 
 
 // endcostumer
@@ -70,16 +72,16 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/tambah-detail-masuk/{id}/{idtr}', 'TransaksiMasukController@tambah_detail');
     Route::get('/admin/delete-detail-masuk/{id}', 'TransaksiMasukController@delete_detail');
-    
+
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
 
     // transaksi keluar
-    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');    
+    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');
     Route::get('/admin/destroy-cart', 'TransaksiKeluarController@destroy_cart');
     Route::get('/admin/delete-cart/{id}', 'TransaksiKeluarController@delete_cart');
     Route::post('/admin/edit-cart', 'TransaksiKeluarController@edit_cart');
     Route::get('/admin/halaman-transaksi-penjualan-barang', 'TransaksiKeluarController@index');
-    Route::post('/admin/proses-transaksi-keluar', 'TransaksiKeluarController@proses_transaksi');    
+    Route::post('/admin/proses-transaksi-keluar', 'TransaksiKeluarController@proses_transaksi');
 
 
     Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');
@@ -93,7 +95,7 @@ Route::group(['middleware' => 'usersession'], function () {
 //Wishlist 
 Route::get('/wishlists', 'WishlistsController@index');
 Route::post('/wishlists/addToWishlists', 'WishlistsController@addToWishlists');
-Route::delete('/wishlists/delWishlists/{wishlists}','WishlistsController@delWishlists');
+Route::delete('/wishlists/delWishlists/{wishlists}', 'WishlistsController@delWishlists');
 
 
 //auth
@@ -131,4 +133,3 @@ Route::post('/edit-cart', 'KeranjangController@edit_cart');
 Route::get('/checkout-shop', 'CheckoutController@index');
 Route::post('/proses-checkout', 'CheckoutController@proses_transaksi');
 Route::get('/invoice/{id}', 'CheckoutController@invoice');
-

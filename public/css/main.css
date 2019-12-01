@@ -212,7 +212,10 @@ h1, h2, h3, h4, h5, h6 {
 .genric-btn {
   display: inline-block;
   outline: none;
-  line-height: 40px;
+  border-radius: 0px;
+  line-height: 38px;
+  width: 100%;
+  text-transform: uppercase;
   padding: 0 30px;
   font-size: .8em;
   text-align: center;
@@ -4789,7 +4792,7 @@ label {
   font-size: 14px;
   color: #777777;
   font-family: "Roboto", sans-serif;
-  margin-top: 20px;
+  margin-top: 0px;
   display: block; }
 
 /* End Login form Area css

@@ -90,13 +90,13 @@
 
 							<!-- Customer Login -->
 							@if (session('login_user'))
-							<li class="nav-item"><a href="/logout-user" class="cart"><span>Logout</span></a></li>
-							<li class="nav-item"><span>{{session('user_nama')}}</span></li>
+							<li class="nav-item"><a href="/logout-user"><span>Logout</span></a></li>
+							<li class="nav-item"><a href="/profil"><span>{{session('user_nama')}}</span></a></li>
 
 					</div>
 					@else
-					<li class="nav-item"><a href="{{ url('/customer/register') }}" class="cart"><span>Daftar</span></a></li>
-					<li class="nav-item"><a href="{{ url('/customer/login') }}" class="cart"><span>Masuk</span></a></li>
+					<li class="nav-item"><a href="{{ url('/customer/register') }}"><span>Daftar</span></a></li>
+					<li class="nav-item"><a href="{{ url('/customer/login') }}"><span>Masuk</span></a></li>
 					@endif
 
 					</ul>
