@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2019 at 05:24 AM
+-- Generation Time: Dec 01, 2019 at 10:07 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.2.22
 
@@ -262,6 +262,8 @@ CREATE TABLE `tb_users` (
   `idUser` int(10) UNSIGNED NOT NULL,
   `namaUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `emailUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telponUser` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamatUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -271,8 +273,9 @@ CREATE TABLE `tb_users` (
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '4b3865dc277de5870cce27623f1e20fc', '2019-11-27 21:01:30', NULL);
+INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `telponUser`, `alamatUser`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '081227579300', 'jl. karimata V blok D12, jember, jawa timur', '4b3865dc277de5870cce27623f1e20fc', '2019-11-27 21:01:30', NULL),
+(3, '2019-12-01 02:04:54', 'bela@gmail.com', '089121111111', 'jalajadasd', '4297f44b13955235245b2497399d7a93', NULL, '2019-11-30 21:14:48');
 
 -- --------------------------------------------------------
 
@@ -417,7 +420,7 @@ ALTER TABLE `tb_stok`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_wishlists`
