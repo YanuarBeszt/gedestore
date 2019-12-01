@@ -53,13 +53,22 @@ class CustAuthController extends Controller
 
 		], $messages);
 
-		//input to db
-		DB::table('tb_users')->insert([
-			'namaUser' => $request->nama,
-			'emailUser' => $request->email,
-			'password' => md5($request->password),
-			'created_at' => $now,
-		]);
+		$password = $request->password;
+		$password2 = $request->password2;
+
+		if (strcmp($password, $password2) == 0) {
+			//input to db
+			DB::table('tb_users')->insert([
+				'namaUser' => $request->nama,
+				'emailUser' => $request->email,
+				'telponUser' => "",
+				'alamatUser' => "",
+				'password' => md5($request->password),
+				'created_at' => $now,
+			]);
+		} else {
+			return redirect('customer/register_user')->with('alert', 'Password yang dimasukkan tidak sama');
+		}
 
 		return redirect('customer/login')->with('success', 'Daftar silahkan login');
 	}
@@ -95,6 +104,7 @@ class CustAuthController extends Controller
 			//membuat session user logged in
 			Session::put('user_nama', $user->namaUser);
 			Session::put('user_email', $user->emailUser);
+			Session::put('user_alamat', $user->alamatUser);
 			Session::put('user_id', $user->idUser);
 			Session::put('login_user', TRUE);
 			return redirect('/shop');
