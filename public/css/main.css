@@ -7,6 +7,11 @@
 /* Wide Mobile Layout: 480px */
 /* Section Gaps css
 ============================================================================================ */
+.fa .fa-user-o .fa-black{
+  color: black !important;
+  padding-top: 20px;
+}
+
 .no-padding {
   padding: 0; }
 
