@@ -63,13 +63,13 @@
 					<div class="col-md-12 form-group">
 						<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="{{$alamatUser}}" required>
 					</div>
-					<div class="col-md-12 form-group form-select">
-						<select name="provinsi" id="provinsi">
-						</select>
+					<div class="col-md-12 form-group form-select fetch_prov">
+
 					</div>
-					<div class="col-md-12 form-group form-select">
-						<select name="city" id="city">
-							<option value=""></option>
+					<div class="col-md-12 form-group form-select fetch_city">
+						<select >
+							<option value="">--pilih kota--</option>
+
 						</select>
 					</div>
 					<div class="col-md-12 form-group">

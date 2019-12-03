@@ -111,7 +111,12 @@ Route::get('/invoice/{id}', 'CheckoutController@invoice');
 
 
 
+// ajax provinsi kota
+Route::get('/province/fetch', 'ProfilController@fetch_province')->name('province.fetch'); //provinsi raja
+Route::post('/city/fetch', 'ProfilController@fetch_city')->name('city.fetch'); //kota
+// end ajax provinsi kota
+
 Route::get('/ongkir', 'RajaController@index');
-Route::get('/provinsi', 'RajaController@province');
+
 Route::get('/kota', 'RajaController@city');
 Route::get('/harga', 'RajaController@cost');

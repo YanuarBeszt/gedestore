@@ -26,7 +26,7 @@ class ProfilController extends Controller
         $data = [
             'title' => "Data Pribadi Anda",
             'breadcrumb' => "Halaman Profil",
-            'province' => $this->province()
+            // 'province' => $this->province()
 
         ];
 
@@ -82,7 +82,80 @@ class ProfilController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo $response;
+            return json_decode($response);
         }
+    }
+        public function fetch_province(){
+            $string = $this->province();
+
+             $output = '';
+
+             $output = '
+                 <select name="provinsi" id="provinsi">
+                    <option value="">--pilih provinsi--</option>
+
+                                
+             ';
+                         foreach ($string->rajaongkir->results as $i ) {
+
+                            $output .= '
+                                    <option value="'.$i->province_id.'">'.$i->province.'</option>
+
+                                  ';
+
+                         }
+
+             $output .= '</select>';
+             return $output;
+        }
+    public function fetch_city(Request $request){
+        $prov = $request->get('prov');
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=".$prov."",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            $c = json_decode($response);
+        }
+
+
+
+
+         $output = '';
+
+         $output = '
+             <select name="city" id="city">
+                    <option value="">--pilih kota--</option>
+ 
+         ';
+                     foreach ($c->rajaongkir->results as $i ) {
+
+                        $output .= '
+                                <option value="'.$i->city_id.'">'.$i->city_name.'</option>
+
+                              ';
+
+                     }
+
+         $output .= '</select>';
+         return $output;
     }
 }

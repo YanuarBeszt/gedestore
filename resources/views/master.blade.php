@@ -320,56 +320,82 @@
 			$('#modal_hapus').modal('show');
 		});
 	</script>
+<script>
+$(document).ready(function(){
 
-	<script type="text/javascript">
-		$(document).ready(function($) {
-			$('#provinsi').click(function($) {
-				var tid = $('#teacher_provinsi').val();
-				if (tid) {
-					$.ajax({
-						type: "get",
-						url: "{{url('/provinsi)}}/" + tid,
-						success: function(res) {
-							$('#provinsi').empty();
-							$("#provinsi").append('<option>--Select Nation--</option>');
-							if (res) {
-								$.each(res, function(key, value) {
-									$('#provinsi').append($("<option/>", {
-										value: key,
-										text: value
-									}));
-								});
-							}
-						}
+   function fetch_item_data()
+ {
+  $.ajax({
+   url:"{{ route('province.fetch') }}",
+   method:"GET",
+   success:function(data)
+   {
+    $('.fetch_prov').html(data);
+   }
+  })
+ }
 
-					});
-				}
-			});
-			$('#provinsi).change(function(){
-				var nid = $(this).val();
-				if (nid) {
-					$.ajax({
-						type: "get",
-						url: "{{url('/getArea')}}/" + nid,
-						success: function(res) {
-							$("#area").empty();
-							$("#area").append('<option>--Select Area--</option>');
-							if (res) {
-								$.each(res, function(key, value) {
-									$('#area').append($("<option/>", {
-										value: key,
-										text: value
-									}));
-								});
-							}
-						}
+  // setInterval(function(){ 
+  fetch_item_data();; 
+ // }, 500);
+});
+</script>
+<!-- <script>
+$(document).ready(function(){
 
-					});
-				}
-			});
+   function fetch_city_data()
+ {
+  $.ajax({
+   url:"{{ route('city.fetch') }}",
+   method:"GET",
+   success:function(data)
+   {
+    $('.fetch_city').html(data);
+   }
+  })
+ }
 
-		});
-	</script>
+  // setInterval(function(){ 
+  fetch_city_data();; 
+ // }, 500);
+});
+</script> -->
+<!-- ajax dropdown  -->
+    <script type="text/javascript">
+  
+
+      $(document).ready(function(){
+
+        $(document).on('change', '#provinsi', function(){
+
+          var prov =$(this).val();
+        var _token = $('input[name="_token"]').val();
+
+
+          $.ajax({
+
+            url: "{{ route('city.fetch') }}",
+            method: 'post',
+            data: {
+                prov:prov, _token:_token
+            },
+            // dataType: 'json',
+            success: function(response){
+              console.log(response);
+
+
+  			  $('.fetch_city').html(response);
+
+            }
+
+          })
+
+        });
+
+
+      });
+    </script>
+
 </body>
 
 </html>
