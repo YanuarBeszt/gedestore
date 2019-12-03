@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="author" content="Triplets">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ $title }} | Gede Store - Grosir Textile Jember</title>
 
   <link rel="apple-touch-icon" href="{{ asset('admin/images/favicon/apple-touch-icon-152x152.png') }}">
@@ -16,16 +16,16 @@
   <!-- BEGIN: VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/vendors.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/jquery-jvectormap/jquery-jvectormap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/flag-icon/css/flag-icon.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('vendors/flag-icon/css/flag-icon.min.css') }}">
 
   <!-- END: VENDOR CSS-->
   <!-- BEGIN: Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/vertical-menu-nav-dark-template/materialize.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/themes/vertical-menu-nav-dark-template/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/css/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/css/select.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/data-tables.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/css/jquery.dataTables.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/data-tables/css/select.dataTables.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/data-tables.css') }}">
   <!-- Dashboard CSS -->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/pages/dashboard.css') }}">
   <!-- Pemesanan Online CSS -->
@@ -41,15 +41,15 @@
 <!-- END: Head-->
 
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-menu-nav-dark 2-columns  " data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
-    <div class="row">
-  
-        @if(Session('alert'))
-        <div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
-        @elseif (Session('success'))
-        <div class="flash-data" data-flashdata="{{Session('success')}}"></div>
-        @endif
-  
-      </div>
+  <div class="row">
+
+    @if(Session('alert'))
+    <div class="flash-alert" data-flashalert="{{Session('alert')}}"></div>
+    @elseif (Session('success'))
+    <div class="flash-data" data-flashdata="{{Session('success')}}"></div>
+    @endif
+
+  </div>
   <!-- BEGIN: Header-->
   <header class="page-topbar" id="header">
     <div class="navbar navbar-fixed">
@@ -96,7 +96,7 @@
   <!-- BEGIN: SideNav-->
   <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light navbar-full sidenav-active-rounded">
     <div class="brand-sidebar">
-      <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin/halaman-dashboard"><img src="{{ asset('admin/images/logo/materialize-logo.png') }}" alt="materialize logo" /><span class="logo-text hide-on-med-and-down">Materialize</span></a><a class="navbar-toggler" href="#"><i class="material-icons">radio_button_checked</i></a></h1>
+      <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="/admin/halaman-dashboard"><img src="{{ asset('admin/images/logo/materialize-logo.png') }}" alt="materialize logo" /><span class="logo-text hide-on-med-and-down">GEDE STORE</span></a><a class="navbar-toggler" href="#"><i class="material-icons">radio_button_checked</i></a></h1>
     </div>
     <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
       <li class="navigation-header"><a class="navigation-header-text">Main Navigation</a><i class="navigation-header-icon material-icons">more_horiz</i>
@@ -188,11 +188,11 @@
   <script src="{{ asset('admin/js/scripts/app-email.js') }}" type="text/javascript"></script>
 
   <script src="{{ asset('admin/js/scripts/sweetalert2/sweetalert2.all.min.js') }}"></script>
-      <!-- BEGIN PAGE VENDOR JS-->
-    <script src="{{ asset('admin/vendors/data-tables/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/vendors/data-tables/js/dataTables.select.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/js/scripts/data-tables.js') }}" type="text/javascript"></script>
+  <!-- BEGIN PAGE VENDOR JS-->
+  <script src="{{ asset('admin/vendors/data-tables/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('admin/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('admin/vendors/data-tables/js/dataTables.select.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('admin/js/scripts/data-tables.js') }}" type="text/javascript"></script>
 
   <!-- script sweetalert2 -->
   <script type="text/javascript">
@@ -220,7 +220,7 @@
       });
     }
   </script>
-<!-- <script type="text/javascript"> 
+  <!-- <script type="text/javascript"> 
 function addFunction(e) {
 
   console.log(e);
