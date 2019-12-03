@@ -77,7 +77,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
 
     // transaksi keluar
-    Route::post('/admin/add-cart', 'TransaksiKeluarController@add_cart');
+    Route::get('/admin/add-cart/{id}', 'TransaksiKeluarController@add_cart');
     Route::get('/admin/destroy-cart', 'TransaksiKeluarController@destroy_cart');
     Route::get('/admin/delete-cart/{id}', 'TransaksiKeluarController@delete_cart');
     Route::post('/admin/edit-cart', 'TransaksiKeluarController@edit_cart');
@@ -98,32 +98,6 @@ Route::get('/wishlists', 'WishlistsController@index');
 Route::post('/wishlists/addToWishlists', 'WishlistsController@addToWishlists');
 Route::delete('/wishlists/delWishlists/{wishlists}', 'WishlistsController@delWishlists');
 
-
-//auth
-// Auth::routes();
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-//Public Front ENd
-// Route::get('/blog', 'BlogController@blog');
-// Route::get('/blog/tentang', 'BlogController@tentang');
-// Route::get('/blog/kontak', 'BlogController@kontak');
-
-// Route::get('halo', function () {
-// 	return "Halo ini gede store kita ";
-// });
-
-
-
-// // get data dari form
-// Route::get('/formulir', 'TestController@formulir');
-// Route::post('/formulir/proses', 'TestController@proses');
-// // get data uri
-// Route::get('/test/{uri}','TestController@index');
-// //route irfan controller
-// Route::get('/irfan','IrfanController@index');
 //Cart
 Route::post('/tambah-cart', 'KeranjangController@tambah_cart');
 Route::get('/keranjang-shop', 'KeranjangController@index');
@@ -134,3 +108,10 @@ Route::post('/edit-cart', 'KeranjangController@edit_cart');
 Route::get('/checkout-shop', 'CheckoutController@index');
 Route::post('/proses-checkout', 'CheckoutController@proses_transaksi');
 Route::get('/invoice/{id}', 'CheckoutController@invoice');
+
+
+
+Route::get('/ongkir', 'RajaController@index');
+Route::get('/provinsi', 'RajaController@province');
+Route::get('/kota', 'RajaController@city');
+Route::get('/harga', 'RajaController@cost');

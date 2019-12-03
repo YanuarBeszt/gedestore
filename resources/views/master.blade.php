@@ -200,6 +200,7 @@
 	<!-- code js -->
 	@yield('codejs')
 	<script src="{{ asset('admin/js/scripts/sweetalert2/sweetalert2.all.min.js') }}"></script>
+	<!-- <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js') }}"></script> -->
 
 	<!-- script sweetalert2 -->
 	<script type="text/javascript">
@@ -226,6 +227,148 @@
 				timer: 1500
 			});
 		}
+	</script>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$(document).on('change', '#sel_prov', function() {
+				var regencies = $(this).val();
+				console.log(regencies);
+
+				$.ajax({
+					url: 'http://localhost/SIRT/Admin/Tambah_data/KK/getCities',
+					method: 'post',
+					data: {
+						regencies: regencies
+					},
+					dataType: 'json',
+					success: function(response) {
+						console.log(response);
+
+						$("#sel_city").empty();
+
+						var list = $("#sel_city");
+						$.each(response, function(index, item) {
+							list.append(new Option(item.name, item.idRegencies));
+						});
+
+
+					}
+				});
+			});
+
+			// City change
+			$('#sel_city').change(function() {
+				var hoho = $(this).val();
+				console.log(hoho);
+
+				// AJAX request
+				$.ajax({
+					url: 'http://localhost/SIRT/Admin/Tambah_data/KK/getDistrics',
+					method: 'post',
+					data: {
+						districs: hoho
+					},
+					dataType: 'json',
+					success: function(response) {
+						console.log(response);
+
+						$("#sel_dist").empty();
+
+						var list = $("#sel_dist");
+						$.each(response, function(index, item) {
+							list.append(new Option(item.name, item.idDistrics));
+						});
+					}
+				});
+			});
+
+			// Districs change
+			$('#sel_dist').change(function() {
+				var hehe = $(this).val();
+				console.log(hehe);
+
+				// AJAX request
+				$.ajax({
+					url: 'http://localhost/SIRT/Admin/Tambah_data/KK/getVillages',
+					method: 'post',
+					data: {
+						villages: hehe
+					},
+					dataType: 'json',
+					success: function(response) {
+						console.log(response);
+
+						$("#sel_vill").empty();
+
+						var list = $("#sel_vill");
+						$.each(response, function(index, item) {
+							list.append(new Option(item.name, item.idVillages));
+						});
+					}
+				});
+			});
+
+		});
+
+		$(document).on("click", ".modal_hapus", function() {
+			var idTr = $(this).data('id');
+			console.log(idTr);
+			$('#idhapus').val(idTr);
+			$('#modal_hapus').modal('show');
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function($) {
+			$('#provinsi').click(function($) {
+				var tid = $('#teacher_provinsi').val();
+				if (tid) {
+					$.ajax({
+						type: "get",
+						url: "{{url('/provinsi)}}/" + tid,
+						success: function(res) {
+							$('#provinsi').empty();
+							$("#provinsi").append('<option>--Select Nation--</option>');
+							if (res) {
+								$.each(res, function(key, value) {
+									$('#provinsi').append($("<option/>", {
+										value: key,
+										text: value
+									}));
+								});
+							}
+						}
+
+					});
+				}
+			});
+			$('#provinsi).change(function(){
+				var nid = $(this).val();
+				if (nid) {
+					$.ajax({
+						type: "get",
+						url: "{{url('/getArea')}}/" + nid,
+						success: function(res) {
+							$("#area").empty();
+							$("#area").append('<option>--Select Area--</option>');
+							if (res) {
+								$.each(res, function(key, value) {
+									$('#area').append($("<option/>", {
+										value: key,
+										text: value
+									}));
+								});
+							}
+						}
+
+					});
+				}
+			});
+
+		});
 	</script>
 </body>
 

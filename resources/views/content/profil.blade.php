@@ -53,20 +53,27 @@
 				<h3>Data Pribari Anda</h3>
 				<form class="row login_form" action="/update-profil" method="post" id="contactForm" novalidate="novalidate">
 					@csrf
-					@if(!empty($profil))
-					@foreach($profil as $prf)
 					<div class="col-md-6 form-group">
-						<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$prf->namaUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">
-						<input type="hidden" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$prf->created_at}}">
+						<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$namaUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">
+						<input type="hidden" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$created_at}}">
 					</div>
 					<div class="col-md-6 form-group">
-						<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$prf->emailUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" readonly>
+						<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$emailUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" readonly>
 					</div>
 					<div class="col-md-12 form-group">
-						<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="{{$prf->alamatUser}}" required>
+						<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="{{$alamatUser}}" required>
+					</div>
+					<div class="col-md-12 form-group form-select">
+						<select name="provinsi" id="provinsi">
+						</select>
+					</div>
+					<div class="col-md-12 form-group form-select">
+						<select name="city" id="city">
+							<option value=""></option>
+						</select>
 					</div>
 					<div class="col-md-12 form-group">
-						<input type="number" class="form-control" id="telpon" name="telpon" placeholder="Nomor Telepon" value="{{$prf->telponUser}}" required>
+						<input type="number" class="form-control" id="telpon" name="telpon" placeholder="Nomor Telepon" value="{{$telponUser}}" required>
 					</div>
 					<div class="col-md-12 form-group">
 						<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
@@ -82,8 +89,6 @@
 					<div class="col-md-6 form-group">
 						<button type="submit" value="submit" class="primary-btn">Simpan</button>
 					</div>
-					@endforeach
-					@endif
 				</form>
 			</div>
 		</div>

@@ -16,13 +16,21 @@ class ProfilController extends Controller
             ->where('idUser', Session::get('user_id'))
             ->get();
 
+        foreach ($profil as $prf) {
+            $prof['namaUser'] = $prf->namaUser;
+            $prof['emailUser'] = $prf->emailUser;
+            $prof['alamatUser'] = $prf->alamatUser;
+            $prof['telponUser'] = $prf->telponUser;
+            $prof['created_at'] = $prf->created_at;
+        }
         $data = [
             'title' => "Data Pribadi Anda",
             'breadcrumb' => "Halaman Profil",
-            'profil' => $profil
+            'province' => $this->province()
+
         ];
 
-        return view('content/profil', $data);
+        return view('content/profil', $data, $prof);
     }
 
     public function updateProfil(Request $request)
@@ -46,6 +54,35 @@ class ProfilController extends Controller
             return redirect('/profil')->with('success', 'Data Pribadi Anda Berhasil Dirubah');
         } else {
             return redirect('/profil')->with('alert', 'Password Yang Anda Masukkan Tidak Cocok');
+        }
+    }
+
+    public function province()
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
         }
     }
 }
