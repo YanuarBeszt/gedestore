@@ -47,6 +47,18 @@ class KeranjangController extends Controller
 
         $brg = \Cart::getContent();
 
+        $get_brg = DB::table('tb_stok AS s')
+            ->join('tb_barang AS b', 'b.barang_id', '=', 's.stok_barang_id')
+            ->select('*')
+            ->where('stok_id', $request->stok_ukuran)
+            ->get();
+        foreach ($get_brg as $g) {
+
+
+            $stok_jumlah_stok = $g->stok_jumlah_stok;
+            $ukuran = $g->stok_ukuran;
+
+        }
 
         if ($jml_crt > 0) {
 
@@ -67,9 +79,10 @@ class KeranjangController extends Controller
                           'quantity' => 1,
                           'attributes' => array(
                                         'kode_brg' => $request->barang_id,
-                                         'size' => $request->stok_ukuran,
+                                         'size' => $ukuran,
                                          'gambar' => $request->barang_gambar,
-                                         'stok_id' => $request->stok_id
+                                         'stok_id' => $request->stok_ukuran,
+                                         'jml_stok_gudang' => $stok_jumlah_stok
 
                           )
                     ));
@@ -86,9 +99,10 @@ class KeranjangController extends Controller
                           'quantity' => 1,
                           'attributes' => array(
                                         'kode_brg' => $request->barang_id,
-                                         'size' => $request->stok_ukuran,
+                                         'size' => $ukuran,
                                          'gambar' => $request->barang_gambar,
-                                         'stok_id' => $request->stok_id
+                                         'stok_id' => $request->stok_ukuran,
+                                         'jml_stok_gudang' => $stok_jumlah_stok
 
                           )
                     ));

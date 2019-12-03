@@ -85,14 +85,13 @@
 						<form action="/tambah-cart" method="POST">
 <!--						@csrf -->
 						{{ csrf_field()}}
-							<!-- <a class="btn btn-outline-info" href="#">+ Wishlist</a> -->
-							{{-- <input type="hidden" name="stok_id" value="{{ $stok_id }}" /> --}}
-							{{-- <input type="hidden" name="stok_ukuran" value="{{ $stok_ukuran }}" /> --}}
+
 							<input type="hidden" name="price" value="{{ $price }}" />
 							<input type="hidden" name="barang_nama" value="{{ $barang_nama }}" />
 							<input type="hidden" name="barang_id" value="{{ $barang_id }}" />
                             <input type="hidden" name="barang_gambar" value="{{ $barang_gambar }}" />
                             <input type="hidden" name="stok_id" value="{{$stok_id}}">
+                            <input type="hidden" name="stok_gudang" value="{{$stok_gudang}}">
 
 
 							<div class="row">
@@ -100,7 +99,7 @@
 
 									@foreach($ukuran_stok as $u)
 
-									<option value="{{$u->stok_ukuran}}">{{$u->stok_ukuran}} - stok {{$u->stok_jumlah_stok}}</option>
+									<option value="{{$u->stok_id}}">{{$u->stok_ukuran}} - stok {{$u->stok_jumlah_stok}}</option>
 
 									@endforeach
 								</select>

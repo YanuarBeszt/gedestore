@@ -49,6 +49,7 @@ class ShopController extends Controller
             $data['barang_deskripsi'] = $p->barang_deskripsi;
             $data['barang_gambar'] = $p->barang_gambar;
             $data['kategori_nama'] = $p->kategori_nama;
+            $data['stok_gudang'] = $p->stok_jumlah_stok;
         }
         return view('content/details', $data);
     }

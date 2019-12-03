@@ -93,7 +93,14 @@ class TransaksiKeluarController extends Controller
 
                 ];
 
+                $update_stok = [
+                    'stok_jumlah_stok' => $key->attributes->jml_stok_gudang-$key->quantity
+
+                ];
+
                 DB::table('tb_detail_transaksi')->insert($detail);
+                DB::table('tb_stok')->where('stok_id', $key->attributes->stok_id)->update($update_stok);
+
             }
 
 
@@ -148,7 +155,8 @@ class TransaksiKeluarController extends Controller
                             'attributes' => array(
                                 'kode_brg' => $id_brg,
                                 'size' => $stok_ukuran,
-                                'stok_id' => $id_stok
+                                'stok_id' => $id_stok,
+                                'jml_stok_gudang' => $stok_jumlah_stok
 
                             )
                         ));
@@ -164,7 +172,9 @@ class TransaksiKeluarController extends Controller
                     'attributes' => array(
                         'kode_brg' => $id_brg,
                         'size' => $stok_ukuran,
-                        'stok_id' => $id_stok
+                        'stok_id' => $id_stok,
+                        'jml_stok_gudang' => $stok_jumlah_stok
+
                     )
                 ));
             }

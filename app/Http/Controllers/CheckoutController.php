@@ -98,7 +98,13 @@ class CheckoutController extends Controller
 
                 ];
 
+                $update_stok = [
+                    'stok_jumlah_stok' => $key->attributes->jml_stok_gudang-$key->quantity
+
+                ];
                 DB::table('tb_detail_transaksi')->insert($detail);
+                DB::table('tb_stok')->where('stok_id', $key->attributes->stok_id)->update($update_stok);
+
             }
 
 
