@@ -5,10 +5,23 @@
 
 <!-- form  -->
 <div class="row">
+				<!-- {{-- menampilkan error validasi --}} -->
+				@if (count($errors) > 0)
+				@foreach ($errors->all() as $error)
+				<div class="card-alert card red">
+					<div class="card-content white-text">
+						<p>{{ $error }}</p>
+					</div>
+					<button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				@endforeach
+				@endif
     <div class="col s12 m12 l12">
         <div id="button-trigger" class="card card card-default scrollspy">
             <div class="card-content">
-                <form class="formValidate" id="formValidate" action="/admin/store-barang" method="post">
+                <form class="formValidate" id="formValidate" action="/admin/store-barang" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="input-field col s12">
@@ -49,10 +62,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input name="gambar" id="gambar" type="text" class="validate">
-                            <label for="gambar">Gambar</label>
-                        </div>
+                        <div class="file-field input-field">
+                            <div class="btn">
+                              <span>Gambar</span>
+                              <input type="file" name="file"> 
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input class="file-path validate" type="text" id="gambar" name="gambar">
+                            </div>
+                          </div>
                     </div>
                     <div class="input-field col s12">
                         <button class="btn waves-effect waves-light right submit" type="submit" name="action">simpan

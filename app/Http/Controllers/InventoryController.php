@@ -42,8 +42,18 @@ class InventoryController extends Controller
     public function storeBarang(Request $request)
     {
         $this->validate($request, [
-            'namaBrg' => 'required|string'
+            'namaBrg' => 'required|string',
+			'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+
         ]);
+
+		// menyimpan data file yang diupload ke variabel $file
+        $file = $request->file('file');
+        
+        $nama_file = time()."_".$file->getClientOriginalName();
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'gambar_barang';
+		$file->move($tujuan_upload,$nama_file);
 
         DB::table('tb_barang')->insert([
             'barang_id' => uniqid(),
@@ -52,7 +62,7 @@ class InventoryController extends Controller
             'barang_harga_beli' => $request->hargaBeli,
             'barang_harga_jual' => $request->hargaJual,
             'barang_deskripsi' => $request->deskripsi,
-            'barang_gambar' => $request->gambar
+            'barang_gambar' => $nama_file
         ]);
 
         return redirect('/admin/halaman-tambah-barang')->with('success', 'Tambah Barang');
@@ -116,6 +126,7 @@ class InventoryController extends Controller
     public function storeStok(Request $insert) {
         $idbrg = $insert->idBrg;
         $ukbrg = $insert->ukrBrg;
+
         
         $querychk = DB::table('tb_stok')
             ->where('stok_barang_id', $idbrg)
