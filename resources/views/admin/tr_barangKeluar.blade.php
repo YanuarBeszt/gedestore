@@ -62,6 +62,8 @@
 						      	@csrf
 								      <input value="{{$c->id}}" id="id_row" name="id_row" type="hidden" class="validate">
 								      <input value="{{$c->quantity}}" id="jml_skrg" name="jml_skrg" type="hidden" class="validate">
+								      <input value="{{$c->attributes->stok_id}}" id="stok_id" name="stok_id" type="hidden" class="validate">
+								      <input value="{{$c->attributes->size}}" id="ukuran_s" name="ukuran_s" type="hidden" class="validate">
 
 						      	  <div class="row">
 								    <div class="input-field col s12">

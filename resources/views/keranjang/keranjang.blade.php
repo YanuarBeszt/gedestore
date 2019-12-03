@@ -111,7 +111,10 @@
             @csrf
          <div class="row">
             <div class="col-md-4">
-            <input type="hidden" name="row_id" value="{{$c->id}}">
+            <input type="hidden" name="stok_id" value="{{$c->attributes->stok_id}}">
+            <input type="hidden" name="jml_skrg" value="{{$c->quantity}}">
+            <input type="hidden" name="id_row" value="{{$c->id}}">
+
            </div>
            <div class="col-md-4"><input type="number" value="" name="qty_edit" placeholder="Masukkan Jumlah"></div>
         </div>

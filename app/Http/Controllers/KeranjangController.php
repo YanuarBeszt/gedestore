@@ -69,6 +69,8 @@ class KeranjangController extends Controller
                                         'kode_brg' => $request->barang_id,
                                          'size' => $request->stok_ukuran,
                                          'gambar' => $request->barang_gambar,
+                                         'stok_id' => $request->stok_id
+
                           )
                     ));
                     break;
@@ -86,6 +88,7 @@ class KeranjangController extends Controller
                                         'kode_brg' => $request->barang_id,
                                          'size' => $request->stok_ukuran,
                                          'gambar' => $request->barang_gambar,
+                                         'stok_id' => $request->stok_id
 
                           )
                     ));
@@ -128,19 +131,32 @@ class KeranjangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit_cart(Request $request){
-        // if ($request->jml_skrg > $request->qty) {
-        //     \Cart::update($request->id_row, array(
-        //                       'quantity' => -$request->qty, 
-        //                     ));
-        // } else {
-        //     \Cart::update($request->id_row, array(
-        //                       'quantity' => $request->qty, 
-        //                     ));
-        // }
-        
-            \Cart::update($request->row_id, array(
-                              'quantity' => $request->qty_edit, 
-                            ));
+        $get_brg = DB::table('tb_stok AS s')
+            ->join('tb_barang AS b', 'b.barang_id', '=', 's.stok_barang_id')
+            ->select('*')
+            ->where('stok_id', $request->stok_id)
+            ->get();
+        foreach ($get_brg as $g) {
+            $id_stok = $g->stok_id;
+            $id_brg = $g->stok_barang_id;
+            $stok_ukuran = $g->stok_ukuran;
+            $stok_jumlah_stok = $g->stok_jumlah_stok;
+            $barang_nama = $g->barang_nama;
+            $barang_harga_jual = $g->barang_harga_jual;
+        }
+
+        if ($request->qty_edit+$request->jml_skrg >= $stok_jumlah_stok) {
+            return redirect('/keranjang-shop')->with('alert', ',Stok Kurang !');
+
+
+        } else {
+            
+            \Cart::update($request->id_row, array(
+                'quantity' => $request->qty_edit,
+            ));
+          
+        }
+
 
        return redirect('/keranjang-shop');
 

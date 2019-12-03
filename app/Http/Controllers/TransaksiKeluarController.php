@@ -58,7 +58,7 @@ class TransaksiKeluarController extends Controller
         if ($jml_crt > 0) {
             //isi allert
             $messages = [
-                'required' => 'Form : attribute wajib di isi *',
+                'required' => 'Form :attribute wajib di isi *',
 
             ];
 
@@ -127,47 +127,47 @@ class TransaksiKeluarController extends Controller
             $barang_harga_jual = $g->barang_harga_jual;
         }
 
-        if ($jml_crt > 0) {
+
+            if ($jml_crt > 0) {
+
+                foreach ($brg as $key) {
 
 
+                    if ($key->attributes->size == $stok_ukuran && $key->attributes->kode_brg == $id_brg) {
 
+                        \Cart::update($key->id, array(
+                            'quantity' => 1,
+                        ));
+                        break;
+                    } else {
+                        \Cart::add(array(
+                            'id' => uniqid(),
+                            'name' => $barang_nama,
+                            'price' => $barang_harga_jual,
+                            'quantity' => 1,
+                            'attributes' => array(
+                                'kode_brg' => $id_brg,
+                                'size' => $stok_ukuran,
+                                'stok_id' => $id_stok
 
-
-            foreach ($brg as $key) {
-
-
-                if ($key->attributes->size == $stok_ukuran && $key->attributes->kode_brg == $id_brg) {
-
-                    \Cart::update($key->id, array(
-                        'quantity' => 1,
-                    ));
-                    break;
-                } else {
-                    \Cart::add(array(
-                        'id' => uniqid(),
-                        'name' => $barang_nama,
-                        'price' => $barang_harga_jual,
-                        'quantity' => 1,
-                        'attributes' => array(
-                            'kode_brg' => $id_brg,
-                            'size' => $stok_ukuran,
-                        )
-                    ));
-                    break;
+                            )
+                        ));
+                        break;
+                    }
                 }
+            } else {
+                \Cart::add(array(
+                    'id' => uniqid(),
+                    'name' => $barang_nama,
+                    'price' => $barang_harga_jual,
+                    'quantity' => 1,
+                    'attributes' => array(
+                        'kode_brg' => $id_brg,
+                        'size' => $stok_ukuran,
+                        'stok_id' => $id_stok
+                    )
+                ));
             }
-        } else {
-            \Cart::add(array(
-                'id' => uniqid(),
-                'name' => $barang_nama,
-                'price' => $barang_harga_jual,
-                'quantity' => 1,
-                'attributes' => array(
-                    'kode_brg' => $id_brg,
-                    'size' => $stok_ukuran,
-                )
-            ));
-        }
 
 
 
@@ -184,19 +184,33 @@ class TransaksiKeluarController extends Controller
     }
     public function edit_cart(Request $request)
     {
-        // if ($request->jml_skrg > $request->qty) {
-        //     \Cart::update($request->id_row, array(
-        //                       'quantity' => -$request->qty, 
-        //                     ));
-        // } else {
-        //     \Cart::update($request->id_row, array(
-        //                       'quantity' => $request->qty, 
-        //                     ));
-        // }
+        $get_brg = DB::table('tb_stok AS s')
+            ->join('tb_barang AS b', 'b.barang_id', '=', 's.stok_barang_id')
+            ->select('*')
+            ->where('stok_id', $request->stok_id)
+            ->get();
+        foreach ($get_brg as $g) {
+            $id_stok = $g->stok_id;
+            $id_brg = $g->stok_barang_id;
+            $stok_ukuran = $g->stok_ukuran;
+            $stok_jumlah_stok = $g->stok_jumlah_stok;
+            $barang_nama = $g->barang_nama;
+            $barang_harga_jual = $g->barang_harga_jual;
+        }
 
-        \Cart::update($request->id_row, array(
-            'quantity' => $request->qty,
-        ));
+        if ($request->qty+$request->jml_skrg >= $stok_jumlah_stok) {
+            return redirect('/admin/halaman-transaksi-penjualan-barang')->with('alert', ',Stok Kurang !');
+
+
+        } else {
+            
+            \Cart::update($request->id_row, array(
+                'quantity' => $request->qty,
+            ));
+          
+        }
+
+
 
         return redirect('/admin/halaman-transaksi-penjualan-barang');
     }

@@ -108,7 +108,7 @@
 					<!-- single product -->
 					<div class="col-lg-4 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="img/product/{{ $b->barang_gambar }}" alt="">
+							<img class="img-fluid" src="{{ url('/gambar_barang/'.$b->barang_gambar) }}" alt="">
 							<div class="product-details">
 								<a href="{{ route('showProduct', $b->barang_id) }}">
 									<h6>{{ $b->barang_nama }}</h6>
@@ -119,10 +119,10 @@
 								</div>
 								<div class="prd-bottom">
 
-									<a href="" class="social-info">
+									{{-- <a href="" class="social-info">
 										<span class="ti-bag"></span>
 										<p class="hover-text">+ cart</p>
-									</a>
+									</a> --}}
 									<a href="{{ route('showProduct', $b->barang_id) }}" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">detail</p>

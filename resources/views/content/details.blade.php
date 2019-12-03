@@ -52,13 +52,13 @@
 			<div class="col-lg-6">
 				<div class="s_Product_carousel">
 					<div class="single-prd-item">
-						<img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
+						<img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
+						<img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="/img/product/{{ $barang_gambar }}" alt="">
+						<img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
 					</div>
 				</div>
 			</div>
@@ -91,7 +91,9 @@
 							<input type="hidden" name="price" value="{{ $price }}" />
 							<input type="hidden" name="barang_nama" value="{{ $barang_nama }}" />
 							<input type="hidden" name="barang_id" value="{{ $barang_id }}" />
-							<input type="hidden" name="barang_gambar" value="{{ $barang_gambar }}" />
+                            <input type="hidden" name="barang_gambar" value="{{ $barang_gambar }}" />
+                            <input type="hidden" name="stok_id" value="{{$stok_id}}">
+
 
 							<div class="row">
 								<select name="stok_ukuran" id="stok_ukuran">
