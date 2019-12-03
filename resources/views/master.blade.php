@@ -85,22 +85,20 @@
 								</ul>
 							</li>
 						</ul>
+						@else
+						<li class="nav-item"><a class="nav-link" href="{{ url('/customer/register') }}">Daftar</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ url('/customer/login') }}">Masuk</a></li>
+						@endif
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="nav-item"><a href="{{ url('/keranjang-shop') }}" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item">
+								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+							</li>
+						</ul>
 					</div>
-					@else
-					<li class="nav-item"><a href="{{ url('/customer/register') }}"><span>Daftar</span></a></li>
-					<li class="nav-item"><a href="{{ url('/customer/login') }}"><span>Masuk</span></a></li>
-					@endif
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="nav-item"><a href="{{ url('/keranjang-shop') }}" class="cart"><span class="ti-bag"></span></a></li>
-						<li class="nav-item">
-							<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-						</li>
-
-					</ul>
 				</div>
-		</div>
-		</nav>
+			</nav>
 		</div>
 		<div class="search_input" id="search_input_box">
 			<div class="container">
