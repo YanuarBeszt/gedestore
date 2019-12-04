@@ -55,6 +55,7 @@
                                 <th scope="col">Price</th>
                                 <th scope="col">Ukuran</th>
                                 <th scope="col">Quantity</th>
+                                <th scope="col">Berat</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Action</th>
 
@@ -62,7 +63,16 @@
                         </thead>
                         <tbody>
 @if($jml_crt > 0)
+@php
+    $tot_berat = 0;
+@endphp
 @foreach($cart as $c)
+@php
+   $berat_brg = $c->attributes->berat*$c->quantity;
+   $tot_berat += $berat_brg;
+ 
+@endphp
+
                             <tr>
                                 <td>
                                     <div class="media">
@@ -85,6 +95,9 @@
                                         <input type="text" name="qty" id="sst" maxlength="12" value="{{$c->quantity}}" title="Quantity:"
                                             readonly>
                                     </div>
+                                </td>
+                                <td>
+                                    <h5>{{$c->attributes->berat*$c->quantity}} gram</h5>
                                 </td>
                                 <td>
                                     <h5>Rp.{{number_format($c->price*$c->quantity)}}</h5>
@@ -138,13 +151,18 @@
                                 <td>
                                     <a class="gray_btn" href="/destroy-cart">Kosongkan Keranjang</a>
                                 </td>
+<td></td>
+<td></td>
 
-                                <td></td>
                                 <td>
+                                    <h5>Total Berat</h5>
 
                                 </td>
                                 <td>
-                                        <h5>Subtotal</h5>
+                                    {{$tot_berat}}
+                                </td>
+                                <td>
+                                        <h5>Total Harga</h5>
 
                                 </td>
                                 <td>

@@ -4,7 +4,33 @@
 <!-- isi bagian konten -->
 @section('codejs')
 
-<!-- isi kode JS -->
+{{-- <script>
+    $(document).ready(function() {
+
+        $(".hitung-ongkir a").click(function() {
+            // var prov = $('select[name="prov"]').val();
+            var berat = $('input[name="berat_brg"]').val();
+            var kota =  $('#city').val(); 
+            var _token = $('input[name="_token"]').val();
+
+            console.log({kota,berat});
+
+                $.ajax({
+                    url: "{{ route('cost.fetch') }}",
+                    method: "POST",
+					data: {
+                        berat: berat,
+						kota: kota,
+						_token: _token
+					},
+                    success: function(data){
+                        $('.service').html(data);
+                    }
+                });
+        });
+
+    });
+</script> --}}
 
 @endsection
 @section('filejs')
@@ -55,6 +81,9 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Billing Details</h3>
+                        <input type="hidden"  name="prov-edit"  value="{{$prov}}">
+                        <input type="hidden"  name="city-edit"  value="{{$city}}">
+
                         <form class="row contact_form" action="/proses-checkout" method="post" novalidate="novalidate">
                             @csrf
 
@@ -70,16 +99,36 @@
                                
                             </div>
                             <div class="col-md-12 form-group">
-                                    <textarea class="form-control" name="alamat" id="alamat" rows="1" placeholder="Alamat"></textarea>
+                                    <textarea class="form-control" name="alamat" id="alamat" rows="1" placeholder="Alamat Lengkap" >{{$alamatUser}}</textarea>
                                 </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="number">
+                                <select name="prov" id="prov" class="fetch_prov form-control">
+                                    <option value="">--pilih provinsi--</option>
+                                </select>                               
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <select name="city" id="city" class="fetch_city form-control">
+                                    <option value="0">--pilih kota--</option>
+                                </select>
                                
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="compemailany">
+                                <select name="kurir" class="kurir form-control">
+                                    <option value="jne">KURIR JNE</option>
+                                </select>
                                
                             </div>
+                            <div class="col-md-6 form-group p_star">
+                                <select name="service" class="service form-control">
+                                    <option value="">--pilih service--</option>
+                                </select>
+                               
+                            </div>
+
+                            {{-- <div class="col-md-6 form-group p_star hitung-ongkir">
+                                <a class="primary-btn " >Hitung Ongkir </a>
+                           
+                            </div> --}}
 
                     </div>
                     <div class="col-lg-4">
@@ -87,23 +136,26 @@
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a href="#">Product <span>Total</span></a></li>
+@php
+    $tot_berat = 0;
+@endphp
                                 @foreach($cart as $c)
+@php
+   $berat_brg = $c->attributes->berat*$c->quantity;
+   $tot_berat += $berat_brg;
+ 
+@endphp
                                 <li><a href="#">{{$c->name}} - {{$c->attributes->size}} <span class="middle">x{{$c->quantity}}</span> <span class="last">Rp.{{number_format($c->quantity*$c->price)}}</span></a></li>
                                 @endforeach
                             </ul>
                             <ul class="list list_2">
                             <li><a href="#">Subtotal <span>Rp.{{number_format($jml_total)}}</span></a></li>
-                                <li><a href="#">Shipping <span>--</span></a></li>
+                            <li><a href="#">Total Berat <span>{{$tot_berat}} gram</span></a></li>
+
+                                {{-- <li><a href="#">Ongkir <span class="ongkir-gan">--</span></a></li> --}}
                                 <li><a href="#">Total <span>Rp.{{number_format($jml_total)}}</span></a></li>
                             </ul>
-                            <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector">
-                                    <label for="f-option5">Cash</label>
-                                    <div class="check"></div>
-                                </div>
-                                <p>Lakukan pembayaran ke toko secara langsung.</p>
-                            </div>
+
                             <div class="payment_item active">
                                 <div class="radion_btn">
                                     <input type="radio" id="f-option6" name="selector">
@@ -125,6 +177,8 @@
                 </div>
             </div>
         </div>
+        <input type="hidden"  name="berat_brg"  value="{{$tot_berat}}">
+
     </section>
     <!--================End Checkout Area =================-->
     @endsection

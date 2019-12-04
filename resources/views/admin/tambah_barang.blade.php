@@ -54,6 +54,10 @@
                             <input name="hargaJual" id="hargaJual" type="text" class="validate">
                             <label for="hargaJual">Harga Jual</label>
                         </div>
+                        <div class="input-field col s4">
+                            <input name="berat" id="berat" type="text" class="validate">
+                            <label for="berat">Berat Satuan(gram)</label>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">

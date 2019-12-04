@@ -37,8 +37,11 @@ class RajaController extends Controller
         }
     }
 
-    public function cost()
+    public function cost(Request $request)
     {
+        $kota = $request->get('kota');
+        $berat = $request->get('berat');
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -49,10 +52,10 @@ class RajaController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "origin=160&destination=444&weight=250&courier=jne",
+            CURLOPT_POSTFIELDS => "origin=160&destination=".$kota."&weight=".$berat."&courier=jne",
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
-                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+                "key: a46c84507976864ce67a5b9ec68c2be0"
             ),
         ));
 
@@ -64,8 +67,37 @@ class RajaController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo $response;
+            $c = json_decode($response);
         }
+
+
+
+
+        $output = '';
+
+        $output = '
+                    <option data-display="Select" value="">--pilih kota dulu--</option>
+ 
+         ';
+         if(!$kota == '' ){
+        foreach ($c->rajaongkir->results as $i) {
+            // print_r($i->costs[0]->cost[0]->etd); //get etd
+
+            // print_r($i->costs[0]->cost[0]->value); //get harga
+            // print_r($i->costs[0]->service);
+            // print_r($i->costs[1]->cost);
+
+        $output = '
+                    <option  value="'.$i->costs[0]->cost[0]->value.'">'.$i->costs[0]->service.' - Estimasi '.$i->costs[0]->cost[0]->etd.' Hari - Rp.'.$i->costs[0]->cost[0]->value.'</option>
+                    <option  value="'.$i->costs[1]->cost[0]->value.'">'.$i->costs[1]->service.' - Estimasi '.$i->costs[1]->cost[0]->etd.' Hari - Rp.'.$i->costs[1]->cost[0]->value.'</option>
+
+         ';
+
+        }
+    }
+
+        return $output;
+
     }
     public function province()
     {
@@ -80,7 +112,7 @@ class RajaController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+                "key: a46c84507976864ce67a5b9ec68c2be0"
             ),
         ));
 
@@ -108,7 +140,7 @@ class RajaController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+                "key: a46c84507976864ce67a5b9ec68c2be0"
             ),
         ));
 
@@ -120,7 +152,7 @@ class RajaController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo $response;
+            echo json_decode($response);
         }
     }
     //

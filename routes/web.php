@@ -122,5 +122,5 @@ Route::post('/city/fetch', 'ProfilController@fetch_city')->name('city.fetch'); /
 
 Route::get('/ongkir', 'RajaController@index');
 
-Route::get('/kota', 'RajaController@city');
-Route::get('/harga', 'RajaController@cost');
+Route::get('/kota', 'RajaController@province');
+Route::post('/cost', 'RajaController@cost')->name('cost.fetch');

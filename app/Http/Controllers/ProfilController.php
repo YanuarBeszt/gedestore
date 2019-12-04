@@ -41,6 +41,21 @@ class ProfilController extends Controller
         $password = $request->password;
         $password2 = $request->password2;
 
+        $messages = [
+            'required' => 'Form :attribute wajib di isi *',
+
+        ];
+
+        //validasi form
+        request()->validate([
+            'alamat' => 'required',
+            'nama' => 'required',
+            'prov' => 'required',
+            'city' => 'required',
+            'password' => 'required|min:5',
+
+        ], $messages);
+
         if (strcmp($password, $password2) == 0) {
             DB::table('tb_users')
                 ->where('idUser', Session::get('user_id'))
@@ -52,7 +67,7 @@ class ProfilController extends Controller
                     'city' => $request->city,
                     'telponUser' => $request->telpon,
                     'password' => md5($request->password),
-                    'created_at' => $request->created,
+                    // 'created_at' => $request->created,
                     'updated_at' => $now
                 ]);
             return redirect('/profil')->with('success', 'Data Pribadi Anda Berhasil Dirubah');
@@ -74,7 +89,7 @@ class ProfilController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+                "key: a46c84507976864ce67a5b9ec68c2be0"
             ),
         ));
 
@@ -124,7 +139,7 @@ class ProfilController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+                "key: a46c84507976864ce67a5b9ec68c2be0"
             ),
         ));
 

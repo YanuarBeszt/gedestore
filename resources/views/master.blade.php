@@ -232,8 +232,6 @@
 	<script>
 		$(document).ready(function() {
 
-
-
 			function fetch_item_data() {
 				$.ajax({
 					url: "{{ route('province.fetch') }}",
@@ -276,8 +274,6 @@ $(document).ready(function(){
 	<script type="text/javascript">
 		$(document).ready(function() {
 
-
-
 			const halo = function() {
 				var prov = $('.fetch_prov').val();
 				var _token = $('input[name="_token"]').val();
@@ -285,6 +281,8 @@ $(document).ready(function(){
 
 				if (prov === 'belum') {
 					$('.fetch_city').html(`<option data-display="Select" value="">--pilih provinsi dulu--</option>`);
+					$('.service').html(`<option data-display="Select" value="">--pilih kota dulu--</option>`);
+
 					return;
 				}
 				$.ajax({
@@ -313,11 +311,59 @@ $(document).ready(function(){
 					}
 
 				});
+				var berat = $('input[name="berat_brg"]').val();
+            var kota =  $('#city').val(); 
+            var _token = $('input[name="_token"]').val();
+
+            // console.log({kota,berat});
+
+                $.ajax({
+                    url: "{{ route('cost.fetch') }}",
+                    method: "POST",
+					data: {
+                        berat: berat,
+						kota: kota,
+						_token: _token
+					},
+                    success: function(data){
+						$('.service').html(data);
+						$('.service').html(`<option data-display="Select" value="">--pilih kota dulu--</option>`);
+
+                    }
+                });
 			};
 			$('.fetch_prov').on('change', halo);
 
+		});
+	</script>
+	<!-- ajax dropdown  -->
+	<script type="text/javascript">
+		$(document).ready(function() {
 
+			const hai = function() {
 
+				var berat = $('input[name="berat_brg"]').val();
+            var kota =  $('#city').val(); 
+            var _token = $('input[name="_token"]').val();
+				// var _ongkir = $('.service').val(); 
+            // console.log({kota,berat});
+
+                $.ajax({
+                    url: "{{ route('cost.fetch') }}",
+                    method: "POST",
+					data: {
+                        berat: berat,
+						kota: kota,
+						_token: _token
+					},
+                    success: function(data){
+						$('.service').html(data);
+						// $('.ongkir-gan').html(_ongkir);
+
+                    }
+                });
+			};
+			$('.fetch_city').on('change', hai);
 
 		});
 	</script>

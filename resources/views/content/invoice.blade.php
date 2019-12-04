@@ -52,7 +52,7 @@
 							<li><a href="#"><span>Order number</span> : {{$kode}}</a></li>
 							<li><a href="#"><span>Date</span> : {{$tgl}}</a></li>
 							<li><a href="#"><span>Total</span> : Rp.{{number_format($jml_total)}}</a></li>
-							<li><a href="#"><span>Payment method</span> : --</a></li>
+							<li><a href="#"><span>Payment method</span> : Transfer</a></li>
 						</ul>
 					</div>
 				</div>
@@ -69,15 +69,33 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="details_item">
-						<h4>Shipping Address</h4>
+						<h4>Shipping </h4>
 						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
+							<li><a href="#"><span>Ongkir</span> : Rp.{{number_format($ongkir)}}</a></li>
+
+							{{-- <li><a href="#"><span>Street</span> : 56/8</a></li>
 							<li><a href="#"><span>City</span> : Los Angeles</a></li>
 							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
+							<li><a href="#"><span>Postcode </span> : 36952</a></li> --}}
 						</ul>
 					</div>
 				</div>
+				<div class="col-lg-4">
+
+					</div>
+					<div class="col-lg-4">
+							<div class="details_item">
+								<h4 style="text-align: center;">Hubungi Penjual </h4>
+								<span style="text-align: center;">Melalui Link Whatsapp Berikut : 
+								<a href="https://api.whatsapp.com:/send?phone=+6285330630656&text=Kode Transaksi: {{ $kode }}">085330630656</a>
+
+								</span>
+
+							</div>
+						</div>
+				<div class="col-lg-4">
+
+					</div>
 			</div>
 			<div class="order_details_table">
 				<h2>Order Details</h2>
@@ -89,6 +107,8 @@
 								<th scope="col">Ukuran</th>
 
 								<th scope="col">Quantity</th>
+								<th scope="col">Berat</th>
+
 								<th scope="col">Total</th>
 							</tr>
 						</thead>
@@ -103,7 +123,10 @@
                                 </td>
 								<td>
                                         <h5> x {{$br->dt_jumlah_barang}}</h5>
-                                    </td>
+									</td>
+									<td>
+											<h5>{{$br->berat_barang*$br->dt_jumlah_barang}}g</h5>
+										</td>
 								<td>
 									<p>Rp.{{number_format($br->dt_jumlah_harga)}}</p>
 								</td>
@@ -122,13 +145,13 @@
 							</tr>
 							<tr>
 								<td>
-									<h4>Shipping</h4>
+									<h4>Ongkir</h4>
 								</td>
 								<td>
 									<h5></h5>
 								</td>
 								<td>
-									<p>Flat rate: --</p>
+								<p>Rp.{{number_format($ongkir)}}</p>
 								</td>
 							</tr>
 							<tr>

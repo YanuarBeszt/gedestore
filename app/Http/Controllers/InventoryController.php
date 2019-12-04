@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\File;
 
+use DateTime;
+
+
 class InventoryController extends Controller
 {
     //
@@ -45,6 +48,7 @@ class InventoryController extends Controller
             $bar['barang_harga_jual'] = $brg->barang_harga_jual;
             $bar['barang_deskripsi'] = $brg->barang_deskripsi;
             $bar['barang_kategori'] = $brg->kategori_id;
+            $bar['berat'] = $brg->berat_barang;
             $bar['barang_gambar'] = $brg->barang_gambar;
         }
         $data = [
@@ -59,8 +63,10 @@ class InventoryController extends Controller
 
     public function updateBarang(Request $request)
     {
+        $now = new DateTime();
         // menyimpan data file yang diupload ke variabel $file
         if ($request->file) {
+
             $file = $request->file('file');
 
             $nama_file = time() . "_" . $file->getClientOriginalName();
@@ -76,7 +82,10 @@ class InventoryController extends Controller
                     'barang_harga_jual' => $request->hargaJual,
                     'barang_deskripsi' => $request->deskripsi,
                     'barang_kategori_id' => $request->ktgBrg,
-                    'barang_gambar' => $nama_file
+                    'berat_barang' => $request->berat,
+                    'barang_gambar' => $nama_file,
+                    'last_update' => $now
+
                 ]);
             $path = public_path() . "/gambar_barang/" . $request->gambarlama;
             unlink($path);
@@ -89,7 +98,10 @@ class InventoryController extends Controller
                     'barang_harga_jual' => $request->hargaJual,
                     'barang_deskripsi' => $request->deskripsi,
                     'barang_kategori_id' => $request->ktgBrg,
-                    'barang_gambar' => $request->gambarlama
+                    'berat_barang' => $request->berat,
+                    'barang_gambar' => $request->gambarlama,
+                    'last_update' => $now
+
                 ]);
         }
 
@@ -111,6 +123,8 @@ class InventoryController extends Controller
 
     public function storeBarang(Request $request)
     {
+        $now = new DateTime();
+
         $this->validate($request, [
             'namaBrg' => 'required|string',
             'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
@@ -132,7 +146,9 @@ class InventoryController extends Controller
             'barang_harga_beli' => $request->hargaBeli,
             'barang_harga_jual' => $request->hargaJual,
             'barang_deskripsi' => $request->deskripsi,
-            'barang_gambar' => $nama_file
+            'berat_barang' => $request->berat,
+            'barang_gambar' => $nama_file,
+            'created_at' => $now
         ]);
 
         return redirect('/admin/halaman-tambah-barang')->with('success', 'Tambah Barang');

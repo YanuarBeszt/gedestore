@@ -57,6 +57,8 @@ class KeranjangController extends Controller
 
             $stok_jumlah_stok = $g->stok_jumlah_stok;
             $ukuran = $g->stok_ukuran;
+            $berat = $g->berat_barang;
+
 
         }
 
@@ -82,7 +84,9 @@ class KeranjangController extends Controller
                                          'size' => $ukuran,
                                          'gambar' => $request->barang_gambar,
                                          'stok_id' => $request->stok_ukuran,
-                                         'jml_stok_gudang' => $stok_jumlah_stok
+                                         'jml_stok_gudang' => $stok_jumlah_stok,
+                                         'berat' => $berat
+
 
                           )
                     ));
@@ -102,7 +106,8 @@ class KeranjangController extends Controller
                                          'size' => $ukuran,
                                          'gambar' => $request->barang_gambar,
                                          'stok_id' => $request->stok_ukuran,
-                                         'jml_stok_gudang' => $stok_jumlah_stok
+                                         'jml_stok_gudang' => $stok_jumlah_stok,
+                                         'berat' => $berat
 
                           )
                     ));

@@ -40,14 +40,8 @@
 				<!-- {{-- menampilkan error validasi --}} -->
 				@if (count($errors) > 0)
 				@foreach ($errors->all() as $error)
-				<div class="card-alert card red">
-					<div class="card-content white-text">
-						<p>{{ $error }}</p>
-					</div>
-					<button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
+						<p style="color: red;">{{ $error }}</p>
+
 				@endforeach
 				@endif
 				<h3>Data Pribari Anda</h3>

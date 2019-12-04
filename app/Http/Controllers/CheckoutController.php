@@ -4,12 +4,29 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use session;
+use Session;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
+        // get profil user
+        $profil = DB::table('tb_users')
+            ->select('*')
+            ->where('idUser', Session::get('user_id'))
+            ->get();
+
+        foreach ($profil as $prf) {
+            $prof['namaUser'] = $prf->namaUser;
+            $prof['emailUser'] = $prf->emailUser;
+            $prof['alamatUser'] = $prf->alamatUser;
+            $prof['telponUser'] = $prf->telponUser;
+            $prof['prov'] = $prf->prov;
+            $prof['city'] = $prf->city;
+            $prof['created_at'] = $prf->created_at;
+        }
+        // end get profil user
+
         // === generate kode transaksi ===
         $brgid = DB::table('tb_transaksi')->orderBy('transaksi_nomor', 'desc')->limit(1)->get();
         $check = $brgid->count();
@@ -45,7 +62,7 @@ class CheckoutController extends Controller
             'jml_total' => $total,
         ];
         if ($jml_crt > 0) {
-            return view('keranjang/checkout', $data);
+            return view('keranjang/checkout', $data, $prof);
         } else {
 
             return redirect()->back()->with('alert', 'Keranjang Kosong');
@@ -68,7 +85,10 @@ class CheckoutController extends Controller
             request()->validate([
                 'kode_trans' => 'required',
                 'alamat' => 'required',
-                'name' => 'required'
+                'name' => 'required',
+                'kurir' => 'required',
+                'service' => 'required'
+
 
             ], $messages);
 
@@ -83,6 +103,8 @@ class CheckoutController extends Controller
                 'transaksi_tanggal' => date('Y-m-d'),
                 'transaksi_alamat_pengiriman' => $request->alamat,
                 'transaksi_jumlah_uang' => $total,
+                'ongkir' => $request->service,
+                'transaksi_status_pesanan' => 'belum',
                 'transaksi_status' => 'online'
             ]);
 
@@ -136,6 +158,9 @@ class CheckoutController extends Controller
             $data['tgl'] = $i->transaksi_tanggal;
             $data['alamat'] = $i->transaksi_alamat_pengiriman;
             $data['jml_total'] = $i->transaksi_jumlah_uang;
+            $data['status'] = $i->transaksi_status_pesanan;
+            $data['ongkir'] = $i->ongkir;
+
         }
 
         return view('content/invoice', $data);
