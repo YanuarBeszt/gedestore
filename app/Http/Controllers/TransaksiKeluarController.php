@@ -94,13 +94,12 @@ class TransaksiKeluarController extends Controller
                 ];
 
                 $update_stok = [
-                    'stok_jumlah_stok' => $key->attributes->jml_stok_gudang-$key->quantity
+                    'stok_jumlah_stok' => $key->attributes->jml_stok_gudang - $key->quantity
 
                 ];
 
                 DB::table('tb_detail_transaksi')->insert($detail);
                 DB::table('tb_stok')->where('stok_id', $key->attributes->stok_id)->update($update_stok);
-
             }
 
 
@@ -135,49 +134,49 @@ class TransaksiKeluarController extends Controller
         }
 
 
-            if ($jml_crt > 0) {
+        if ($jml_crt > 0) {
 
-                foreach ($brg as $key) {
+            foreach ($brg as $key) {
 
 
-                    if ($key->attributes->size == $stok_ukuran && $key->attributes->kode_brg == $id_brg) {
+                if ($key->attributes->size == $stok_ukuran && $key->attributes->kode_brg == $id_brg) {
 
-                        \Cart::update($key->id, array(
-                            'quantity' => 1,
-                        ));
-                        break;
-                    } else {
-                        \Cart::add(array(
-                            'id' => uniqid(),
-                            'name' => $barang_nama,
-                            'price' => $barang_harga_jual,
-                            'quantity' => 1,
-                            'attributes' => array(
-                                'kode_brg' => $id_brg,
-                                'size' => $stok_ukuran,
-                                'stok_id' => $id_stok,
-                                'jml_stok_gudang' => $stok_jumlah_stok
+                    \Cart::update($key->id, array(
+                        'quantity' => 1,
+                    ));
+                    break;
+                } else {
+                    \Cart::add(array(
+                        'id' => uniqid(),
+                        'name' => $barang_nama,
+                        'price' => $barang_harga_jual,
+                        'quantity' => 1,
+                        'attributes' => array(
+                            'kode_brg' => $id_brg,
+                            'size' => $stok_ukuran,
+                            'stok_id' => $id_stok,
+                            'jml_stok_gudang' => $stok_jumlah_stok
 
-                            )
-                        ));
-                        break;
-                    }
+                        )
+                    ));
+                    break;
                 }
-            } else {
-                \Cart::add(array(
-                    'id' => uniqid(),
-                    'name' => $barang_nama,
-                    'price' => $barang_harga_jual,
-                    'quantity' => 1,
-                    'attributes' => array(
-                        'kode_brg' => $id_brg,
-                        'size' => $stok_ukuran,
-                        'stok_id' => $id_stok,
-                        'jml_stok_gudang' => $stok_jumlah_stok
-
-                    )
-                ));
             }
+        } else {
+            \Cart::add(array(
+                'id' => uniqid(),
+                'name' => $barang_nama,
+                'price' => $barang_harga_jual,
+                'quantity' => 1,
+                'attributes' => array(
+                    'kode_brg' => $id_brg,
+                    'size' => $stok_ukuran,
+                    'stok_id' => $id_stok,
+                    'jml_stok_gudang' => $stok_jumlah_stok
+
+                )
+            ));
+        }
 
 
 
@@ -208,16 +207,13 @@ class TransaksiKeluarController extends Controller
             $barang_harga_jual = $g->barang_harga_jual;
         }
 
-        if ($request->qty+$request->jml_skrg >= $stok_jumlah_stok) {
+        if ($request->qty + $request->jml_skrg >= $stok_jumlah_stok) {
             return redirect('/admin/halaman-transaksi-penjualan-barang')->with('alert', ',Stok Kurang !');
-
-
         } else {
-            
+
             \Cart::update($request->id_row, array(
                 'quantity' => $request->qty,
             ));
-          
         }
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Wishlist;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,46 +19,42 @@ class WishlistsController extends Controller
      */
     public function index(Request $request)
     {
-        
-        if($request->session()->exists('login_user')) {
+
+        if ($request->session()->exists('login_user')) {
             /*showing data from table to view
             ['wishlists' => $wishlists] -> compact function , we can use compact function because same*/
             $wishlists = DB::table('tb_wishlists')->where('wishlist_userid', session('user_id'))
-            ->leftJoin('tb_barang','tb_wishlists.wishlist_barangId', '=' , 'tb_barang.barang_id')->get();
-              
-            return view('wishlists.index', compact('wishlists'));
+                ->leftJoin('tb_barang', 'tb_wishlists.wishlist_barangId', '=', 'tb_barang.barang_id')->get();
 
-        } 
+            return view('wishlists.index', compact('wishlists'));
+        }
         return view('wishlists.blank');
-        
     }
 
-    
+
     public function addToWishlists(Request $request)
     {
         $now = new DateTime();
 
-        if(!empty($request)){
+        if (!empty($request)) {
             DB::table('tb_wishlists')->insert([
                 'wishlist_userid' => $request->wishlist_userid,
                 'wishlist_barangid' => $request->wishlist_barangid,
-                'created_at' => $now        
+                'created_at' => $now
             ]);
 
             return redirect('/wishlists')->with('success', 'wishlist berhasil ditambahkan');
-
         } else {
 
             return redirect('/wishlists')->with('alert', 'wishlist gagal ditambahkan');
         }
-
     }
 
     public function delWishlists($wishlist_id)
     {
-        
+
         Wishlist::destroy($wishlist_id);
-        return redirect('/wishlists')->with('status','Item Berhasil dihapus');
+        return redirect('/wishlists')->with('status', 'Item Berhasil dihapus');
     }
 
 
@@ -139,7 +135,5 @@ class WishlistsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Wishlist $wishlists)
-    {
-
-    }
+    { }
 }

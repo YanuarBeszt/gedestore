@@ -13,7 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
-<script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+<!-- <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script> -->
 <script src="{{ asset('js/jquery.sticky.js') }}"></script>
 <script src="{{ asset('js/nouislider.min.js') }}"></script>
 <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
@@ -55,7 +55,7 @@
 					@csrf
 					<div class="col-md-6 form-group">
 						<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$namaUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">
-						<input type="hidden" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$created_at}}">
+						<input type="hidden" class="form-control" id="created_at" name="created_at" placeholder="created_at" value="{{$created_at}}">
 					</div>
 					<div class="col-md-6 form-group">
 						<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$emailUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" readonly>
@@ -63,13 +63,14 @@
 					<div class="col-md-12 form-group">
 						<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="{{$alamatUser}}" required>
 					</div>
-					<div class="col-md-12 form-group form-select fetch_prov">
-
+					<div class="col-md-12 form-group">
+						<select class="fetch_prov form-control">
+							<option value="">--pilih provinsi--</option>
+						</select>
 					</div>
-					<div class="col-md-12 form-group form-select fetch_city">
-						<select >
+					<div class="col-md-12 form-group">
+						<select class="fetch_city form-control">
 							<option value="">--pilih kota--</option>
-
 						</select>
 					</div>
 					<div class="col-md-12 form-group">

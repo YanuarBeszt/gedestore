@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Support\Facades\Session;
 use DateTime;
 
 class ProfilController extends Controller
@@ -85,35 +85,34 @@ class ProfilController extends Controller
             return json_decode($response);
         }
     }
-        public function fetch_province(){
-            $string = $this->province();
+    public function fetch_province()
+    {
+        $string = $this->province();
 
-             $output = '';
+        $output = '';
 
-             $output = '
-                 <select name="provinsi" id="provinsi">
-                    <option value="">--pilih provinsi--</option>
+        $output = '
+                    <option data-display="Select" value="belum">--pilih provinsi--</option>
 
                                 
              ';
-                         foreach ($string->rajaongkir->results as $i ) {
+        foreach ($string->rajaongkir->results as $i) {
 
-                            $output .= '
-                                    <option value="'.$i->province_id.'">'.$i->province.'</option>
+            $output .= '
+                                    <option value="' . $i->province_id . '">' . $i->province . '</option>
 
                                   ';
-
-                         }
-
-             $output .= '</select>';
-             return $output;
         }
-    public function fetch_city(Request $request){
+
+        return $output;
+    }
+    public function fetch_city(Request $request)
+    {
         $prov = $request->get('prov');
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=".$prov."",
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=" . $prov . "",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -139,23 +138,20 @@ class ProfilController extends Controller
 
 
 
-         $output = '';
+        $output = '';
 
-         $output = '
-             <select name="city" id="city">
-                    <option value="">--pilih kota--</option>
+        $output = '
+                    <option data-display="Select" value="">--pilih kota--</option>
  
          ';
-                     foreach ($c->rajaongkir->results as $i ) {
+        foreach ($c->rajaongkir->results as $i) {
 
-                        $output .= '
-                                <option value="'.$i->city_id.'">'.$i->city_name.'</option>
+            $output .= '
+                                <option value="' . $i->city_id . '">' . $i->city_name . '</option>
 
                               ';
+        }
 
-                     }
-
-         $output .= '</select>';
-         return $output;
+        return $output;
     }
 }

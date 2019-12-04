@@ -229,118 +229,25 @@
 		}
 	</script>
 
-
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function() {
 
-			$(document).on('change', '#sel_prov', function() {
-				var regencies = $(this).val();
-				console.log(regencies);
-
+			function fetch_item_data() {
 				$.ajax({
-					url: 'http://localhost/SIRT/Admin/Tambah_data/KK/getCities',
-					method: 'post',
-					data: {
-						regencies: regencies
-					},
-					dataType: 'json',
-					success: function(response) {
-						console.log(response);
-
-						$("#sel_city").empty();
-
-						var list = $("#sel_city");
-						$.each(response, function(index, item) {
-							list.append(new Option(item.name, item.idRegencies));
-						});
-
-
+					url: "{{ route('province.fetch') }}",
+					method: "GET",
+					success: function(data) {
+						$('.fetch_prov').html(data);
 					}
-				});
-			});
+				})
+			}
 
-			// City change
-			$('#sel_city').change(function() {
-				var hoho = $(this).val();
-				console.log(hoho);
-
-				// AJAX request
-				$.ajax({
-					url: 'http://localhost/SIRT/Admin/Tambah_data/KK/getDistrics',
-					method: 'post',
-					data: {
-						districs: hoho
-					},
-					dataType: 'json',
-					success: function(response) {
-						console.log(response);
-
-						$("#sel_dist").empty();
-
-						var list = $("#sel_dist");
-						$.each(response, function(index, item) {
-							list.append(new Option(item.name, item.idDistrics));
-						});
-					}
-				});
-			});
-
-			// Districs change
-			$('#sel_dist').change(function() {
-				var hehe = $(this).val();
-				console.log(hehe);
-
-				// AJAX request
-				$.ajax({
-					url: 'http://localhost/SIRT/Admin/Tambah_data/KK/getVillages',
-					method: 'post',
-					data: {
-						villages: hehe
-					},
-					dataType: 'json',
-					success: function(response) {
-						console.log(response);
-
-						$("#sel_vill").empty();
-
-						var list = $("#sel_vill");
-						$.each(response, function(index, item) {
-							list.append(new Option(item.name, item.idVillages));
-						});
-					}
-				});
-			});
-
-		});
-
-		$(document).on("click", ".modal_hapus", function() {
-			var idTr = $(this).data('id');
-			console.log(idTr);
-			$('#idhapus').val(idTr);
-			$('#modal_hapus').modal('show');
+			// setInterval(function(){ 
+			fetch_item_data();;
+			// }, 500);
 		});
 	</script>
-<script>
-$(document).ready(function(){
-
-   function fetch_item_data()
- {
-  $.ajax({
-   url:"{{ route('province.fetch') }}",
-   method:"GET",
-   success:function(data)
-   {
-    $('.fetch_prov').html(data);
-   }
-  })
- }
-
-  // setInterval(function(){ 
-  fetch_item_data();; 
- // }, 500);
-});
-</script>
-<!-- <script>
+	<!-- <script>
 $(document).ready(function(){
 
    function fetch_city_data()
@@ -360,41 +267,46 @@ $(document).ready(function(){
  // }, 500);
 });
 </script> -->
-<!-- ajax dropdown  -->
-    <script type="text/javascript">
-  
-
-      $(document).ready(function(){
-
-        $(document).on('change', '#provinsi', function(){
-
-          var prov =$(this).val();
-        var _token = $('input[name="_token"]').val();
+	<!-- ajax dropdown  -->
+	<script type="text/javascript">
+		$(document).ready(function() {
 
 
-          $.ajax({
 
-            url: "{{ route('city.fetch') }}",
-            method: 'post',
-            data: {
-                prov:prov, _token:_token
-            },
-            // dataType: 'json',
-            success: function(response){
-              console.log(response);
+			const halo = function() {
+				var prov = $('.fetch_prov').val();
+				var _token = $('input[name="_token"]').val();
 
 
-  			  $('.fetch_city').html(response);
+				if (prov === 'belum') {
+					$('.fetch_city').html(`<option data-display="Select" value="">--pilih provinsi dulu--</option>`);
+					return;
+				}
+				$.ajax({
 
-            }
+					url: "{{ route('city.fetch') }}",
+					method: 'post',
+					data: {
+						prov: prov,
+						_token: _token
+					},
+					// dataType: 'json',
+					success: function(response) {
 
-          })
 
-        });
+						$('.fetch_city').html(response);
+
+					}
+
+				});
+			};
+			$('.fetch_prov').on('change', halo);
 
 
-      });
-    </script>
+
+
+		});
+	</script>
 
 </body>
 

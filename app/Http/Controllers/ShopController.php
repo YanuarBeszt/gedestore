@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Helper\Table;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 class ShopController extends Controller
 {
     public function index()
