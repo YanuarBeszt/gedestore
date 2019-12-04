@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 04, 2019 at 09:52 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.2.22
+-- Host: 127.0.0.1
+-- Generation Time: Dec 04, 2019 at 07:38 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_gede`
+-- Database: `gede`
 --
 
 -- --------------------------------------------------------
@@ -75,20 +75,24 @@ CREATE TABLE `tb_barang` (
   `barang_harga_jual` int(11) NOT NULL,
   `barang_deskripsi` varchar(100) NOT NULL,
   `barang_kategori_id` int(11) NOT NULL,
-  `barang_gambar` text NOT NULL
+  `berat_barang` int(11) NOT NULL,
+  `barang_gambar` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `last_update` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_barang`
 --
 
-INSERT INTO `tb_barang` (`barang_id`, `barang_nama`, `barang_harga_beli`, `barang_harga_jual`, `barang_deskripsi`, `barang_kategori_id`, `barang_gambar`) VALUES
-('5dc00fc76fa15', 'boxer', 20000, 22000, 'jadasd', 1, 'p1.jpg'),
-('5dc02df14b5ff', 'jeans biru', 110000, 150000, 'uhiugiyf', 1, 'p2.jpg'),
-('5dd8712959982', 'asdasd', 123123, 123123123, 'qweqweqwe', 1, '1575384736_2 someone like u sunghajung.PNG'),
-('5de5b793ed5da', 'bqju crocodile', 20000, 22000, 'ini barang bagus', 2, 'p3.jpg'),
-('5de760a629d31', 'jaket bomber', 100000, 120000, 'ini barang bagus', 3, '1575444646_31.png'),
-('5de76bc33996f', 'asdasd', 123123, 123123123, 'qweqweqwebxcddc', 1, '1575449043_42133.jpg');
+INSERT INTO `tb_barang` (`barang_id`, `barang_nama`, `barang_harga_beli`, `barang_harga_jual`, `barang_deskripsi`, `barang_kategori_id`, `berat_barang`, `barang_gambar`, `created_at`, `last_update`) VALUES
+('5dc00fc76fa15', 'boxer', 20000, 22000, 'jadasd', 1, 1000, 'p1.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5dc02df14b5ff', 'jeans biru', 110000, 150000, 'uhiugiyf', 1, 50, 'p2.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5dd8712959982', 'asdasd', 123123, 123123123, 'qweqweqwe', 1, 230, '1575384736_2 someone like u sunghajung.PNG', '0000-00-00 00:00:00', '2019-12-04 13:09:27'),
+('5de5b793ed5da', 'bqju crocodile', 20000, 22000, 'ini barang bagus', 2, 60, 'p3.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5de760a629d31', 'jaket bomber', 100000, 120000, 'ini barang bagus', 3, 500, '1575444646_31.png', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5de76bc33996f', 'asdasd', 123123, 123123123, 'qweqweqwebxcddc', 1, 100, '1575449043_42133.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+('5de7b03d2aee9', 'baju jelek 2', 400000, 500000, 'wewewewqeqweqwe', 3, 2000, '1575465021_WhatsApp Image 2019-11-19 at 09.22.52.jpeg', '2019-12-04 13:10:21', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -119,7 +123,10 @@ INSERT INTO `tb_detail_transaksi` (`dt_nomor`, `dt_transaksi_nomor`, `dt_barang_
 (12, 'TRX-000000004', '5dc02df14b5ff', 'XL', 4, 600000),
 (13, 'TRX-000000005', '5dc00fc76fa15', 'S', 7, 154000),
 (14, 'TRX-000000006', '5dc00fc76fa15', 'L', 4, 88000),
-(15, 'TRX-000000007', '5dd8712959982', 'XL', 19, 2147483647);
+(15, 'TRX-000000007', '5dd8712959982', 'XL', 19, 2147483647),
+(16, 'TRX-000000008', '5dd8712959982', 'L', 4, 492492492),
+(17, 'TRX-000000008', '5dd8712959982', 'XL', 3, 369369369),
+(18, 'TRX-000000009', '5de760a629d31', 'L', 1, 120000);
 
 -- --------------------------------------------------------
 
@@ -218,14 +225,14 @@ INSERT INTO `tb_stok` (`stok_id`, `stok_barang_id`, `stok_ukuran`, `stok_jumlah_
 (6, '5dc02df14b5ff', 'L', 22),
 (7, '5dc02df14b5ff', 'M', 32),
 (8, '5dc02df14b5ff', 'S', 10),
-(10, '5dd8712959982', 'XL', 104),
-(12, '5dd8712959982', 'L', 60),
+(10, '5dd8712959982', 'XL', 101),
+(12, '5dd8712959982', 'L', 56),
 (13, '5de5b793ed5da', 'XL', 25),
 (14, '5de5b793ed5da', 'L', 10),
 (15, '5de5b793ed5da', 'M', 20),
 (16, '5de5b793ed5da', 'S', 10),
 (17, '5de760a629d31', 'XL', -90),
-(18, '5de760a629d31', 'L', 20),
+(18, '5de760a629d31', 'L', 19),
 (19, '5de76bc33996f', 'M', 2);
 
 -- --------------------------------------------------------
@@ -256,7 +263,9 @@ INSERT INTO `tb_transaksi` (`transaksi_nomor`, `transaksi_member_id`, `transaksi
 ('TRX-000000004', 3, '2019-12-02', 'jgfhvhn,', 600000, 0, 'online', 'sudah'),
 ('TRX-000000005', 0, '2019-12-03', '-', 154000, 0, 'offline', ''),
 ('TRX-000000006', 0, '2019-12-04', '-', 88000, 0, 'offline', ''),
-('TRX-000000007', 6, '2019-12-04', 'jl karimata V', 2147483647, 0, 'online', '');
+('TRX-000000007', 6, '2019-12-04', 'jl karimata V', 2147483647, 0, 'online', ''),
+('TRX-000000008', 7, '2019-12-04', 'Jl. Karimata V blok D12', 861861861, 32000, 'online', 'belum'),
+('TRX-000000009', 7, '2019-12-04', 'Jl. Karimata V blok D12', 120000, 16000, 'online', 'belum');
 
 -- --------------------------------------------------------
 
@@ -308,7 +317,11 @@ INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `telponUser`, `prov`,
 (1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '081227579300', 0, 0, 'jl. karimata V blok D12, jember, jawa timur', '4b3865dc277de5870cce27623f1e20fc', '2019-11-27 21:01:30', NULL),
 (3, 'bela', 'bela@gmail.com', '089121111111', 0, 0, 'Jl. Karimata V blok D12', 'd41d8cd98f00b204e9800998ecf8427e', NULL, '2019-12-02 21:19:03'),
 (5, 'yanu', 'yanuar.ridwan.h@gmail.com', '08122277777', 11, 160, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', NULL, '2019-12-03 19:52:09'),
-(6, 'irfan', 'irfan@gmail.com', '09876545678', 11, 160, 'Jl. Karimata V blok D12', '202cb962ac59075b964b07152d234b70', NULL, '2019-12-04 00:39:54');
+(6, 'irfan', 'irfan@gmail.com', '09876545678', 11, 160, 'Jl. Karimata V blok D12', '202cb962ac59075b964b07152d234b70', NULL, '2019-12-04 00:39:54'),
+(7, 'irfan', 'superadmin@cc.magelangkota.go.id', '1082510285', 11, 80, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', NULL, '2019-12-04 04:25:06'),
+(9, 'bagus', 'guramin01@gmail.com', '08978678686', 20, 140, 'jl.qwqwdqweqw', '04321c02f72e45384fc2bb03a20a942a', '2019-12-04 04:32:53', '2019-12-04 04:34:21'),
+(10, 'asd', 'asd@gmail.com', '', 0, 0, '', '4297f44b13955235245b2497399d7a93', '2019-12-04 04:53:10', NULL),
+(11, 'Irfan2', 'meme@gmail.com', '', 0, 0, '', 'd8578edf8458ce06fbc5bb76a58c5ca4', '2019-12-04 11:30:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -439,7 +452,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tb_detail_transaksi`
 --
 ALTER TABLE `tb_detail_transaksi`
-  MODIFY `dt_nomor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `dt_nomor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_transaksi_masuk`
@@ -463,7 +476,7 @@ ALTER TABLE `tb_stok`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tb_wishlists`
