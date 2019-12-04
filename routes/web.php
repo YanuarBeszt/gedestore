@@ -61,6 +61,8 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/tambah-detail-stok/{id}', 'InventoryController@tambahStok');
     Route::post('/admin/store-stok', 'InventoryController@storeStok');
     Route::get('/admin/delete-stok/{id}/{detail}', 'InventoryController@deleteStok');
+    Route::get('/admin/edit-barang/{id}', 'InventoryController@editBarang');
+    Route::post('/admin/edit-barang', 'InventoryController@updateBarang');
     Route::post('/admin/edit-stok', 'InventoryController@editStok');
 
     //laporan
@@ -73,6 +75,8 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-transaksi-barang-masuk', 'TransaksiMasukController@index');
     Route::get('/admin/tambah-detail-masuk/{id}/{idtr}', 'TransaksiMasukController@tambah_detail');
     Route::get('/admin/delete-detail-masuk/{id}', 'TransaksiMasukController@delete_detail');
+    Route::post('/admin/update-detail-masuk', 'TransaksiMasukController@update_detail');
+    Route::post('/admin/transaksi-selesai', 'TransaksiMasukController@transaksi_baru');
 
     Route::get('/admin/cari-barang', 'TransaksiController@loadDataBarang');
 

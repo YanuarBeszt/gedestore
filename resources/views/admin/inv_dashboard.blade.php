@@ -42,6 +42,9 @@
                                         <a class="mb-6 btn-floating waves-effect waves-light purple lightrn-1 modal-trigger" href="#modaldelete{{ $brg->barang_id }}">
                                             <i class="material-icons">delete_forever</i>
                                         </a>
+                                        <a class="btn-floating mb-1 waves-effect waves-light" href="/admin/edit-barang/{{ $brg->barang_id }}">
+                                            <i class="material-icons">build</i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <!-- Modal Icons -->

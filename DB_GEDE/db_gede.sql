@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 03, 2019 at 06:26 AM
+-- Generation Time: Dec 04, 2019 at 09:52 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.2.22
 
@@ -85,8 +85,10 @@ CREATE TABLE `tb_barang` (
 INSERT INTO `tb_barang` (`barang_id`, `barang_nama`, `barang_harga_beli`, `barang_harga_jual`, `barang_deskripsi`, `barang_kategori_id`, `barang_gambar`) VALUES
 ('5dc00fc76fa15', 'boxer', 20000, 22000, 'jadasd', 1, 'p1.jpg'),
 ('5dc02df14b5ff', 'jeans biru', 110000, 150000, 'uhiugiyf', 1, 'p2.jpg'),
-('5dd8712959982', 'asdasd', 123123, 123123123, 'qweqweqwe', 1, 'q123123213'),
-('5de5b793ed5da', 'bqju crocodile', 20000, 22000, 'ini barang bagus', 2, 'p3.jpg');
+('5dd8712959982', 'asdasd', 123123, 123123123, 'qweqweqwe', 1, '1575384736_2 someone like u sunghajung.PNG'),
+('5de5b793ed5da', 'bqju crocodile', 20000, 22000, 'ini barang bagus', 2, 'p3.jpg'),
+('5de760a629d31', 'jaket bomber', 100000, 120000, 'ini barang bagus', 3, '1575444646_31.png'),
+('5de76bc33996f', 'asdasd', 123123, 123123123, 'qweqweqwebxcddc', 1, '1575449043_42133.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,9 @@ INSERT INTO `tb_detail_transaksi` (`dt_nomor`, `dt_transaksi_nomor`, `dt_barang_
 (10, 'TRX-000000003', '5dc02df14b5ff', 'XL', 5, 750000),
 (11, 'TRX-000000003', '5dd8712959982', 'L', 1, 123123123),
 (12, 'TRX-000000004', '5dc02df14b5ff', 'XL', 4, 600000),
-(13, 'TRX-000000005', '5dc00fc76fa15', 'S', 7, 154000);
+(13, 'TRX-000000005', '5dc00fc76fa15', 'S', 7, 154000),
+(14, 'TRX-000000006', '5dc00fc76fa15', 'L', 4, 88000),
+(15, 'TRX-000000007', '5dd8712959982', 'XL', 19, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -137,7 +141,9 @@ CREATE TABLE `tb_detail_transaksi_masuk` (
 
 INSERT INTO `tb_detail_transaksi_masuk` (`detiltrans_masuk_id`, `detiltrans_masuk_idtrans`, `detiltrans_masuk_idstok`, `detiltrans_masuk_stok`, `detiltrans_masuk_totalHarga`) VALUES
 (1, 'TRX-000000001', 1, 5, 100000),
-(3, 'TRX-000000002', 2, 1, 20000);
+(3, 'TRX-000000002', 2, 3, 60000),
+(4, 'TRX-000000003', 17, 100, 10000000),
+(8, 'TRX-000000004', 1, 50, 1000000);
 
 -- --------------------------------------------------------
 
@@ -156,7 +162,8 @@ CREATE TABLE `tb_kategori` (
 
 INSERT INTO `tb_kategori` (`kategori_id`, `kategori_nama`) VALUES
 (1, 'Celana'),
-(2, 'Baju');
+(2, 'Baju'),
+(3, 'jaket');
 
 -- --------------------------------------------------------
 
@@ -203,20 +210,23 @@ CREATE TABLE `tb_stok` (
 --
 
 INSERT INTO `tb_stok` (`stok_id`, `stok_barang_id`, `stok_ukuran`, `stok_jumlah_stok`) VALUES
-(1, '5dc00fc76fa15', 'XL', 24),
-(2, '5dc00fc76fa15', 'M', 20),
-(3, '5dc00fc76fa15', 'L', 24),
+(1, '5dc00fc76fa15', 'XL', 28),
+(2, '5dc00fc76fa15', 'M', 26),
+(3, '5dc00fc76fa15', 'L', 20),
 (4, '5dc00fc76fa15', 'S', 21),
 (5, '5dc02df14b5ff', 'XL', 21),
 (6, '5dc02df14b5ff', 'L', 22),
 (7, '5dc02df14b5ff', 'M', 32),
 (8, '5dc02df14b5ff', 'S', 10),
-(10, '5dd8712959982', 'XL', 123),
+(10, '5dd8712959982', 'XL', 104),
 (12, '5dd8712959982', 'L', 60),
 (13, '5de5b793ed5da', 'XL', 25),
 (14, '5de5b793ed5da', 'L', 10),
 (15, '5de5b793ed5da', 'M', 20),
-(16, '5de5b793ed5da', 'S', 10);
+(16, '5de5b793ed5da', 'S', 10),
+(17, '5de760a629d31', 'XL', -90),
+(18, '5de760a629d31', 'L', 20),
+(19, '5de76bc33996f', 'M', 2);
 
 -- --------------------------------------------------------
 
@@ -230,6 +240,7 @@ CREATE TABLE `tb_transaksi` (
   `transaksi_tanggal` date NOT NULL,
   `transaksi_alamat_pengiriman` text NOT NULL,
   `transaksi_jumlah_uang` int(11) NOT NULL,
+  `ongkir` int(15) NOT NULL,
   `transaksi_status` varchar(10) NOT NULL,
   `transaksi_status_pesanan` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -238,12 +249,14 @@ CREATE TABLE `tb_transaksi` (
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`transaksi_nomor`, `transaksi_member_id`, `transaksi_tanggal`, `transaksi_alamat_pengiriman`, `transaksi_jumlah_uang`, `transaksi_status`, `transaksi_status_pesanan`) VALUES
-('TRX-000000001', 0, '2019-11-27', '-', 110000, 'online', 'belum'),
-('TRX-000000002', 0, '2019-11-27', '-', 110000, 'online', ''),
-('TRX-000000003', 0, '2019-11-28', '-', 123873123, 'online', 'sudah'),
-('TRX-000000004', 3, '2019-12-02', 'jgfhvhn,', 600000, 'online', ''),
-('TRX-000000005', 0, '2019-12-03', '-', 154000, 'offline', '');
+INSERT INTO `tb_transaksi` (`transaksi_nomor`, `transaksi_member_id`, `transaksi_tanggal`, `transaksi_alamat_pengiriman`, `transaksi_jumlah_uang`, `ongkir`, `transaksi_status`, `transaksi_status_pesanan`) VALUES
+('TRX-000000001', 3, '2019-11-27', '-', 110000, 0, 'online', 'belum'),
+('TRX-000000002', 3, '2019-11-27', '-', 110000, 0, 'online', 'belum'),
+('TRX-000000003', 3, '2019-11-28', '-', 123873123, 0, 'online', 'sudah'),
+('TRX-000000004', 3, '2019-12-02', 'jgfhvhn,', 600000, 0, 'online', 'sudah'),
+('TRX-000000005', 0, '2019-12-03', '-', 154000, 0, 'offline', ''),
+('TRX-000000006', 0, '2019-12-04', '-', 88000, 0, 'offline', ''),
+('TRX-000000007', 6, '2019-12-04', 'jl karimata V', 2147483647, 0, 'online', '');
 
 -- --------------------------------------------------------
 
@@ -263,7 +276,10 @@ CREATE TABLE `tb_transaksi_masuk` (
 --
 
 INSERT INTO `tb_transaksi_masuk` (`trans_masuk_id`, `trans_masuk_tanggal`, `trans_masuk_suplier`, `trans_masuk_totalharga`) VALUES
-('TRX-000000001', '2019-11-26', 'qwqe', 111);
+('TRX-000000001', '2019-11-26', 'qwqe', 111),
+('TRX-000000002', '2019-12-04', 'uwu', 60000),
+('TRX-000000003', '2019-12-04', 'uwu', 10000000),
+('TRX-000000004', '2019-12-04', 'uwu', 1000000);
 
 -- --------------------------------------------------------
 
@@ -276,6 +292,8 @@ CREATE TABLE `tb_users` (
   `namaUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `emailUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telponUser` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prov` int(5) NOT NULL,
+  `city` int(5) NOT NULL,
   `alamatUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -286,9 +304,11 @@ CREATE TABLE `tb_users` (
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `telponUser`, `alamatUser`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '081227579300', 'jl. karimata V blok D12, jember, jawa timur', '4b3865dc277de5870cce27623f1e20fc', '2019-11-27 21:01:30', NULL),
-(3, 'bela', 'bela@gmail.com', '089121111111', 'Jl. Karimata V blok D12', 'd41d8cd98f00b204e9800998ecf8427e', NULL, '2019-12-02 21:19:03');
+INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `telponUser`, `prov`, `city`, `alamatUser`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '081227579300', 0, 0, 'jl. karimata V blok D12, jember, jawa timur', '4b3865dc277de5870cce27623f1e20fc', '2019-11-27 21:01:30', NULL),
+(3, 'bela', 'bela@gmail.com', '089121111111', 0, 0, 'Jl. Karimata V blok D12', 'd41d8cd98f00b204e9800998ecf8427e', NULL, '2019-12-02 21:19:03'),
+(5, 'yanu', 'yanuar.ridwan.h@gmail.com', '08122277777', 11, 160, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', NULL, '2019-12-03 19:52:09'),
+(6, 'irfan', 'irfan@gmail.com', '09876545678', 11, 160, 'Jl. Karimata V blok D12', '202cb962ac59075b964b07152d234b70', NULL, '2019-12-04 00:39:54');
 
 -- --------------------------------------------------------
 
@@ -311,7 +331,8 @@ CREATE TABLE `tb_wishlists` (
 INSERT INTO `tb_wishlists` (`wishlist_id`, `wishlist_userid`, `wishlist_barangid`, `created_at`, `updated_at`) VALUES
 (1, 3, '5dc02df14b5ff', '2019-12-02 00:51:52', NULL),
 (2, 3, '5dc00fc76fa15', '2019-12-02 00:52:21', NULL),
-(4, 3, '5dc02df14b5ff', '2019-12-02 20:19:45', NULL);
+(4, 3, '5dc02df14b5ff', '2019-12-02 20:19:45', NULL),
+(5, 6, '5de760a629d31', '2019-12-04 00:40:28', NULL);
 
 --
 -- Indexes for dumped tables
@@ -418,37 +439,37 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tb_detail_transaksi`
 --
 ALTER TABLE `tb_detail_transaksi`
-  MODIFY `dt_nomor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `dt_nomor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_transaksi_masuk`
 --
 ALTER TABLE `tb_detail_transaksi_masuk`
-  MODIFY `detiltrans_masuk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `detiltrans_masuk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
-  MODIFY `kategori_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `kategori_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_stok`
 --
 ALTER TABLE `tb_stok`
-  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUser` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_wishlists`
 --
 ALTER TABLE `tb_wishlists`
-  MODIFY `wishlist_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `wishlist_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
