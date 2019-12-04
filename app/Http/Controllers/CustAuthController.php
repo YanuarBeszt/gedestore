@@ -63,6 +63,8 @@ class CustAuthController extends Controller
 				'emailUser' => $request->email,
 				'telponUser' => "",
 				'alamatUser' => "",
+				'prov' => "0",
+				'city' => "0",
 				'password' => md5($request->password),
 				'created_at' => $now,
 			]);

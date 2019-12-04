@@ -21,6 +21,8 @@ class ProfilController extends Controller
             $prof['emailUser'] = $prf->emailUser;
             $prof['alamatUser'] = $prf->alamatUser;
             $prof['telponUser'] = $prf->telponUser;
+            $prof['prov'] = $prf->prov;
+            $prof['city'] = $prf->city;
             $prof['created_at'] = $prf->created_at;
         }
         $data = [
@@ -46,6 +48,8 @@ class ProfilController extends Controller
                     'namaUser' => $request->nama,
                     'emailUser' => $request->email,
                     'alamatUser' => $request->alamat,
+                    'prov' => $request->prov,
+                    'city' => $request->city,
                     'telponUser' => $request->telpon,
                     'password' => md5($request->password),
                     'created_at' => $request->created,

@@ -232,12 +232,17 @@
 	<script>
 		$(document).ready(function() {
 
+
+
 			function fetch_item_data() {
 				$.ajax({
 					url: "{{ route('province.fetch') }}",
 					method: "GET",
 					success: function(data) {
 						$('.fetch_prov').html(data);
+						var provid = $('input[name="prov-edit"]').val();
+						$('.fetch_prov').val(provid).trigger('change');
+
 					}
 				})
 			}
@@ -292,9 +297,18 @@ $(document).ready(function(){
 					},
 					// dataType: 'json',
 					success: function(response) {
+						var cityid = $('input[name="city-edit"]').val();
+						var provid = $('input[name="prov-edit"]').val();
 
 
-						$('.fetch_city').html(response);
+						if (prov === provid) {
+							$('.fetch_city').html(response);
+							$('.fetch_city').val(cityid).trigger('change');
+						} else {
+							$('.fetch_city').html(response);
+						}
+
+
 
 					}
 

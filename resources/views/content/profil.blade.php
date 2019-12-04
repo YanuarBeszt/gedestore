@@ -56,6 +56,8 @@
 					<div class="col-md-6 form-group">
 						<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{$namaUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama'">
 						<input type="hidden" class="form-control" id="created_at" name="created_at" placeholder="created_at" value="{{$created_at}}">
+						<input type="hidden" class="form-control" id="created_at" name="prov-edit" placeholder="created_at" value="{{$prov}}">
+						<input type="hidden" class="form-control" id="created_at" name="city-edit" placeholder="created_at" value="{{$city}}">
 					</div>
 					<div class="col-md-6 form-group">
 						<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$emailUser}}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" readonly>
@@ -64,12 +66,12 @@
 						<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="{{$alamatUser}}" required>
 					</div>
 					<div class="col-md-12 form-group">
-						<select class="fetch_prov form-control">
+						<select name="prov" class="fetch_prov form-control">
 							<option value="">--pilih provinsi--</option>
 						</select>
 					</div>
 					<div class="col-md-12 form-group">
-						<select class="fetch_city form-control">
+						<select name="city" class="fetch_city form-control">
 							<option value="">--pilih kota--</option>
 						</select>
 					</div>
