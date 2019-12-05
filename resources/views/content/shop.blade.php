@@ -127,8 +127,7 @@
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">detail</p>
 									</a>
-
-									<a href="" class="social-info">
+									<a href="{{ url('wishlists/addToWishlists/'.$b->barang_id.'/'.session('user_id')) }}" class="social-info">
 										<span class="ti-heart"></span>
 										<p class="hover-text">+ wishlist</p>
 									</a>

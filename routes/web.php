@@ -99,7 +99,7 @@ Route::group(['middleware' => 'usersession'], function () {
 
 //Wishlist 
 Route::get('/wishlists', 'WishlistsController@index');
-Route::post('/wishlists/addToWishlists', 'WishlistsController@addToWishlists');
+Route::get('/wishlists/addToWishlists/{idbarang}/{iduser}', 'WishlistsController@addToWishlists');
 Route::delete('/wishlists/delWishlists/{wishlists}', 'WishlistsController@delWishlists');
 
 //Cart

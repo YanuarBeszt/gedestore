@@ -32,22 +32,17 @@ class WishlistsController extends Controller
     }
 
 
-    public function addToWishlists(Request $request)
+    public function addToWishlists($idbarang, $iduser)
     {
         $now = new DateTime();
 
-        if (!empty($request)) {
-            DB::table('tb_wishlists')->insert([
-                'wishlist_userid' => $request->wishlist_userid,
-                'wishlist_barangid' => $request->wishlist_barangid,
-                'created_at' => $now
-            ]);
+        DB::table('tb_wishlists')->insert([
+            'wishlist_userid' => $iduser,
+            'wishlist_barangid' => $idbarang,
+            'created_at' => $now
+        ]);
 
-            return redirect('/wishlists')->with('success', 'wishlist berhasil ditambahkan');
-        } else {
-
-            return redirect('/wishlists')->with('alert', 'wishlist gagal ditambahkan');
-        }
+        return redirect('/shop')->with('success', 'wishlist berhasil ditambahkan');
     }
 
     public function delWishlists($wishlist_id)
