@@ -80,6 +80,7 @@
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>Profil</span></a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="/profil">{{session('user_nama')}}</a></li>
+									<li class="nav-item"><a class="nav-link" href="{{ url('/orders-history') }}">Histori Belanja</a></li>
 									<li class="nav-item"><a class="nav-link" href="{{ url('/wishlists') }}">Wishlist</a></li>
 									<li class="nav-item"><a class="nav-link" href="/logout-user">Logout</a></li>
 								</ul>

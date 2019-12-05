@@ -28,152 +28,151 @@
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-			<div class="col-first">
-				<h1>Shop Cart page</h1>
-				<nav class="d-flex align-items-center">
-					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-					<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-					<a href="category.html">Cart</a>
-				</nav>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shop Cart page</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">Cart</a>
+                </nav>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!--================Login Box Area =================-->
-    <!--================Cart Area =================-->
-    <section class="cart_area">
-        <div class="container">
-            <div class="cart_inner">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Ukuran</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Berat</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Action</th>
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Ukuran</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Berat</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Action</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                                @php
-                                $tot_berat = 0;
-                            @endphp
-@if($jml_crt > 0)
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $tot_berat = 0;
+                        @endphp
+                        @if($jml_crt > 0)
 
-@foreach($cart as $c)
-@php
-   $berat_brg = $c->attributes->berat*$c->quantity;
-   $tot_berat += $berat_brg;
- 
-@endphp
+                        @foreach($cart as $c)
+                        @php
+                        $berat_brg = $c->attributes->berat*$c->quantity;
+                        $tot_berat += $berat_brg;
 
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img width="100" height="100" src="/img/product/{{ $c->attributes->gambar }}" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>{{$c->name}}</p>
-                                        </div>
+                        @endphp
+
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img width="100" height="100" src="/img/product/{{ $c->attributes->gambar }}" alt="">
                                     </div>
-                                </td>
-                                <td>
-                                    <h5>Rp.{{number_format($c->price)}}</h5>
-                                </td>
-                                <td>
-                                        <h5>{{$c->attributes->size}}</h5>
-                                    </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="{{$c->quantity}}" title="Quantity:"
-                                            readonly>
+                                    <div class="media-body">
+                                        <p>{{$c->name}}</p>
                                     </div>
-                                </td>
-                                <td>
-                                    <h5>{{$c->attributes->berat*$c->quantity}} gram</h5>
-                                </td>
-                                <td>
-                                    <h5>Rp.{{number_format($c->price*$c->quantity)}}</h5>
-                                </td>
-                                <td>
+                                </div>
+                            </td>
+                            <td>
+                                <h5>Rp.{{number_format($c->price)}}</h5>
+                            </td>
+                            <td>
+                                <h5>{{$c->attributes->size}}</h5>
+                            </td>
+                            <td>
+                                <div class="product_count">
+                                    <input type="text" name="qty" id="sst" maxlength="12" value="{{$c->quantity}}" title="Quantity:" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{$c->attributes->berat*$c->quantity}} gram</h5>
+                            </td>
+                            <td>
+                                <h5>Rp.{{number_format($c->price*$c->quantity)}}</h5>
+                            </td>
+                            <td>
                                 <h5><a href="#" data-toggle="modal" data-target="#edit{{$c->id}}">Edit</a> | <a href="/hapus-cart/{{$c->id}}">Delete</a></h5>
-                                    </td>
-                            </tr>
+                            </td>
+                        </tr>
 
 
-<!-- Modal Edit-->
-<div id="edit{{$c->id}}" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+                        <!-- Modal Edit-->
+                        <div id="edit{{$c->id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-      <h4 class="modal-title">Masukkan Jumlah {{$c->name}} - {{$c->attributes->size}}</h4>
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Masukkan Jumlah {{$c->name}} - {{$c->attributes->size}}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-      </div>
-      <div class="modal-body">
-        <form action="/edit-cart" method="POST">
-            @csrf
-         <div class="row">
-            <div class="col-md-4">
-            <input type="hidden" name="stok_id" value="{{$c->attributes->stok_id}}">
-            <input type="hidden" name="jml_skrg" value="{{$c->quantity}}">
-            <input type="hidden" name="id_row" value="{{$c->id}}">
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/edit-cart" method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="hidden" name="stok_id" value="{{$c->attributes->stok_id}}">
+                                                    <input type="hidden" name="jml_skrg" value="{{$c->quantity}}">
+                                                    <input type="hidden" name="id_row" value="{{$c->id}}">
 
-           </div>
-           <div class="col-md-4"><input type="number" value="" name="qty_edit" placeholder="Masukkan Jumlah"></div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" >Submit</button>
-      </div>
-    </form>
+                                                </div>
+                                                <div class="col-md-4"><input type="number" value="" name="qty_edit" placeholder="Masukkan Jumlah"></div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    </form>
 
-    </div>
+                                </div>
 
-  </div>
-</div>
-@endforeach
-@else
-<td colspan="6" style="text-align:center;">Keranjang Kosong. </td>
-@endif
+                            </div>
+                        </div>
+                        @endforeach
+                        @else
+                        <td colspan="6" style="text-align:center;">Keranjang Kosong. </td>
+                        @endif
 
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    <a class="gray_btn" href="/destroy-cart">Kosongkan Keranjang</a>
-                                </td>
-<td></td>
-<td></td>
+                            <td>
+                                <a class="gray_btn" href="/destroy-cart">Kosongkan Keranjang</a>
+                            </td>
+                            <td></td>
+                            <td></td>
 
-                                <td>
-                                    <h5>Total Berat</h5>
+                            <td>
+                                <h5>Total Berat</h5>
 
-                                </td>
-                                <td>
-                                    {{$tot_berat}}
-                                </td>
-                                <td>
-                                        <h5>Total Harga</h5>
+                            </td>
+                            <td>
+                                {{$tot_berat}}
+                            </td>
+                            <td>
+                                <h5>Total Harga</h5>
 
-                                </td>
-                                <td>
-                                    <h5>Rp.{{number_format($total)}}</h5>
+                            </td>
+                            <td>
+                                <h5>Rp.{{number_format($total)}}</h5>
 
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            {{-- <tr class="shipping_area">
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        {{-- <tr class="shipping_area">
                                     <td></td>
                                 <td>
 
@@ -210,36 +209,36 @@
                                 <td></td>
 
                             </tr> --}}
-                            <tr class="out_button_area">
-                                    <td></td>
-                                <td>
+                        <tr class="out_button_area">
+                            <td></td>
+                            <td>
 
-                                </td>
-                                <td>
+                            </td>
+                            <td>
 
-                                </td>
-                                <td>
+                            </td>
+                            <td>
 
-                                </td>
-                                <td>
-                                    <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="/shop">Continue Shopping</a>
-                                        @if(session('login_user'))
-                                        <a class="primary-btn" href="/checkout-shop">Proceed to checkout</a>
-                                        @else
-                                        <a class="primary-btn" href="#">Login to checkout</a>
+                            </td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a class="gray_btn" href="/shop">Continue Shopping</a>
+                                    @if(session('login_user'))
+                                    <a class="primary-btn" href="/checkout-shop">Proceed to checkout</a>
+                                    @else
+                                    <a class="primary-btn" href="#">Login to checkout</a>
 
-                                        @endif
-                                    </div>
-                                </td>
-                                <td></td>
+                                    @endif
+                                </div>
+                            </td>
+                            <td></td>
 
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
-    <!--================End Cart Area =================-->
+    </div>
+</section>
+<!--================End Cart Area =================-->
 @endsection
