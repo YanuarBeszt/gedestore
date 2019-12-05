@@ -62,10 +62,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                                @php
+                                $tot_berat = 0;
+                            @endphp
 @if($jml_crt > 0)
-@php
-    $tot_berat = 0;
-@endphp
+
 @foreach($cart as $c)
 @php
    $berat_brg = $c->attributes->berat*$c->quantity;
