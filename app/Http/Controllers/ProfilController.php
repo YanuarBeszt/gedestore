@@ -89,7 +89,7 @@ class ProfilController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 
@@ -139,7 +139,7 @@ class ProfilController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 

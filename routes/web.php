@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\EmailSend;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,3 +126,16 @@ Route::get('/ongkir', 'RajaController@index');
 
 Route::get('/kota', 'RajaController@province');
 Route::post('/cost', 'RajaController@cost')->name('cost.fetch');
+
+
+
+Route::get('/sendemail', 'SendEmailController@index');
+Route::post('/sendemail/send', 'SendEmailController@send');
+
+
+Route::get('/send-mail', function () {
+
+    Mail::to('newuser@example.com')->send(new EmailSend());
+
+    return 'A message has been sent to Mailtrap!';
+});
