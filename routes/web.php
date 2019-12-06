@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\EmailSend;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +34,11 @@ Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
 
 // COSTUMER
+Route::get('/lupa-pass/', 'ProfilController@lupa_pass');
+Route::post('/proses-lupa-user', 'ProfilController@proses_lupa_pass');
+Route::get('/reset-pass/{id}', 'ProfilController@reset_pass');
+Route::post('/proses-reset', 'ProfilController@proses_reset');
+
 Route::get('/customer/login', 'CustAuthController@index');
 Route::get('/customer/register', 'CustAuthController@register_user');
 Route::post('/proses-register-user', 'CustAuthController@proses_register');
@@ -40,6 +47,7 @@ Route::get('/logout-user', 'CustAuthController@keluar');
 Route::get('/profil', 'ProfilController@index');
 Route::post('/update-profil', 'ProfilController@updateProfil');
 Route::get('/contact', 'ContactController@index');
+Route::get('/orders-history', 'HistoryController@index');
 
 
 // endcostumer
@@ -124,3 +132,16 @@ Route::get('/ongkir', 'RajaController@index');
 
 Route::get('/kota', 'RajaController@province');
 Route::post('/cost', 'RajaController@cost')->name('cost.fetch');
+
+
+
+Route::get('/sendemail', 'SendEmailController@index');
+Route::post('/sendemail/send', 'SendEmailController@send');
+
+
+Route::get('/send-mail', function () {
+
+    Mail::to('newuser@example.com')->send(new EmailSend());
+
+    return 'A message has been sent to Mailtrap!';
+});

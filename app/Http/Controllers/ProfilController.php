@@ -76,6 +76,66 @@ class ProfilController extends Controller
         }
     }
 
+    public function lupa_pass(){
+        return view('/cust-auth/lupa_pass');
+    }
+    public function reset_pass(){
+        return view('/cust-auth/reset_pass');
+    }
+    public function proses_lupa_pass(Request $request)
+    {
+        $token = uniqid();
+
+       $lupa =  DB::table('tb_users')
+                ->where('emailUser', $request->email)
+                ->where('telponUser', $request->telpon)
+                ->get();
+
+
+        if(!empty($lupa)){
+            foreach($lupa as $i){
+                $id = $i->idUser;
+            }
+
+            DB::table('tb_users')
+            ->where('idUser', $id)
+            ->update(['token' => $token]);
+
+            return redirect('/reset-pass/'.$token.'');
+
+        }else{
+            return redirect('/lupa-pass/')->with('alert', 'Email / no telpon tidak di temukan');
+        }
+    }
+    public function proses_reset(Request $request)
+    {
+        $messages = [
+            'required' => 'Form :attribute wajib di isi *',
+            'min' => ':attribute harus berisi minimal 6 karakter *',
+            'same' => ':attribute harus sama dengan password, mohon cek kembali',
+
+        ];
+
+        $this->validate($request, [
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password'
+        ], $messages);
+
+        $data = [
+            'password' => md5($request->password),
+            'token' => ''
+        ];
+            DB::table('tb_users')
+            ->where('token', $request->token)
+            ->update($data);
+
+
+            return redirect('/customer/login/')->with('success', ' ubah password');
+        
+    }
+
+
+
     public function province()
     {
         $curl = curl_init();
@@ -89,7 +149,7 @@ class ProfilController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 
@@ -139,7 +199,7 @@ class ProfilController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 

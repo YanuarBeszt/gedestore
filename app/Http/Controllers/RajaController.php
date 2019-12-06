@@ -21,7 +21,7 @@ class RajaController extends Controller
             CURLOPT_POSTFIELDS => "origin=501&destination=114&weight=1700&courier=jne",
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
-                "key: 1a94be35e19a5a900f1c36ab2e9b7813"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 
@@ -52,10 +52,10 @@ class RajaController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "origin=160&destination=".$kota."&weight=".$berat."&courier=jne",
+            CURLOPT_POSTFIELDS => "origin=160&destination=" . $kota . "&weight=" . $berat . "&courier=jne",
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 
@@ -79,25 +79,31 @@ class RajaController extends Controller
                     <option data-display="Select" value="">--pilih kota dulu--</option>
  
          ';
-         if(!$kota == '' ){
-        foreach ($c->rajaongkir->results as $i) {
-            // print_r($i->costs[0]->cost[0]->etd); //get etd
+        if ($kota == 160) {
+            $output = '
+            <option  value="0">Jember Gratis</option>
 
-            // print_r($i->costs[0]->cost[0]->value); //get harga
-            // print_r($i->costs[0]->service);
-            // print_r($i->costs[1]->cost);
+ ';
+        } else {
+            if (!$kota == '') {
+                foreach ($c->rajaongkir->results as $i) {
+                    // print_r($i->costs[0]->cost[0]->etd); //get etd
 
-        $output = '
-                    <option  value="'.$i->costs[0]->cost[0]->value.'">'.$i->costs[0]->service.' - Estimasi '.$i->costs[0]->cost[0]->etd.' Hari - Rp.'.$i->costs[0]->cost[0]->value.'</option>
-                    <option  value="'.$i->costs[1]->cost[0]->value.'">'.$i->costs[1]->service.' - Estimasi '.$i->costs[1]->cost[0]->etd.' Hari - Rp.'.$i->costs[1]->cost[0]->value.'</option>
+                    // print_r($i->costs[0]->cost[0]->value); //get harga
+                    // print_r($i->costs[0]->service);
+                    // print_r($i->costs[1]->cost);
 
-         ';
-
+                    $output = '
+                        <option  value="' . $i->costs[0]->cost[0]->value . '">' . $i->costs[0]->service . ' - Estimasi ' . $i->costs[0]->cost[0]->etd . ' Hari - Rp.' . $i->costs[0]->cost[0]->value . '</option>
+                        <option  value="' . $i->costs[1]->cost[0]->value . '">' . $i->costs[1]->service . ' - Estimasi ' . $i->costs[1]->cost[0]->etd . ' Hari - Rp.' . $i->costs[1]->cost[0]->value . '</option>
+    
+             ';
+                }
+            }
         }
-    }
+
 
         return $output;
-
     }
     public function province()
     {
@@ -112,7 +118,7 @@ class RajaController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 
@@ -140,7 +146,7 @@ class RajaController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "key: a46c84507976864ce67a5b9ec68c2be0"
+                "key: b67d482e0374142b7cc65553fbcb7f81"
             ),
         ));
 
@@ -155,5 +161,6 @@ class RajaController extends Controller
             echo json_decode($response);
         }
     }
+
     //
 }

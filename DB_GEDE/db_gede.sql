@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 07:38 PM
+-- Generation Time: Dec 06, 2019 at 03:19 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -126,7 +126,9 @@ INSERT INTO `tb_detail_transaksi` (`dt_nomor`, `dt_transaksi_nomor`, `dt_barang_
 (15, 'TRX-000000007', '5dd8712959982', 'XL', 19, 2147483647),
 (16, 'TRX-000000008', '5dd8712959982', 'L', 4, 492492492),
 (17, 'TRX-000000008', '5dd8712959982', 'XL', 3, 369369369),
-(18, 'TRX-000000009', '5de760a629d31', 'L', 1, 120000);
+(18, 'TRX-000000009', '5de760a629d31', 'L', 1, 120000),
+(19, 'TRX-000000010', '5de76bc33996f', 'M', 1, 123123123),
+(20, 'TRX-000000010', '5de760a629d31', 'L', 5, 600000);
 
 -- --------------------------------------------------------
 
@@ -232,8 +234,8 @@ INSERT INTO `tb_stok` (`stok_id`, `stok_barang_id`, `stok_ukuran`, `stok_jumlah_
 (15, '5de5b793ed5da', 'M', 20),
 (16, '5de5b793ed5da', 'S', 10),
 (17, '5de760a629d31', 'XL', -90),
-(18, '5de760a629d31', 'L', 19),
-(19, '5de76bc33996f', 'M', 2);
+(18, '5de760a629d31', 'L', 14),
+(19, '5de76bc33996f', 'M', 1);
 
 -- --------------------------------------------------------
 
@@ -265,7 +267,8 @@ INSERT INTO `tb_transaksi` (`transaksi_nomor`, `transaksi_member_id`, `transaksi
 ('TRX-000000006', 0, '2019-12-04', '-', 88000, 0, 'offline', ''),
 ('TRX-000000007', 6, '2019-12-04', 'jl karimata V', 2147483647, 0, 'online', ''),
 ('TRX-000000008', 7, '2019-12-04', 'Jl. Karimata V blok D12', 861861861, 32000, 'online', 'belum'),
-('TRX-000000009', 7, '2019-12-04', 'Jl. Karimata V blok D12', 120000, 16000, 'online', 'belum');
+('TRX-000000009', 7, '2019-12-04', 'Jl. Karimata V blok D12', 120000, 16000, 'online', 'belum'),
+('TRX-000000010', 7, '2019-12-05', 'Jl. Karimata V blok D12', 123723123, 54000, 'online', 'belum');
 
 -- --------------------------------------------------------
 
@@ -305,6 +308,7 @@ CREATE TABLE `tb_users` (
   `city` int(5) NOT NULL,
   `alamatUser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -313,15 +317,15 @@ CREATE TABLE `tb_users` (
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `telponUser`, `prov`, `city`, `alamatUser`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '081227579300', 0, 0, 'jl. karimata V blok D12, jember, jawa timur', '4b3865dc277de5870cce27623f1e20fc', '2019-11-27 21:01:30', NULL),
-(3, 'bela', 'bela@gmail.com', '089121111111', 0, 0, 'Jl. Karimata V blok D12', 'd41d8cd98f00b204e9800998ecf8427e', NULL, '2019-12-02 21:19:03'),
-(5, 'yanu', 'yanuar.ridwan.h@gmail.com', '08122277777', 11, 160, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', NULL, '2019-12-03 19:52:09'),
-(6, 'irfan', 'irfan@gmail.com', '09876545678', 11, 160, 'Jl. Karimata V blok D12', '202cb962ac59075b964b07152d234b70', NULL, '2019-12-04 00:39:54'),
-(7, 'irfan', 'superadmin@cc.magelangkota.go.id', '1082510285', 11, 80, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', NULL, '2019-12-04 04:25:06'),
-(9, 'bagus', 'guramin01@gmail.com', '08978678686', 20, 140, 'jl.qwqwdqweqw', '04321c02f72e45384fc2bb03a20a942a', '2019-12-04 04:32:53', '2019-12-04 04:34:21'),
-(10, 'asd', 'asd@gmail.com', '', 0, 0, '', '4297f44b13955235245b2497399d7a93', '2019-12-04 04:53:10', NULL),
-(11, 'Irfan2', 'meme@gmail.com', '', 0, 0, '', 'd8578edf8458ce06fbc5bb76a58c5ca4', '2019-12-04 11:30:55', NULL);
+INSERT INTO `tb_users` (`idUser`, `namaUser`, `emailUser`, `telponUser`, `prov`, `city`, `alamatUser`, `password`, `token`, `created_at`, `updated_at`) VALUES
+(1, 'yanuar', 'yanuar.ridwan.h@gmail.com', '081227579300', 0, 0, 'jl. karimata V blok D12, jember, jawa timur', 'efe6398127928f1b2e9ef3207fb82663', '', '2019-11-27 21:01:30', NULL),
+(3, 'bela', 'bela@gmail.com', '089121111111', 0, 0, 'Jl. Karimata V blok D12', 'd41d8cd98f00b204e9800998ecf8427e', '', NULL, '2019-12-02 21:19:03'),
+(5, 'yanu', 'yanuar.ridwan.h@gmail.com', '08122277777', 11, 160, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', '', NULL, '2019-12-03 19:52:09'),
+(6, 'irfan', 'irfan@gmail.com', '09876545678', 11, 160, 'Jl. Karimata V blok D12', '202cb962ac59075b964b07152d234b70', '', NULL, '2019-12-04 00:39:54'),
+(7, 'irfan', 'superadmin@cc.magelangkota.go.id', '1082510285', 11, 80, 'Jl. Karimata V blok D12', '4297f44b13955235245b2497399d7a93', '', NULL, '2019-12-04 04:25:06'),
+(9, 'bagus', 'guramin01@gmail.com', '08978678686', 20, 140, 'jl.qwqwdqweqw', '04321c02f72e45384fc2bb03a20a942a', '', '2019-12-04 04:32:53', '2019-12-04 04:34:21'),
+(10, 'asd', 'asd@gmail.com', '', 0, 0, '', '4297f44b13955235245b2497399d7a93', '', '2019-12-04 04:53:10', NULL),
+(11, 'Irfan2', 'meme@gmail.com', '', 0, 0, '', 'd8578edf8458ce06fbc5bb76a58c5ca4', '', '2019-12-04 11:30:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -452,7 +456,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tb_detail_transaksi`
 --
 ALTER TABLE `tb_detail_transaksi`
-  MODIFY `dt_nomor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `dt_nomor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_transaksi_masuk`
