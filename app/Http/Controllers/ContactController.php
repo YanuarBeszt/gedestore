@@ -11,4 +11,9 @@ class ContactController extends Controller
         return view('content/contact');
     }
     //
+    public function coba()
+    {
+        return view('content/cobacontact');
+    }
+    //
 }

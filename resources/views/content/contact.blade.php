@@ -9,9 +9,9 @@
 @endsection
 @section('filejs')
 
-<script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
+<!--<script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+<!--<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>-->
 <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
 <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('js/jquery.sticky.js') }}"></script>
@@ -19,12 +19,14 @@
 <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <!--gmaps Js-->
+<!--
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="{{ asset('js/gmaps.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+-->
 
 <!--Unutk Contact-->
-<script src="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <script src="{{ asset('src/jquery-3.4.1.min.js') }}"></script>
 
 @endsection
@@ -51,11 +53,14 @@
 <section class="contact_area section_gap_bottom">
     <div class="container">
         <div id="mymap"></div>
+<!--
         <div class="row">
 
             <div class="col-md-3 col-md-pull-9"></div>
             <div id="mapdiv" class="col-md-9 col-md-push-3"></div>
         </div>
+-->
+<!--
         <script>
             var mymap;
             var lyrOSM;
@@ -67,6 +72,7 @@
             });
             
         </script>
+-->
         <div class="row">
             <div class="col-lg-3">
                 <div class="contact_info">

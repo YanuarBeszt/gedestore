@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="{{ asset('css/linearicons.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+<!--	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">-->
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
@@ -35,10 +35,10 @@
 	
 	<!--Unutk Contact-->
 	<link rel="stylesheet" href="{{ asset('src/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
 
-	<script src="http://maps.google.com/maps/api/js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+<!--	<script src="http://maps.google.com/maps/api/js"></script>-->
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>-->
 
 
 	<style type="text/css">

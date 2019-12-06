@@ -47,6 +47,7 @@ Route::get('/logout-user', 'CustAuthController@keluar');
 Route::get('/profil', 'ProfilController@index');
 Route::post('/update-profil', 'ProfilController@updateProfil');
 Route::get('/contact', 'ContactController@index');
+Route::get('/cobacontact', 'ContactController@coba');
 Route::get('/orders-history', 'HistoryController@index');
 
 
