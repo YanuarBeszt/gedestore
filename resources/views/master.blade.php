@@ -32,6 +32,11 @@
 	<link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+	
+	<!--Unutk Contact-->
+	<link rel="stylesheet" href="{{ asset('src/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') }}">
+
 	<script src="http://maps.google.com/maps/api/js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 
@@ -42,6 +47,10 @@
 			width: 800px;
 			height: 500px;
 		}
+        #mapdiv {
+                height: 77.9vh;
+                
+            }
 	</style>
 </head>
 

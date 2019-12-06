@@ -22,6 +22,11 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="{{ asset('js/gmaps.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+
+<!--Unutk Contact-->
+<script src="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') }}"></script>
+<script src="{{ asset('src/jquery-3.4.1.min.js') }}"></script>
+
 @endsection
 @section('konten')
 
@@ -46,22 +51,28 @@
 <section class="contact_area section_gap_bottom">
     <div class="container">
         <div id="mymap"></div>
-        <script type="text/javascript">
-            map.addMarker({
-                lat: -12.043333,
-                lng: -77.028333,
-                title: 'Lima',
-                click: function(e) {
-                    alert('You clicked in this marker');
-                }
+        <div class="row">
+
+            <div class="col-md-3 col-md-pull-9"></div>
+            <div id="mapdiv" class="col-md-9 col-md-push-3"></div>
+        </div>
+        <script>
+            var mymap;
+            var lyrOSM;
+            
+            $(document).ready(function(){
+                mymap = L.map('mapdiv', {center:[19.4, -99.2], zoom:13});
+                lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+                mymap.addLayer(lyrOSM);
             });
+            
         </script>
         <div class="row">
             <div class="col-lg-3">
                 <div class="contact_info">
                     <div class="info_item">
                         <i class="lnr lnr-home"></i>
-                        <h6>California, United States</h6>
+                        <h6>California, United Statesw</h6>
                         <p>Santa monica bullevard</p>
                     </div>
                     <div class="info_item">
