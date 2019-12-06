@@ -34,6 +34,11 @@ Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
 
 // COSTUMER
+Route::get('/lupa-pass/', 'ProfilController@lupa_pass');
+Route::post('/proses-lupa-user', 'ProfilController@proses_lupa_pass');
+Route::get('/reset-pass/{id}', 'ProfilController@reset_pass');
+Route::post('/proses-reset', 'ProfilController@proses_reset');
+
 Route::get('/customer/login', 'CustAuthController@index');
 Route::get('/customer/register', 'CustAuthController@register_user');
 Route::post('/proses-register-user', 'CustAuthController@proses_register');
