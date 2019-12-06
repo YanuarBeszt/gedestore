@@ -26,8 +26,9 @@
 -->
 
 <!--Unutk Contact-->
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-<script src="{{ asset('src/jquery-3.4.1.min.js') }}"></script>
+
+<script src="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') }}"></script>
+<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 
 @endsection
 @section('konten')
@@ -60,31 +61,30 @@
             <div id="mapdiv" class="col-md-9 col-md-push-3"></div>
         </div>
 -->
-<!--
         <script>
             var mymap;
             var lyrOSM;
             
             $(document).ready(function(){
-                mymap = L.map('mapdiv', {center:[19.4, -99.2], zoom:13});
+                mymap = L.map('mymap', {center:[19.4, -99.2], zoom:13});
                 lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
                 mymap.addLayer(lyrOSM);
             });
             
         </script>
--->
+        <br>
         <div class="row">
             <div class="col-lg-3">
                 <div class="contact_info">
                     <div class="info_item">
                         <i class="lnr lnr-home"></i>
-                        <h6>California, United Statesw</h6>
-                        <p>Santa monica bullevard</p>
+                        <h6>Jl karimata V/E 6</h6>
+                        <p>Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
                     </div>
                     <div class="info_item">
                         <i class="lnr lnr-phone-handset"></i>
-                        <h6><a href="#">00 (440) 9865 562</a></h6>
-                        <p>Mon to Fri 9am to 6 pm</p>
+                        <h6><a href="#">0822-3101-0999</a></h6>
+                        <p>Buka ⋅ Tutup pukul 17.00</p>
                     </div>
                     <div class="info_item">
                         <i class="lnr lnr-envelope"></i>

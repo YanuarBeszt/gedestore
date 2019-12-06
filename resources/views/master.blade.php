@@ -34,8 +34,8 @@
 	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
 	
 	<!--Unutk Contact-->
-	<link rel="stylesheet" href="{{ asset('src/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+<link rel="stylesheet" href="{{ asset('src/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') }}">
 
 <!--	<script src="http://maps.google.com/maps/api/js"></script>-->
 <!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>-->
@@ -48,7 +48,12 @@
 			height: 500px;
 		}
         #mapdiv {
-                height: 77.9vh;
+                #mapdiv {
+            border: 3px solid red;
+			width: 800px;
+			height: 500px;
+                
+            }
                 
             }
 	</style>
