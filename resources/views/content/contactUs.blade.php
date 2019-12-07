@@ -57,14 +57,15 @@
 <section class="contact_area section_gap_bottom">
     <div class="container mt-5">
 
-        
-        
-
         <div class="row">
-        <div id="mymap"></div>
+        
         <!-- style="z-index: 2; position: absolute; top: 120px; left: 0px;" -->
             <div class="col-md-3"></div>
-            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <iframe src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" id="mymap" frameborder="400px"></iframe>
+                <!-- <div id="mymap"></div> -->
+            
+            </div>
             <div class="col-md-3"></div>
         </div>
 
