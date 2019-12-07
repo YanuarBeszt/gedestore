@@ -48,7 +48,7 @@
 
 	<style type="text/css">
 		#mymap {
-			border: 3px solid red;
+			border: 1px solid red;
 			width: 800px;
 			height: 500px;
 		}
