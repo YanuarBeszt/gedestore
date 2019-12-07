@@ -72,14 +72,14 @@
         <script>
             var mymap;
             var lyrOSM;
-            
+//            -8.175977, 113.717645
             $(document).ready(function(){
-            mymap = L.map('mymap').setView([51.505, -0.09], 13);
+            mymap = L.map('mymap').setView([-8.175977, 113.717645], 17);
             lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
             mymap.addLayer(lyrOSM);
             var strPopup ='<h6>Toko Gede Jember</h6>';
                 strPopup += '<img src="{{ url('/gambar_barang/p1.jpg') }}" height="160px" alt="">'
-            L.marker([51.5, -0.09]).addTo(mymap)
+            L.marker([-8.175977, 113.717645]).addTo(mymap)
             .bindPopup(strPopup)
             .openPopup();
             });
