@@ -62,9 +62,10 @@
         <!-- style="z-index: 2; position: absolute; top: 120px; left: 0px;" -->
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <iframe src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" id="mymap" frameborder="400px"></iframe>
-                <!-- <div id="mymap"></div> -->
-            
+                <!-- <iframe src="http://{s}.tile.osm.org/{z}/{-8.175977}/{113.717645}.png" id="mymap" frameborder="400px"></iframe> -->
+               
+                    <div id="mymap"></div>
+
             </div>
             <div class="col-md-3"></div>
         </div>
@@ -76,9 +77,11 @@
 //            -8.175977, 113.717645
             $(document).ready(function(){
             mymap = L.map('mymap').setView([-8.175977, 113.717645], 17);
-            lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+            // lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+            lyrOSM = L.tileLayer('<iframe src="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></iframe>');
             mymap.addLayer(lyrOSM);
-            var strPopup ='<h6>Toko Gede Jember</h6>';
+            // var strPopup ='<h6>Toko Gede Jember</h6>';
+            var strPopup ='<iframe><h6>Toko Gede Jember</h6></iframe>';
                 strPopup += '<img src="{{ url('/gambar_barang/p1.jpg') }}" height="160px" alt="">'
             L.marker([-8.175977, 113.717645]).addTo(mymap)
             .bindPopup(strPopup)
