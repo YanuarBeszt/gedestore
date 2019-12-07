@@ -4,7 +4,8 @@
 @section('codejs')
 <!-- isi kode JS -->
 @endsection
-
+<script src="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') }}"></script>
+<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 @section('filejs')
 
 <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
@@ -27,8 +28,7 @@
 
 <!--Contact-->
 
-<script src="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') }}"></script>
-<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+
 
 @endsection
 
