@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,23 +9,26 @@
 <link rel="stylesheet" href="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') }}">
 <script src="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.js') }}"></script>
 <script src="{{ asset('src/jquery-3.4.1.min.js') }}"></script>
-<style>
-            #mapdiv {
-            border: 3px solid red;
-			width: 800px;
-			height: 500px;
-                
-            }
-/*
-            #mapdiv {
-            height: 550px;
-            background-color: salmon;
-            }
-*/
-        </style>
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
 </head>
 <body>
-   
+
+
+
 <div class="row">
             
 
@@ -32,7 +36,7 @@
             <div id="mapdiv" class="col-md-9 col-md-push-3"></div>
         </div>
        <h1></h1>
-        
+       @section('gedemap') 
         <script>
             var mymap;
             var lyrOSM;
@@ -51,6 +55,11 @@
             
             
         </script>
+        endsection
     
+</div>
+
+
 </body>
 </html>
+

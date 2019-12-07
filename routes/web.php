@@ -50,6 +50,7 @@ Route::get('/contact', 'ContactController@index');
 Route::get('/cobacontact', 'ContactController@coba');
 Route::get('/orders-history', 'HistoryController@index');
 
+Route::get('contactUs','ContactController@contactUs');
 
 // endcostumer
 
