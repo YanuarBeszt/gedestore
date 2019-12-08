@@ -120,6 +120,6 @@ class CustAuthController extends Controller
 	{
 
 		Session::flush();
-		return redirect()->back()->with('success', 'Logout');
+		return redirect('/shop')->with('success', 'Logout');
 	}
 }

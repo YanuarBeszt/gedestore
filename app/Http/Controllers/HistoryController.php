@@ -16,7 +16,7 @@ class HistoryController extends Controller
             ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_detail_transaksi.dt_barang_id')
             ->join('tb_transaksi', 'tb_transaksi.transaksi_nomor', '=', 'tb_detail_transaksi.dt_transaksi_nomor')
             ->where('transaksi_member_id', Session::get('user_id'))
-            ->groupBy('barang_id')
+            ->groupBy('dt_transaksi_nomor')
             ->get();
 
         foreach ($trans as $tr) {

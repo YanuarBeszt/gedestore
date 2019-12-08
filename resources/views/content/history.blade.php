@@ -35,7 +35,7 @@
                 <nav class="d-flex align-items-center">
                     <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
                     <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="category.html">Cart</a>
+                    <a href="category.html">Histori</a>
                 </nav>
             </div>
         </div>
@@ -60,6 +60,7 @@
                     </thead>
                     <tbody>
 
+                        @if($transaksi_nomor)
                         <tr>
                             <td>
                                 <a href="/invoice/{{$transaksi_nomor}}">{{$transaksi_nomor}}</a>
@@ -74,6 +75,7 @@
                                 <h5>{{$transaksi_jumlah_uang}}</h5>
                             </td>
                         </tr>
+                        @endif
 
 
                     </tbody>
