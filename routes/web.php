@@ -78,6 +78,7 @@ Route::group(['middleware' => 'usersession'], function () {
     //laporan
     Route::get('/admin/halaman-laporan-barang-masuk', 'LaporanController@lapMasuk');
     Route::get('/admin/halaman-laporan-penjualan-barang', 'LaporanController@lapKeluar');
+    Route::get('/admin/cetak-laporan-barang-masuk', 'LaporanController@cetak_pdf');
 
     //transaksi
     Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');

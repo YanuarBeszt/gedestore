@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\laporan;
+use PDF;
 
 class LaporanController extends Controller
 {
@@ -24,6 +26,14 @@ class LaporanController extends Controller
         ];
 
         return view('admin/lap_barangMasuk', $data);
+    }
+
+    public function cetak_pdf()
+    {
+        $lap_masuk = Laporan::all();
+ 
+        $pdf = PDF::loadview('lap_barangMasuk',['lap_masuk'=>$lap_masuk]);
+        return $pdf->stream();
     }
 
     public function lapKeluar()
