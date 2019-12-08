@@ -62,10 +62,10 @@
         <!-- style="z-index: 2; position: absolute; top: 120px; left: 0px;" -->
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <!-- <iframe src="http://{s}.tile.osm.org/{z}/{-8.175977}/{113.717645}.png" id="mymap" frameborder="400px"></iframe> -->
-               
-                    <div id="mymap"></div>
-
+                        
+                <div id="mymap" class="leaflet-container leaflet-fade-anim leaflet-grab leaflet-touch-drag">
+                </div>
+                
             </div>
             <div class="col-md-3"></div>
         </div>
@@ -77,24 +77,32 @@
 //            -8.175977, 113.717645
             $(document).ready(function(){
             mymap = L.map('mymap').setView([-8.175977, 113.717645], 17);
-            // lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-            lyrOSM = L.tileLayer('<iframe src="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></iframe>');
+            lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+            
             mymap.addLayer(lyrOSM);
-            // var strPopup ='<h6>Toko Gede Jember</h6>';
-            var strPopup ='<iframe><h6>Toko Gede Jember</h6></iframe>';
+            var strPopup ='<h6>Toko Gede Jember</h6>';
                 strPopup += '<img src="{{ url('/gambar_barang/p1.jpg') }}" height="160px" alt="">'
             L.marker([-8.175977, 113.717645]).addTo(mymap)
             .bindPopup(strPopup)
             .openPopup();
+
+            
             });
-            
-            
-            
+                  
+            $(document).ready(function(){
+            var margin = 78;
+            $('#mymap').on('mousedown',function(){
+            $('#navBar1').css('margin-top',margin+'px');
+            });  
+            $('#mymap').blur(function(){
+            margin = margin+78;
+            }); 
+        });
         </script>
+  
 
        
-        <br>
-
+    <br>
     <br>
     <div class="row">
         <div class="col-lg-3">

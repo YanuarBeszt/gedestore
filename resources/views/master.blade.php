@@ -43,7 +43,7 @@
 <!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>-->
 
 
-			
+				
 
 
 	<style type="text/css">
@@ -76,9 +76,9 @@
 	</div>
 	<!-- konten -->
 	<!-- Start Header Area -->
-	<header class="header_area sticky-header">
+	<header class="header_area fixed-header">
 		<div class="main_menu">
-			<nav id="navbar" class="navbar navbar-expand-lg navbar-light main_box">
+			<nav id="navBar1" class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
