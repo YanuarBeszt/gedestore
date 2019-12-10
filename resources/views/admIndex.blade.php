@@ -83,9 +83,7 @@
           </ul>
           <!-- profile-dropdown-->
           <ul class="dropdown-content" id="profile-dropdown">
-            <li><a class="grey-text text-darken-1" href="/admin/halaman-profile-admin"><i class="material-icons">person_outline</i> Profile</a></li>
-            <li class="divider"></li>
-            <li><a class="grey-text text-darken-1" href="user-login.html"><i class="material-icons">keyboard_tab</i> Logout</a></li>
+            <li><a class="grey-text text-darken-1" href="/admin/logout"><i class="material-icons">keyboard_tab</i> Logout</a></li>
           </ul>
         </div>
       </nav>

@@ -62,7 +62,6 @@ class AuthController extends Controller
 	{
 
 		Session::flush();
-		Auth::keluar();
-		return redirect('login');
+		return redirect('/admin/login');
 	}
 }

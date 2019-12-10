@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/login', 'AuthController@index');
 Route::get('/cek', 'AuthController@pass');
 Route::post('/post-login', 'AuthController@postLogin');
+Route::get('/admin/logout', 'AuthController@keluar');
 
 // COSTUMER
 Route::get('/lupa-pass/', 'ProfilController@lupa_pass');

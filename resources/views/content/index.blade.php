@@ -54,8 +54,7 @@
 						<div class="col-lg-4 col-md-6">
 							<div class="banner-content">
 								<h1>Polo New <br>Collection!</h1>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+								<p>Kami menyediakan berbagai jenis dan warna Polo terbaru dan terkeren tahun ini. Dengan harga terjangkau dan pengiriman barang yang cepat. Silahkan hubungi kami jika ingin membuat baju dengan desain sendiri pada menu Contact.</p>
 							</div>
 						</div>
 						<div class="col-lg-8">
@@ -100,8 +99,8 @@
 					<div class="f-icon">
 						<img src="img/features/f-icon1.png" alt="">
 					</div>
-					<h6>Free Delivery</h6>
-					<p>Free Shipping on all order</p>
+					<h6>Fast Delivery</h6>
+					<p>Fast Shipping on all order</p>
 				</div>
 			</div>
 			<!-- single features -->
@@ -111,7 +110,7 @@
 						<img src="img/features/f-icon2.png" alt="">
 					</div>
 					<h6>Return Policy</h6>
-					<p>Free Shipping on all order</p>
+					<p>Fast Shipping on all order</p>
 				</div>
 			</div>
 			<!-- single features -->
@@ -120,8 +119,8 @@
 					<div class="f-icon">
 						<img src="img/features/f-icon3.png" alt="">
 					</div>
-					<h6>24/7 Support</h6>
-					<p>Free Shipping on all order</p>
+					<h6>Costumer Support</h6>
+					<p>Fast Shipping on all order</p>
 				</div>
 			</div>
 			<!-- single features -->
@@ -131,7 +130,7 @@
 						<img src="img/features/f-icon4.png" alt="">
 					</div>
 					<h6>Secure Payment</h6>
-					<p>Free Shipping on all order</p>
+					<p>Fast Shipping on all order</p>
 				</div>
 			</div>
 		</div>
