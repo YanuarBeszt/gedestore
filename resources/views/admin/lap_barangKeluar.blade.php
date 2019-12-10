@@ -11,6 +11,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
+                        <a href="/admin/cetak-laporan-penjualan-barang" class="btn btn-primary" target="_blank">CETAK PDF</a>
                         <table id="data-table-simple" class="display">
                             <thead>
                                 <tr style="background-color: orange">

@@ -104,7 +104,7 @@ class CheckoutController extends Controller
                 'transaksi_alamat_pengiriman' => $request->alamat,
                 'transaksi_jumlah_uang' => $total,
                 'ongkir' => $request->service,
-                'transaksi_status_pesanan' => 'belum',
+                'transaksi_status_pesanan' => 'Belum',
                 'transaksi_status' => 'online'
             ]);
 
@@ -121,12 +121,11 @@ class CheckoutController extends Controller
                 ];
 
                 $update_stok = [
-                    'stok_jumlah_stok' => $key->attributes->jml_stok_gudang-$key->quantity
+                    'stok_jumlah_stok' => $key->attributes->jml_stok_gudang - $key->quantity
 
                 ];
                 DB::table('tb_detail_transaksi')->insert($detail);
                 DB::table('tb_stok')->where('stok_id', $key->attributes->stok_id)->update($update_stok);
-
             }
 
 
@@ -160,7 +159,6 @@ class CheckoutController extends Controller
             $data['jml_total'] = $i->transaksi_jumlah_uang;
             $data['status'] = $i->transaksi_status_pesanan;
             $data['ongkir'] = $i->ongkir;
-
         }
 
         return view('content/invoice', $data);

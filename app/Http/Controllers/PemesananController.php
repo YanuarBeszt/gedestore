@@ -13,6 +13,8 @@ class PemesananController extends Controller
         $trans = DB::table('tb_transaksi')
             ->select('*')
             ->join('tb_users', 'tb_users.idUser', '=', 'tb_transaksi.transaksi_member_id')
+            ->where('transaksi_status', 'online')
+            ->where('transaksi_status_pesanan', 'Belum')
             ->get();
 
         $data = [
@@ -22,6 +24,16 @@ class PemesananController extends Controller
         ];
 
         return view('admin/psn_Online', $data);
+    }
+
+    public function updatePesanan($id)
+    {
+        DB::table('tb_transaksi')
+            ->where('transaksi_nomor', $id)
+            ->update([
+                'transaksi_status_pesanan' => "Sudah"
+            ]);
+        return redirect('/admin/halaman-pemesanan-online')->with('success', 'Data berhasil diupdate');
     }
 
     public function pesanOffline()

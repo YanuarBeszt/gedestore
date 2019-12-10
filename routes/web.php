@@ -50,7 +50,7 @@ Route::get('/contact', 'ContactController@index');
 Route::get('/cobacontact', 'ContactController@coba');
 Route::get('/orders-history', 'HistoryController@index');
 
-Route::get('contactUs','ContactController@contactUs');
+Route::get('contactUs', 'ContactController@contactUs');
 
 // endcostumer
 
@@ -79,6 +79,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-laporan-barang-masuk', 'LaporanController@lapMasuk');
     Route::get('/admin/halaman-laporan-penjualan-barang', 'LaporanController@lapKeluar');
     Route::get('/admin/cetak-laporan-barang-masuk', 'LaporanController@cetak_pdf');
+    Route::get('/admin/cetak-laporan-penjualan-barang', 'LaporanController@cetak_pdff');
 
     //transaksi
     Route::post('/admin/proses-trans-masuk', 'TransaksiController@proses_trans_masuk');
@@ -102,6 +103,7 @@ Route::group(['middleware' => 'usersession'], function () {
 
     Route::get('/admin/halaman-pemesanan-online', 'PemesananController@pesanOnline');
     Route::get('/admin/halaman-pemesanan-offline', 'PemesananController@pesanOffline');
+    Route::get('/admin/updatePesanan/{id}', 'PemesananController@updatePesanan');
 
     //Route Proses
     Route::post('/admin/edit-data-admin', 'co_admAdmin@edit');

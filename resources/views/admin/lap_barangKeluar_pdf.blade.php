@@ -1,33 +1,37 @@
-@extends('admIndex')
-
-@section('content')
-<!-- DataTables example -->
 <div class="row">
     <div class="col s12 m12 l12">
         <div id="button-trigger" class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m6 l7">
-                    <h4 class="card-title">Laporan Transaksi Masuk</h4>
+                    <h2 class="card-title">Laporan Penjualan Barang</h2>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <a href="/admin/cetak-laporan-barang-masuk" class="btn btn-primary" target="_blank">CETAK PDF</a>
                         <table id="data-table-simple" class="display">
                             <thead>
                                 <tr style="background-color: orange">
                                     <th>Nomor Transaksi</th>
                                     <th>Tanggal Transaksi</th>
-                                    <th>Suplier/Toko</th>
+                                    <th>Nama Pembeli</th>
+                                    <th>Jumlah Barang</th>
                                     <th>Total Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($laporan_masuk))
-                                @foreach($laporan_masuk as $lap)
+                                <style type="text/css">
+                                    table tr td,
+                                    table tr th {
+                                        font-size: 12pt;
+                                    }
+                                </style>
+
+                                @if(!empty($lap))
+                                @foreach($lap as $lap)
                                 <tr>
-                                    <td>{{ $lap->detiltrans_masuk_idtrans }}</td>
-                                    <td>{{ $lap->trans_masuk_tanggal }}</td>
-                                    <td>{{ $lap->trans_masuk_suplier }}</td>
+                                    <td>{{ $lap->transaksi_nomor }}</td>
+                                    <td>{{ $lap->transaksi_tanggal }}</td>
+                                    <td>{{ $lap->transaksi_status }}</td>
+                                    <td>{{ $lap->totalbrg }}</td>
                                     <td>{{ $lap->total }}</td>
                                 </tr>
                                 @endforeach
@@ -40,5 +44,3 @@
         </div>
     </div>
 </div>
-
-@endsection

@@ -78,6 +78,7 @@ class TransaksiKeluarController extends Controller
                 'transaksi_tanggal' => date('Y-m-d'),
                 'transaksi_alamat_pengiriman' => '-',
                 'transaksi_jumlah_uang' => $total,
+                'transaksi_status_pesanan' => '-',
                 'transaksi_status' => 'offline'
             ]);
 

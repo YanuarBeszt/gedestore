@@ -115,16 +115,7 @@
           </ul>
         </div>
       </li>
-      <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">call</i><span class="menu-title" data-i18n="">Pemesanan</span></a>
-        <div class="collapsible-body">
-          <ul class="collapsible collapsible-sub" data-collapsible="accordion">
-            <li><a class="collapsible-body" href="/admin/halaman-pemesanan-online" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Pemesanan Via Online</span></a>
-            </li>
-            <li><a class="collapsible-body" href="/admin/halaman-pemesanan-offline" data-i18n=""><i class="material-icons">radio_button_unchecked</i><span>Pemesanan Di Tempat</span></a>
-            </li>
-          </ul>
-        </div>
-      </li>
+      <li class="bold"><a class="waves-effect waves-cyan " href="/admin/halaman-pemesanan-online"><i class="material-icons">call</i><span class="menu-title" data-i18n="">Pemesanan</span></a></li>
       <li class="bold"><a class="collapsible-header waves-effect waves-cyan " href="#"><i class="material-icons">library_books</i><span class="menu-title" data-i18n="">Laporan</span></a>
         <div class="collapsible-body">
           <ul class="collapsible collapsible-sub" data-collapsible="accordion">
