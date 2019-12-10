@@ -11,7 +11,6 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <a href="/admin/lap_barangMasuk_pdf" class="btn btn-primary" target="_blank">CETAK PDF</a>
                         <table id="data-table-simple" class="display">
                             <thead>
                                 <tr style="background-color: orange">
@@ -22,6 +21,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <style type="text/css">
+                                    table tr td,
+                                    table tr th{
+                                         font-size: 9pt;
+                                    }
+                                 </style>
+                            
                                 @if(!empty($laporan_masuk))
                                 @foreach($laporan_masuk as $lap)
                                 <tr>
