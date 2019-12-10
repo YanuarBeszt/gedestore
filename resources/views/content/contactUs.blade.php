@@ -42,10 +42,10 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-first">
-                <h1>Contact us</h1>
+                <h1>Contact Us</h1>
                 <nav class="d-flex align-items-center">
 
-                    <a href="#">Contact Us</a>
+                    <a href="#">contact us</a>
                 </nav>
             </div>
         </div>
@@ -60,7 +60,35 @@
         <div class="row">
         
         <!-- style="z-index: 2; position: absolute; top: 120px; left: 0px;" -->
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+            <div class="contact_info">
+                <div class="info_item">
+                    <i class="lnr lnr-home"></i>
+                    <h6>Jl karimata V/E 6</h6>
+                    <p>Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
+                </div>
+                <div class="info_item">
+                    <i class="lnr lnr-phone-handset"></i>
+                    <h6><a href="#">0822-3101-0999</a></h6>
+                    <p>Buka ⋅ Tutup pukul 17.00</p>
+                </div>
+                <div class="info_item">
+                    <i class="lnr lnr-envelope"></i>
+                    <h6><a href="#">kamarwanta@gmail.com</a></h6>
+                    <p></p>
+                </div>
+                <div class="info_item">
+                    <i class="lnr lnr-camera"></i>
+                    <h6><a href="#">Instagram : Kamarwanta</a></h6>
+                    <p></p>
+                </div>
+                <div class="info_item">
+                    <i class="lnr lnr-users"></i>
+                    <h6><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></h6>
+                    <p></p>
+                </div>
+            </div>
+            </div>
             <div class="col-md-6">
                         
                 <div id="mymap" class="leaflet-container leaflet-fade-anim leaflet-grab leaflet-touch-drag">
@@ -81,7 +109,7 @@
             
             mymap.addLayer(lyrOSM);
             var strPopup ='<h6>Toko Gede Jember</h6>';
-                strPopup += '<img src="{{ url('/gambar_barang/p1.jpg') }}" height="160px" alt="">'
+                // strPopup += '<img src="{{ url('/gambar_barang/p1.jpg') }}" height="160px" alt="">'
             L.marker([-8.175977, 113.717645]).addTo(mymap)
             .bindPopup(strPopup)
             .openPopup();
@@ -106,25 +134,9 @@
     <br>
     <div class="row">
         <div class="col-lg-3">
-            <div class="contact_info">
-                <div class="info_item">
-                    <i class="lnr lnr-home"></i>
-                    <h6>Jl karimata V/E 6</h6>
-                    <p>Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
-                </div>
-                <div class="info_item">
-                    <i class="lnr lnr-phone-handset"></i>
-                    <h6><a href="#">0822-3101-0999</a></h6>
-                    <p>Buka ⋅ Tutup pukul 17.00</p>
-                </div>
-                <div class="info_item">
-                    <i class="lnr lnr-envelope"></i>
-                    <h6><a href="#">support@colorlib.com</a></h6>
-                    <p>Send us your query anytime!</p>
-                </div>
-            </div>
+            
         </div>
-        <div class="col-lg-9">
+        <!-- <div class="col-lg-9">
             <form class="row contact_form" action="contact_process.php" method="post" id="contactForm"
                 novalidate="novalidate">
                 <div class="col-md-6">
@@ -152,7 +164,7 @@
                     <button type="submit" value="submit" class="primary-btn">Send Message</button>
                 </div>
             </form>
-        </div>
+        </div> -->
     </div>
     </div>
 
