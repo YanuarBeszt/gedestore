@@ -15,8 +15,7 @@
 @section('filejs')
 
 <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
 </script>
 <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
@@ -32,7 +31,7 @@
 @endsection
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
 
 @section('konten')
 
@@ -44,8 +43,8 @@
             <div class="col-first">
                 <h1>Contact Us</h1>
                 <nav class="d-flex align-items-center">
-
-                    <a href="#">contact us</a>
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Contact</a>
                 </nav>
             </div>
         </div>
@@ -58,85 +57,85 @@
     <div class="container mt-5">
 
         <div class="row">
-        
-        <!-- style="z-index: 2; position: absolute; top: 120px; left: 0px;" -->
+
+            <!-- style="z-index: 2; position: absolute; top: 120px; left: 0px;" -->
             <div class="col-md-3">
-            <div class="contact_info">
-                <div class="info_item">
-                    <i class="lnr lnr-home"></i>
-                    <h6>Jl karimata V/E 6</h6>
-                    <p>Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="lnr lnr-home"></i>
+                        <h6>Jl karimata V/E 6</h6>
+                        <p>Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-phone-handset"></i>
+                        <h6><a href="#">0822-3101-0999</a></h6>
+                        <p>Buka 09.00 ⋅ Tutup 17.00</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-envelope"></i>
+                        <h6><a href="#">kamarwanta@gmail.com</a></h6>
+                        <p></p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-camera"></i>
+                        <h6><a href="https://www.instagram.com/kamarwanta/">Instagram : Kamarwanta</a></h6>
+                        <p></p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-users"></i>
+                        <h6><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></h6>
+                        <p></p>
+                    </div>
                 </div>
-                <div class="info_item">
-                    <i class="lnr lnr-phone-handset"></i>
-                    <h6><a href="#">0822-3101-0999</a></h6>
-                    <p>Buka ⋅ Tutup pukul 17.00</p>
-                </div>
-                <div class="info_item">
-                    <i class="lnr lnr-envelope"></i>
-                    <h6><a href="#">kamarwanta@gmail.com</a></h6>
-                    <p></p>
-                </div>
-                <div class="info_item">
-                    <i class="lnr lnr-camera"></i>
-                    <h6><a href="#">Instagram : Kamarwanta</a></h6>
-                    <p></p>
-                </div>
-                <div class="info_item">
-                    <i class="lnr lnr-users"></i>
-                    <h6><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></h6>
-                    <p></p>
-                </div>
-            </div>
             </div>
             <div class="col-md-6">
-                        
+
                 <div id="mymap" class="leaflet-container leaflet-fade-anim leaflet-grab leaflet-touch-drag">
                 </div>
-                
+
             </div>
             <div class="col-md-3"></div>
         </div>
 
-    
+
         <script>
             var mymap;
             var lyrOSM;
-//            -8.175977, 113.717645
-            $(document).ready(function(){
-            mymap = L.map('mymap').setView([-8.175977, 113.717645], 17);
-            lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-            
-            mymap.addLayer(lyrOSM);
-            var strPopup ='<h6>Toko Gede Jember</h6>';
+            //            -8.175977, 113.717645
+            $(document).ready(function() {
+                mymap = L.map('mymap').setView([-8.1725360, 113.7177117], 17);
+                lyrOSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+
+                mymap.addLayer(lyrOSM);
+                var strPopup = '<h6>Toko Gede Jember</h6>';
                 // strPopup += '<img src="{{ url('/gambar_barang/p1.jpg') }}" height="160px" alt="">'
-            L.marker([-8.175977, 113.717645]).addTo(mymap)
-            .bindPopup(strPopup)
-            .openPopup();
+                L.marker([-8.1725360, 113.7177117]).addTo(mymap)
+                    .bindPopup(strPopup)
+                    .openPopup();
 
-            
+
             });
-                  
-            $(document).ready(function(){
-            var margin = 78;
-            $('#mymap').on('mousedown',function(){
-            $('#navBar1').css('margin-top',margin+'px');
-            });  
-            $('#mymap').blur(function(){
-            margin = margin+78;
-            }); 
-        });
-        </script>
-  
 
-       
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-lg-3">
-            
-        </div>
-        <!-- <div class="col-lg-9">
+            $(document).ready(function() {
+                var margin = 78;
+                $('#mymap').on('mousedown', function() {
+                    $('#navBar1').css('margin-top', margin + 'px');
+                });
+                $('#mymap').blur(function() {
+                    margin = margin + 78;
+                });
+            });
+        </script>
+
+
+
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-3">
+
+            </div>
+            <!-- <div class="col-lg-9">
             <form class="row contact_form" action="contact_process.php" method="post" id="contactForm"
                 novalidate="novalidate">
                 <div class="col-md-6">
@@ -165,7 +164,7 @@
                 </div>
             </form>
         </div> -->
-    </div>
+        </div>
     </div>
 
 </section>

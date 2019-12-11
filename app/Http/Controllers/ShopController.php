@@ -14,13 +14,14 @@ class ShopController extends Controller
         $kategori = DB::table('tb_barang')
             ->select('*', DB::raw('count(barang_kategori_id) as kategoriTotal'))
             ->join('tb_kategori', 'tb_barang.barang_kategori_id', '=', 'tb_kategori.kategori_id')
+            ->groupBy('barang_kategori_id')
             ->get();
 
         $barang = DB::table('tb_stok')
             ->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
             ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
             ->groupBy('barang_id')
-            ->get();
+            ->paginate(12);
 
         $data = [
             'barang' => $barang,
