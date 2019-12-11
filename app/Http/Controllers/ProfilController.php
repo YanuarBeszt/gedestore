@@ -89,13 +89,12 @@ class ProfilController extends Controller
        $lupa =  DB::table('tb_users')
                 ->where('emailUser', $request->email)
                 ->where('telponUser', $request->telpon)
-                ->get();
+                ->first();
 
 
         if(!empty($lupa)){
-            foreach($lupa as $i){
-                $id = $i->idUser;
-            }
+
+                $id = $lupa->idUser;
 
             DB::table('tb_users')
             ->where('idUser', $id)

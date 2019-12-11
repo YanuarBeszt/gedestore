@@ -59,22 +59,32 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        @if($transaksi_nomor)
+                        @if($trans->count() != 0 )
+@foreach($trans as $tr) 
                         <tr>
                             <td>
-                                <a href="/invoice/{{$transaksi_nomor}}">{{$transaksi_nomor}}</a>
+                                <a href="/invoice/{{$tr->transaksi_nomor}}">{{$tr->transaksi_nomor}}</a>
                             </td>
                             <td>
-                                <h5>{{$transaksi_tanggal}}</h5>
+                                <h5>asaasasd</h5>
                             </td>
                             <td>
-                                <h5>{{$total}}</h5>
+                                <h5>{{$tr->transaksi_nomor}}</h5>
                             </td>
                             <td>
-                                <h5>{{$transaksi_jumlah_uang}}</h5>
+                                <h5>{{$tr->transaksi_nomor}}</h5>
                             </td>
                         </tr>
+        
+@endforeach
+
+
+                        @else
+<tr>
+    <td style="text-align: center;" colspan="4">
+        Transaksi Kamu Masih Kosong :) 
+    </td>
+</tr>
                         @endif
 
 
@@ -84,9 +94,9 @@
         </div>
     </div>
 </section>
+<!-- <hr>
 <hr>
 <hr>
-<hr>
-<hr>
+<hr> -->
 <!--================End Cart Area =================-->
 @endsection
