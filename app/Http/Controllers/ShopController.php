@@ -31,6 +31,29 @@ class ShopController extends Controller
         return view('content/shop', $data);
     }
 
+    public function shop($id)
+    {
+        $barang = DB::table('tb_stok')
+            ->select('*', DB::raw('SUM(stok_jumlah_stok) as total'))
+            ->join('tb_barang', 'tb_barang.barang_id', '=', 'tb_stok.stok_barang_id')
+            ->where('barang_kategori_id', $id)
+            ->groupBy('barang_id')
+            ->paginate(12);
+
+        $kategori = DB::table('tb_barang')
+            ->select('*', DB::raw('count(barang_kategori_id) as kategoriTotal'))
+            ->join('tb_kategori', 'tb_barang.barang_kategori_id', '=', 'tb_kategori.kategori_id')
+            ->groupBy('barang_kategori_id')
+            ->get();
+
+        $data = [
+            'barang' => $barang,
+            'kategori' => $kategori
+        ];
+
+        return view('content/shop', $data);
+    }
+
     public function showProduct($id)
     {
         $barang = DB::table('tb_stok')

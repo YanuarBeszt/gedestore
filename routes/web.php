@@ -27,6 +27,7 @@ Route::get('add-to-cart/{id}', [
 
 // Route::get('/pass', 'AuthController@pass');
 Route::get('/shop', 'ShopController@index');
+Route::get('/shop/{id}', 'ShopController@shop');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/login', 'AuthController@index');

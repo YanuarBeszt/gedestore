@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="{{ asset('css/linearicons.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
-<!--	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">-->
+	<!--	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">-->
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
@@ -32,18 +32,18 @@
 	<link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-	
+
 	<!--Untuk Contact-->
 	<link rel="stylesheet" href="{{ asset('src/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('https://unpkg.com/leaflet@1.6.0/dist/leaflet.css') }}">
 
 
 
-<!--	<script src="http://maps.google.com/maps/api/js"></script>-->
-<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>-->
+	<!--	<script src="http://maps.google.com/maps/api/js"></script>-->
+	<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>-->
 
 
-				
+
 
 
 	<style type="text/css">
@@ -52,15 +52,16 @@
 			width: 800px;
 			height: 500px;
 		}
-        #mapdiv {
-                #mapdiv {
-            border: 3px solid red;
-			width: 800px;	
-			height: 500px;
-                
-            }
-                
-            }
+
+		#mapdiv {
+			#mapdiv {
+				border: 3px solid red;
+				width: 800px;
+				height: 500px;
+
+			}
+
+		}
 	</style>
 </head>
 
@@ -81,7 +82,7 @@
 			<nav id="navBar1" class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="/"><img src="{{ url('/img/logo.png')}}" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -138,39 +139,40 @@
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>About Us</h6>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-							magna aliqua.
-						</p>
-					</div>
-				</div>
 				<div class="col-lg-4  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>Stay update with our latest</p>
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-
-									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-
-
-									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-									<!-- <div class="col-lg-4 col-md-4">
-												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-											</div>  -->
-								</div>
-								<div class="info"></div>
-							</form>
+						<h6>About Us</h6>
+						<div class="contact_info">
+							<div class="info_item">
+								<i class="lnr lnr-home"></i>
+								<p style="color:white">Jl karimata V/E 6</p>
+								<p style="color:white">Gumuk Kerang, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
+							</div>
+							<div class="info_item">
+								<i class="lnr lnr-phone-handset"></i>
+								<p style="color:white"><a href="#">0822-3101-0999</a></p>
+								<p style="color:white">Buka 09.00 ⋅ Tutup 17.00</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-5  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6></h6>
+						<div class="info_item">
+							<i class="lnr lnr-envelope"></i>
+							<p style="color:white"><a href="#">kamarwanta@gmail.com</a></p>
+							<p style="color:white"></p>
+						</div>
+						<div class="info_item">
+							<i class="lnr lnr-camera"></i>
+							<p style="color:white"><a href="https://www.instagram.com/kamarwanta/">Instagram : Kamarwanta</a></p>
+							<p style="color:white"></p>
+						</div>
+						<div class="info_item">
+							<i class="lnr lnr-users"></i>
+							<p style="color:white"><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></p>
+							<p style="color:white"></p>
 						</div>
 					</div>
 				</div>
@@ -178,38 +180,17 @@
 					<div class="single-footer-widget mail-chimp">
 						<h6 class="mb-20">Instragram Feed</h6>
 						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="img/i1.jpg" alt=""></li>
-							<li><img src="img/i2.jpg" alt=""></li>
-							<li><img src="img/i3.jpg" alt=""></li>
-							<li><img src="img/i4.jpg" alt=""></li>
-							<li><img src="img/i5.jpg" alt=""></li>
-							<li><img src="img/i6.jpg" alt=""></li>
-							<li><img src="img/i7.jpg" alt=""></li>
-							<li><img src="img/i8.jpg" alt=""></li>
+							<li><img src="{{ url('/img/i1.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i2.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i3.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i4.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i5.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i6.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i7.jpg')}}" alt=""></li>
+							<li><img src="{{ url('/img/i8.jpg')}}" alt=""></li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Follow Us</h6>
-						<p>Let us be social</p>
-						<div class="footer-social d-flex align-items-center">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-				<p class="footer-text m-0">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;<script>
-						document.write(new Date().getFullYear());
-					</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
 			</div>
 		</div>
 	</footer>
