@@ -159,6 +159,7 @@
 				<div class="col-lg-5  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
 						<h6></h6>
+						<div class="contact_info">
 						<div class="info_item">
 							<i class="lnr lnr-envelope"></i>
 							<p style="color:white"><a href="#">kamarwanta@gmail.com</a></p>
@@ -175,6 +176,7 @@
 							<p style="color:white"></p>
 						</div>
 					</div>
+				</div>
 				</div>
 				<div class="col-lg-3  col-md-6 col-sm-6">
 					<div class="single-footer-widget mail-chimp">
