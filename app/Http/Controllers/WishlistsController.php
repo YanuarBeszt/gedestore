@@ -32,7 +32,7 @@ class WishlistsController extends Controller
     }
 
 
-    public function addToWishlists($idbarang, $iduser)
+    public function addToWishlists($idbarang, $iduser, Request $request)
     {
         $now = new DateTime();
 
@@ -43,6 +43,12 @@ class WishlistsController extends Controller
         ]);
 
         return redirect('/shop')->with('success', 'wishlist berhasil ditambahkan');
+    }
+
+    public function addToWishlistser($idbarang)
+    {
+
+        return redirect('/shop/showProduct/' . $idbarang)->with('alert', 'Silahkan login Terlebih Dahulu');
     }
 
     public function delWishlists($wishlist_id)

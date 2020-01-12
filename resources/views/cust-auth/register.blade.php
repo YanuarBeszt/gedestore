@@ -44,9 +44,6 @@
 					<div class="card-content white-text">
 						<p>{{ $error }}</p>
 					</div>
-					<button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
 				</div>
 				@endforeach
 				@endif
@@ -66,7 +63,12 @@
 					<div class="col-md-12 form-group">
 						<input type="password" class="form-control" id="password2" name="password2" placeholder="Ulangi Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 					</div>
-
+					<div class="col-md-1 form-group">
+						<input type="checkbox" id="f-option2" name="privacy" required>
+					</div>
+					<div class="col-md-11 form-group">
+						<label style="font-size:14px;" for="f-option2"><a href="/privacy-policy">Saya setuju dengan ketentuan layanan dan kebijakan pribadi.</a></label>
+					</div>
 					<div class="col-md-12 form-group">
 						<button type="submit" value="submit" class="primary-btn">Daftar</button>
 					</div>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
+Route::get('/privacy-policy', 'PrivacyController@index');
 //Customer Routes
 Route::get('/', 'IndexController@index');
 Route::get('/shop/showProduct/{id}', [
@@ -115,6 +116,7 @@ Route::group(['middleware' => 'usersession'], function () {
 //Wishlist 
 Route::get('/wishlists', 'WishlistsController@index');
 Route::get('/wishlists/addToWishlists/{idbarang}/{iduser}', 'WishlistsController@addToWishlists');
+Route::get('/wishlists/addToWishlists/{idbarang}', 'WishlistsController@addToWishlistser');
 Route::delete('/wishlists/delWishlists/{wishlists}', 'WishlistsController@delWishlists');
 
 //Cart

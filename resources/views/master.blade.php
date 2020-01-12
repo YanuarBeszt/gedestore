@@ -82,7 +82,7 @@
 			<nav id="navBar1" class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/"><img src="{{ url('/img/logo.png')}}" alt=""></a>
+					<a class="navbar-brand logo_h" href="/"><img style="height:40px; width:auto;" src="{{ url('/img/logo.png')}}" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -160,23 +160,23 @@
 					<div class="single-footer-widget">
 						<h6></h6>
 						<div class="contact_info">
-						<div class="info_item">
-							<i class="lnr lnr-envelope"></i>
-							<p style="color:white"><a href="#">kamarwanta@gmail.com</a></p>
-							<p style="color:white"></p>
-						</div>
-						<div class="info_item">
-							<i class="lnr lnr-camera"></i>
-							<p style="color:white"><a href="https://www.instagram.com/kamarwanta/">Instagram : Kamarwanta</a></p>
-							<p style="color:white"></p>
-						</div>
-						<div class="info_item">
-							<i class="lnr lnr-users"></i>
-							<p style="color:white"><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></p>
-							<p style="color:white"></p>
+							<div class="info_item">
+								<i class="lnr lnr-envelope"></i>
+								<p style="color:white"><a href="#">kamarwanta@gmail.com</a></p>
+								<p style="color:white"></p>
+							</div>
+							<div class="info_item">
+								<i class="lnr lnr-camera"></i>
+								<p style="color:white"><a href="https://www.instagram.com/kamarwanta/">Instagram : Kamarwanta</a></p>
+								<p style="color:white"></p>
+							</div>
+							<div class="info_item">
+								<i class="lnr lnr-users"></i>
+								<p style="color:white"><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></p>
+								<p style="color:white"></p>
+							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 				<div class="col-lg-3  col-md-6 col-sm-6">
 					<div class="single-footer-widget mail-chimp">
