@@ -34,8 +34,8 @@
                                 <tr>
                                     <td>{{ $brg->barang_nama }}</td>
                                     <td>{{ $brg->kategori_nama }}</td>
-                                    <td>{{ $brg->barang_harga_beli }}</td>
-                                    <td>{{ $brg->barang_harga_jual}}</td>
+                                    <td>Rp. {{ number_format($brg->barang_harga_beli) }}</td>
+                                    <td>Rp. {{ number_format($brg->barang_harga_jual) }}</td>
                                     <td>{{ $brg->total}}</td>
 
                                     <td>

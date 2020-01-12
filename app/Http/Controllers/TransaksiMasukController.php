@@ -135,7 +135,7 @@ class TransaksiMasukController extends Controller
                 DB::table('tb_transaksi_masuk')->insert([
                     'trans_masuk_id' => $insert->transaksi,
                     'trans_masuk_tanggal' => date('Y-m-d'),
-                    'trans_masuk_suplier' => 'uwu',
+                    'trans_masuk_suplier' => $insert->supplier,
                     'trans_masuk_totalharga' => $insert->total
                 ]);
 

@@ -116,7 +116,7 @@ class CheckoutController extends Controller
                     'dt_barang_id' => $key->attributes->kode_brg,
                     'dt_barang_ukuran' => $key->attributes->size,
                     'dt_jumlah_barang' => $key->quantity,
-                    'dt_jumlah_harga' => $key->quantity * $key->price
+                    'dt_jumlah_harga' => $key->quantity * $key->price + $request->service
 
                 ];
 

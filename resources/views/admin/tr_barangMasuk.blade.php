@@ -89,7 +89,14 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">monetization_on</i>
-              <input id="bayar" type="text" name="bayar">
+              <input id="supplier" type="text" name="supplier" required>
+              <label for="supplier" class="">Supplier</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">monetization_on</i>
+              <input id="bayar" type="text" name="bayar" required>
               <label for="bayar" class="">Bayar</label>
             </div>
           </div>
