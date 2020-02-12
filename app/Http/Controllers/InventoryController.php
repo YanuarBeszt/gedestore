@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\File;
+use Intervention\Image\Facades\Image;
 
 use DateTime;
 
@@ -73,7 +74,13 @@ class InventoryController extends Controller
             // isi dengan nama folder tempat kemana file diupload
             $tujuan_upload = 'gambar_barang';
             $file->move($tujuan_upload, $nama_file);
+            
+            $img = Image::make(public_path('gambar_barang/'.$nama_file));
+            
+            $img->insert(public_path('img/watermark.png'), 'bottom-right', 10, 10);
 
+            $img->save(public_path('gambar_barang/'.$nama_file));
+            
             DB::table('tb_barang')
                 ->where('barang_id', $request->barangId)
                 ->update([
@@ -137,7 +144,12 @@ class InventoryController extends Controller
         $nama_file = time() . "_" . $file->getClientOriginalName();
         // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'gambar_barang';
+        
         $file->move($tujuan_upload, $nama_file);
+        
+        $img = Image::make(public_path('gambar_barang/'.$nama_file));
+        $img->insert(public_path('img/watermark.png'), 'bottom-right', 10, 10);
+        $img->save(public_path('gambar_barang/'.$nama_file));
 
         DB::table('tb_barang')->insert([
             'barang_id' => uniqid(),

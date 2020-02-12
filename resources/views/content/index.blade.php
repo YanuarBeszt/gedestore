@@ -42,7 +42,24 @@
 <link rel="stylesheet" href="css/main.css">
 @endsection
 @section('konten')
-
+<style>
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .mobile-app {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .desktop-app {
+    display: none;
+  }
+  .mobile-app div {
+    width: 70%;
+    margin:0 auto;
+  }
+}
+</style>
 <!-- start banner Area -->
 <section class="banner-area">
 	<div class="container">
@@ -51,17 +68,23 @@
 				<div class="active-banner-slider owl-carousel">
 					<!-- single-slide -->
 					<div class="row single-slide align-items-center d-flex">
-						<div class="col-lg-4 col-md-6">
+                        <!-- Desktop -->
+						<div class="col-lg-4 col-md-6 desktop-app">
 							<div class="banner-content">
-								<h1>Koleksi Polo<br>Terbaru!</h1>
-								<p>Kami menyediakan berbagai jenis dan warna Polo terbaru dan terkeren tahun ini.
-									Dengan harga terjangkau dan pengiriman barang yang cepat. Silahkan hubungi kami jika ingin membuat baju dengan desain sesuai keinginan anda pada menu Contact.</p>
+								<h1 style="font-size: 40px">We Love All And<br> &ensp; We Serve All</h1>
+								<p class="ml-5">Garment And Textile</p>
 							</div>
 						</div>
-						<div class="col-lg-8">
+						<div class="col-lg-8 desktop-app">
 							<div class="banner-img">
 								<img class="img-fluid" src="img/banner/1.png" alt="">
 							</div>
+						</div>
+                        <!-- Mobile -->
+                        <div class="col-sm-12 mobile-app">
+                            <div>
+                                <img class="img-fluid" src="img/logo.png" alt="">
+                            </div>
 						</div>
 					</div>
 					<!-- single-slide -->
@@ -128,6 +151,7 @@
 			<div class="col-lg-3 col-md-6 col-sm-6">
 				<div class="single-features">
 					<div class="f-icon">
+                        <input type="text" value="{{ asset('img/watermark.png') }}" style="display: none;">
 						<img src="img/features/f-icon4.png" alt="">
 					</div>
 					<h6>Secure Payment</h6>
@@ -232,16 +256,11 @@
 </section>
 <!-- end product Area -->
 
-
 @endsection
 
 <!-- isi bagian konten -->
 @section('codejs')
 
-<<<<<<< HEAD=======@endsection <!-- isi bagian konten -->
-	@section('codejs')
-
-	>>>>>>> 776f11fd85b462bc8830580d70c22e1be736770e
 	<!-- isi kode JS -->
 
 	@endsection
