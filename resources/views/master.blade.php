@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
@@ -13,11 +13,11 @@
 	<!-- Meta Keyword -->
 	<meta name="keywords" content="">
 	<!-- meta character set -->
-	<meta charset="UTF-8">
+	
 
 	<!--
 	CSS & Site Title ============================================= -->
-	<title>Gede Shop</title>
+	<title>Gede Jember</title>
 	<!--
 		CSS
 		============================================= -->
@@ -82,7 +82,7 @@
 			<nav id="navBar1" class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/"><img style="height:40px; width:auto;" src="{{ url('/img/logo.png')}}" alt=""></a>
+					<a class="navbar-brand logo_h" href="/"><img style="height:40px; width:auto; margin:10px;" src="{{ url('/img/logogede.png')}}" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -90,7 +90,7 @@
 					</button>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
+						<ul class="nav navbar-nav menu_nav ml-auto ">
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 							<li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
 							<li class="nav-item"><a class="nav-link" href="/contactUs">Contact</a></li>
@@ -110,25 +110,11 @@
 						<li class="nav-item"><a class="nav-link" href="{{ url('/customer/register') }}">Daftar</a></li>
 						<li class="nav-item"><a class="nav-link" href="{{ url('/customer/login') }}">Masuk</a></li>
 						@endif
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="{{ url('/keranjang-shop') }}" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
+							<li style="list-style: none;" class="nav-item ml-3"><a href="{{ url('/keranjang-shop') }}" class="cart"><span class="ti-bag"></span></a></li>
 						</ul>
 					</div>
 				</div>
 			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
 		</div>
 	</header>
 	<!-- End Header Area -->
@@ -160,37 +146,26 @@
 					<div class="single-footer-widget">
 						<h6></h6>
 						<div class="contact_info">
-							<div class="info_item">
-								<i class="lnr lnr-envelope"></i>
-								<p style="color:white"><a href="#">kamarwanta@gmail.com</a></p>
-								<p style="color:white"></p>
-							</div>
-							<div class="info_item">
-								<i class="lnr lnr-camera"></i>
-								<p style="color:white"><a href="https://www.instagram.com/kamarwanta/">Instagram : Kamarwanta</a></p>
-								<p style="color:white"></p>
-							</div>
-							<div class="info_item">
-								<i class="lnr lnr-users"></i>
-								<p style="color:white"><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></p>
-								<p style="color:white"></p>
-							</div>
+						<div class="info_item">
+							<i class="lnr lnr-envelope"></i>
+							<p style="color:white"><a href="#">kamarwanta@gmail.com</a></p>
+							<p style="color:white"></p>
+						</div>
+						<div class="info_item">
+							<i class="lnr lnr-camera"></i>
+							<p style="color:white"><a href="https://www.instagram.com/kamarwanta/">Instagram : Kamarwanta</a></p>
+							<p style="color:white"></p>
+						</div>
+						<div class="info_item">
+							<i class="lnr lnr-users"></i>
+							<p style="color:white"><a href="https://www.facebook.com/pg/GEDEPUSATBUSANA/about/?ref=page_internal">Facebook : Toko Gede</a></p>
+							<p style="color:white"></p>
 						</div>
 					</div>
 				</div>
+				</div>
 				<div class="col-lg-3  col-md-6 col-sm-6">
 					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">Instragram Feed</h6>
-						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="{{ url('/img/i1.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i2.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i3.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i4.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i5.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i6.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i7.jpg')}}" alt=""></li>
-							<li><img src="{{ url('/img/i8.jpg')}}" alt=""></li>
-						</ul>
 					</div>
 				</div>
 			</div>
@@ -374,6 +349,7 @@ $(document).ready(function(){
 
 		});
 	</script>
+
 </body>
 
 </html>

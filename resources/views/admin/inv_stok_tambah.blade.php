@@ -29,7 +29,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input name="jumlahStok" id="jumlahStok" type="number" min="0">
+                            <input name="jumlahStok" id="jumlahStok" type="number" min="0" value="0" readonly>
                             <label for="hargaBeli">Jumlah Stok</label>
                         </div>
                     </div>

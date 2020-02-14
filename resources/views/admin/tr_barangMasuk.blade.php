@@ -96,7 +96,7 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">monetization_on</i>
-              <input id="bayar" type="text" name="bayar" required>
+              <input id="bayar" type="text" name="bayar">
               <label for="bayar" class="">Bayar</label>
             </div>
           </div>

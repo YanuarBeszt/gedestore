@@ -74,13 +74,13 @@ class InventoryController extends Controller
             // isi dengan nama folder tempat kemana file diupload
             $tujuan_upload = 'gambar_barang';
             $file->move($tujuan_upload, $nama_file);
-            
-            $img = Image::make(public_path('gambar_barang/'.$nama_file));
-            
+
+            $img = Image::make(public_path('gambar_barang/' . $nama_file));
+
             $img->insert(public_path('img/watermark.png'), 'bottom-right', 10, 10);
 
-            $img->save(public_path('gambar_barang/'.$nama_file));
-            
+            $img->save(public_path('gambar_barang/' . $nama_file));
+
             DB::table('tb_barang')
                 ->where('barang_id', $request->barangId)
                 ->update([
@@ -144,12 +144,12 @@ class InventoryController extends Controller
         $nama_file = time() . "_" . $file->getClientOriginalName();
         // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'gambar_barang';
-        
+
         $file->move($tujuan_upload, $nama_file);
-        
-        $img = Image::make(public_path('gambar_barang/'.$nama_file));
+
+        $img = Image::make(public_path('gambar_barang/' . $nama_file));
         $img->insert(public_path('img/watermark.png'), 'bottom-right', 10, 10);
-        $img->save(public_path('gambar_barang/'.$nama_file));
+        $img->save(public_path('gambar_barang/' . $nama_file));
 
         DB::table('tb_barang')->insert([
             'barang_id' => uniqid(),
@@ -254,6 +254,13 @@ class InventoryController extends Controller
         DB::table('tb_stok')->where('stok_id', $id)->delete();
 
         return redirect()->route('detailStok', ['id' => $detail]);
+    }
+
+    public function deleteInventory($id)
+    {
+        DB::table('tb_barang')->where('barang_id', $id)->delete();
+
+        return redirect()->route('halamanInventory')->with('success', 'Berhasil Hapus Inventori');
     }
 
     public function editStok(Request $update)

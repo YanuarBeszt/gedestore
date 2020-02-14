@@ -85,14 +85,13 @@
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="img/product/{{ $w->barang_gambar }}" alt="">
+						<img class="img-fluid" src="/gambar_barang/{{ $w->barang_gambar }}" alt="">
 							<div class="product-details">
                             <a href="{{ route('showProduct', $w->barang_id) }}">
 									<h6>{{ $w->barang_nama }}</h6>
 								</a>
 								<div class="price">
-									<h6>{{ number_format($w->barang_harga_jual) }}</h6>
-									<h6 class="l-through">{{ number_format($w->barang_harga_jual) }}</h6>
+									<h6>Rp. {{ number_format($w->barang_harga_jual) }}</h6>
 								</div>
 								<div class="prd-bottom">
                                 <a href="{{ route('showProduct', $w->barang_id) }}" class="social-info">

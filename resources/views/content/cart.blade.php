@@ -65,7 +65,7 @@
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="img/product/{{$details['barang_gambar']}}" alt="">
+					                    <img src="img/product/{{$details['barang_gambar']}}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <p>{{$details['barang_nama']}}</p>

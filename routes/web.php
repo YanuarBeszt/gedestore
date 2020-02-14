@@ -63,7 +63,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/halaman-profile-admin', 'AdminController@profile');
 
     //inventory
-    Route::get('/admin/halaman-inventory-barang', 'InventoryController@index');
+    Route::get('/admin/halaman-inventory-barang', 'InventoryController@index')->name('halamanInventory');
     Route::get('/admin/halaman-tambah-barang', 'InventoryController@addBarang');
     Route::post('/admin/store-barang', 'InventoryController@storeBarang');
     Route::get('/admin/halaman-tambah-kategori', 'InventoryController@addKategori');
@@ -77,6 +77,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/admin/edit-barang/{id}', 'InventoryController@editBarang');
     Route::post('/admin/edit-barang', 'InventoryController@updateBarang');
     Route::post('/admin/edit-stok', 'InventoryController@editStok');
+    Route::get('/admin/delete-grafik/{id}', 'InventoryController@deleteInventory');
 
     //laporan
     Route::get('/admin/halaman-laporan-barang-masuk', 'LaporanController@lapMasuk');

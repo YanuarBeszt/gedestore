@@ -40,8 +40,8 @@
 				<div class="login_box_img">
 					<img class="img-fluid" src="{{ asset('img/login.jpg') }}" alt="">
 					<div class="hover">
-						<h4>New to our website?</h4>
-						<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+						<h4>Baru di website kita?</h4>
+						<p>Kita memiliki berbagai koleksi pakaian keren. silahkan daftar untuk memesan. :)</p>
 						<a class="primary-btn" href="/customer/register">Create an Account</a>
 					</div>
 				</div>

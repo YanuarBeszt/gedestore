@@ -116,15 +116,6 @@
 
             });
 
-            $(document).ready(function() {
-                var margin = 78;
-                $('#mymap').on('mousedown', function() {
-                    $('#navBar1').css('margin-top', margin + 'px');
-                });
-                $('#mymap').blur(function() {
-                    margin = margin + 78;
-                });
-            });
         </script>
 
 

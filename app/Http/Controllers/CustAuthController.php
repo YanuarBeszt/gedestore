@@ -42,12 +42,14 @@ class CustAuthController extends Controller
 		$messages = [
 			'required' => 'Form :attribute wajib di isi *',
 			'email' => 'Tolong gunakan :attribute yang sah *',
+			'nohp' => 'Tolong gunakan :attribute yang sah *',
 			'max' => ':attribute max 100',
 		];
 
 		//validasi form
 		$this->validate($request, [
 			'email' => 'required|email|max:100',
+			'nohp' => 'required|max:12',
 			'password' => 'required',
 			'nama' => 'required',
 
@@ -61,7 +63,7 @@ class CustAuthController extends Controller
 			DB::table('tb_users')->insert([
 				'namaUser' => $request->nama,
 				'emailUser' => $request->email,
-				'telponUser' => "",
+				'telponUser' => $request->nohp,
 				'alamatUser' => "",
 				'prov' => "0",
 				'city' => "0",

@@ -33,33 +33,28 @@ class TransaksiController extends Controller
 
         ];
 
-        $this->validate($request,[
+        $this->validate($request, [
             'ukuran' => 'required',
             'ktgBrg' => 'required',
             'stok' => 'required'
         ], $messages);
 
-        
+
         $cek = DB::table('tb_stok')->where('stok_barang_id', $request->ktgBrg)
             ->where('stok_ukuran', $request->ukuran)
             ->first();
         if (!empty($cek)) {
             return redirect('/admin/halaman-transaksi-barang-masuk')->with('alert', 'Ukuran Sudah Ada');
-
         } else {
             DB::table('tb_stok')->insert([
                 'stok_barang_id' =>  $request->ktgBrg,
                 'stok_ukuran' => $request->ukuran,
                 'stok_jumlah_stok' => $request->stok
             ]);
-                
 
-                return redirect('/admin/halaman-transaksi-barang-masuk')->with('success', 'Transaksi Barang Masuk ');
+
+            return redirect('/admin/halaman-transaksi-barang-masuk')->with('success', 'Transaksi Barang Masuk ');
         }
-
-
-
-
     }
 
     public function transKeluar()

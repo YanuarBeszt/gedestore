@@ -42,24 +42,7 @@
 <link rel="stylesheet" href="css/main.css">
 @endsection
 @section('konten')
-<style>
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .mobile-app {
-    display: none;
-  }
-}
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  .desktop-app {
-    display: none;
-  }
-  .mobile-app div {
-    width: 70%;
-    margin:0 auto;
-  }
-}
-</style>
+
 <!-- start banner Area -->
 <section class="banner-area">
 	<div class="container">
@@ -68,41 +51,29 @@
 				<div class="active-banner-slider owl-carousel">
 					<!-- single-slide -->
 					<div class="row single-slide align-items-center d-flex">
-                        <!-- Desktop -->
-						<div class="col-lg-4 col-md-6 desktop-app">
+						<div class="col-lg-4 col-md-6">
 							<div class="banner-content">
-								<h1 style="font-size: 40px">We Love All And<br> &ensp; We Serve All</h1>
-								<p class="ml-5">Garment And Textile</p>
+								<h1>We Love All and<br>Serve All</h1>
+								<p>Garment And Textile in Jember.</p>
 							</div>
 						</div>
-						<div class="col-lg-8 desktop-app">
+						<div class="col-lg-8">
 							<div class="banner-img">
-								<img class="img-fluid" src="img/banner/1.png" alt="">
+								<img class="img-fluid" src="img/banner/Asset6.png" alt=""  style="padding-left:30px; margin-left:350px; height:300px; width:300px;">
 							</div>
-						</div>
-                        <!-- Mobile -->
-                        <div class="col-sm-12 mobile-app">
-                            <div>
-                                <img class="img-fluid" src="img/logo.png" alt="">
-                            </div>
 						</div>
 					</div>
 					<!-- single-slide -->
-					<div class="row single-slide">
-						<div class="col-lg-5">
+					<div class="row single-slide align-items-center d-flex">
+						<div class="col-lg-4 col-md-6">
 							<div class="banner-content">
-								<h1>Nike New <br>Collection!</h1>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-								<div class="add-bag d-flex align-items-center">
-									<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-									<span class="add-text text-uppercase">Add to Bag</span>
-								</div>
+								<h1>We Love All and<br>Serve All</h1>
+								<p>Garment And Textile in Jember.</p>
 							</div>
 						</div>
-						<div class="col-lg-7">
+						<div class="col-lg-8">
 							<div class="banner-img">
-								<img class="img-fluid" src="img/banner/banner-img.png" alt="">
+								<img class="img-fluid" src="img/banner/Asset6.png" alt="" style="padding-left:30px; margin-left:350px; height:300px; width:300px;">
 							</div>
 						</div>
 					</div>
@@ -112,56 +83,6 @@
 	</div>
 </section>
 <!-- End banner Area -->
-
-<!-- start features Area -->
-<section class="features-area">
-	<div class="container">
-		<div class="row features-inner">
-			<!-- single features -->
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="single-features">
-					<div class="f-icon">
-						<img src="img/features/f-icon1.png" alt="">
-					</div>
-					<h6>Fast Delivery</h6>
-					<p>Fast Shipping on all order</p>
-				</div>
-			</div>
-			<!-- single features -->
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="single-features">
-					<div class="f-icon">
-						<img src="img/features/f-icon2.png" alt="">
-					</div>
-					<h6>Return Policy</h6>
-					<p>Fast Shipping on all order</p>
-				</div>
-			</div>
-			<!-- single features -->
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="single-features">
-					<div class="f-icon">
-						<img src="img/features/f-icon3.png" alt="">
-					</div>
-					<h6>Costumer Support</h6>
-					<p>Fast Shipping on all order</p>
-				</div>
-			</div>
-			<!-- single features -->
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="single-features">
-					<div class="f-icon">
-                        <input type="text" value="{{ asset('img/watermark.png') }}" style="display: none;">
-						<img src="img/features/f-icon4.png" alt="">
-					</div>
-					<h6>Secure Payment</h6>
-					<p>Fast Shipping on all order</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- end features Area -->
 
 <!-- start product Area -->
 <section class="owl-carousel active-product-area section_gap">
@@ -189,7 +110,6 @@
 							</a>
 							<div class="price">
 								<h6>Rp. {{ number_format($b->barang_harga_jual) }} </h6>
-								<h6 class="l-through">Rp. {{ number_format($b->barang_harga_jual) }} </h6>
 							</div>
 							<div class="prd-bottom">
 								<a href="add-to-cart/{{$b->barang_id}}" class="social-info">
@@ -256,11 +176,16 @@
 </section>
 <!-- end product Area -->
 
+
 @endsection
 
 <!-- isi bagian konten -->
 @section('codejs')
 
+<<<<<<< HEAD=======@endsection <!-- isi bagian konten -->
+	@section('codejs')
+
+	>>>>>>> 776f11fd85b462bc8830580d70c22e1be736770e
 	<!-- isi kode JS -->
 
 	@endsection

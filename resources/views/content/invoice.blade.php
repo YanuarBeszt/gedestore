@@ -85,9 +85,9 @@
 			</div>
 			<div class="col-lg-4">
 				<div class="details_item">
-					<h4 style="text-align: center;">Hubungi Penjual Untuk Kirim Bukti Transfer</h4>
+					<h4 style="text-align: center;">Hubungi Admin Untuk Mendapatkan Nomor Rekening</h4>
 					<h6 style="text-align: center;">Melalui Link Whatsapp Berikut :
-						<a href="https://api.whatsapp.com:/send?phone=+6285330630656&text=Kode Transaksi: {{ $kode }}">085330630656</a>
+						<a href="https://api.whatsapp.com:/send?phone=+6282231010999&text=Kode Transaksi: {{ $kode }}.">082231010999</a>
 
 					</h6>
 
@@ -162,7 +162,7 @@
 								<h5></h5>
 							</td>
 							<td>
-								<p>Rp.{{number_format($jml_total)}}</p>
+								<p>Rp.{{number_format($jml_total+$ongkir)}}</p>
 							</td>
 						</tr>
 					</tbody>

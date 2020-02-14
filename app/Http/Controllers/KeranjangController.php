@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Darryldecode\Cart\Facades\CartFacade;
 use Darryldecode\Cart\Cart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Session;
+
 class KeranjangController extends Controller
 {
     /**
@@ -39,7 +41,8 @@ class KeranjangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function tambah_cart(Request $request){
+    public function tambah_cart(Request $request)
+    {
 
 
 
@@ -58,61 +61,57 @@ class KeranjangController extends Controller
             $stok_jumlah_stok = $g->stok_jumlah_stok;
             $ukuran = $g->stok_ukuran;
             $berat = $g->berat_barang;
-
-
         }
 
         if ($jml_crt > 0) {
 
-            foreach ($brg as $key ) {
+            foreach ($brg as $key) {
 
 
                 if ($key->attributes->size == $request->stok_ukuran && $key->attributes->kode_brg == $request->barang_id) {
 
-                        \Cart::update($key->id, array(
-                          'quantity' => 1, 
-                        ));
+                    \Cart::update($key->id, array(
+                        'quantity' => 1,
+                    ));
                     break;
                 } else {
                     \Cart::add(array(
-                          'id' => uniqid(),
-                          'name' => $request->barang_nama,
-                          'price' => $request->price,
-                          'quantity' => 1,
-                          'attributes' => array(
-                                        'kode_brg' => $request->barang_id,
-                                         'size' => $ukuran,
-                                         'gambar' => $request->barang_gambar,
-                                         'stok_id' => $request->stok_ukuran,
-                                         'jml_stok_gudang' => $stok_jumlah_stok,
-                                         'berat' => $berat
+                        'id' => uniqid(),
+                        'name' => $request->barang_nama,
+                        'price' => $request->price,
+                        'quantity' => 1,
+                        'attributes' => array(
+                            'kode_brg' => $request->barang_id,
+                            'size' => $ukuran,
+                            'gambar' => $request->barang_gambar,
+                            'stok_id' => $request->stok_ukuran,
+                            'jml_stok_gudang' => $stok_jumlah_stok,
+                            'berat' => $berat
 
 
-                          )
+                        )
                     ));
                     break;
                 }
-                    
             }
-
         } else {
-                    \Cart::add(array(
-                          'id' => uniqid(),
-                          'name' => $request->barang_nama,
-                          'price' => $request->price,
-                          'quantity' => 1,
-                          'attributes' => array(
-                                        'kode_brg' => $request->barang_id,
-                                         'size' => $ukuran,
-                                         'gambar' => $request->barang_gambar,
-                                         'stok_id' => $request->stok_ukuran,
-                                         'jml_stok_gudang' => $stok_jumlah_stok,
-                                         'berat' => $berat
+            \Cart::add(array(
+                'id' => uniqid(),
+                'name' => $request->barang_nama,
+                'price' => $request->price,
+                'quantity' => 1,
+                'attributes' => array(
+                    'kode_brg' => $request->barang_id,
+                    'size' => $ukuran,
+                    'gambar' => $request->barang_gambar,
+                    'stok_id' => $request->stok_ukuran,
+                    'jml_stok_gudang' => $stok_jumlah_stok,
+                    'berat' => $berat
 
-                          )
-                    ));
+                )
+            ));
         }
-        
+
 
         // $items = \Cart::getContent();
         // return $brg;
@@ -125,10 +124,10 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete_cart($id){
+    public function delete_cart($id)
+    {
         \Cart::remove($id);
-       return redirect('/keranjang-shop');
-
+        return redirect('/keranjang-shop');
     }
 
     /**
@@ -149,7 +148,8 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_cart(Request $request){
+    public function edit_cart(Request $request)
+    {
         $get_brg = DB::table('tb_stok AS s')
             ->join('tb_barang AS b', 'b.barang_id', '=', 's.stok_barang_id')
             ->select('*')
@@ -164,21 +164,17 @@ class KeranjangController extends Controller
             $barang_harga_jual = $g->barang_harga_jual;
         }
 
-        if ($request->qty_edit+$request->jml_skrg >= $stok_jumlah_stok) {
+        if ($request->qty_edit + $request->jml_skrg >= $stok_jumlah_stok) {
             return redirect('/keranjang-shop')->with('alert', ',Stok Kurang !');
-
-
         } else {
-            
+
             \Cart::update($request->id_row, array(
                 'quantity' => $request->qty_edit,
             ));
-          
         }
 
 
-       return redirect('/keranjang-shop');
-
+        return redirect('/keranjang-shop');
     }
 
     /**
@@ -187,11 +183,12 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy_cart(){
+    public function destroy_cart()
+    {
 
-        \Cart::clear();  
+        \Cart::clear();
         return redirect('/keranjang-shop');
-         // $items = \Cart::getContent();
-         // return var_dump($items);
-     }
+        // $items = \Cart::getContent();
+        // return var_dump($items);
+    }
 }

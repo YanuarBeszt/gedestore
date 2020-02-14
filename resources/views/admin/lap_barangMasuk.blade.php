@@ -28,7 +28,7 @@
                                     <td>{{ $lap->detiltrans_masuk_idtrans }}</td>
                                     <td>{{ $lap->trans_masuk_tanggal }}</td>
                                     <td>{{ $lap->trans_masuk_suplier }}</td>
-                                    <td>Rp. {{ number_format($lap->total) }}</td>
+                                    <td>{{ $lap->total }}</td>
                                 </tr>
                                 @endforeach
                                 @endif

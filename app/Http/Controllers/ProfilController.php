@@ -76,33 +76,34 @@ class ProfilController extends Controller
         }
     }
 
-    public function lupa_pass(){
+    public function lupa_pass()
+    {
         return view('/cust-auth/lupa_pass');
     }
-    public function reset_pass(){
+    public function reset_pass()
+    {
         return view('/cust-auth/reset_pass');
     }
     public function proses_lupa_pass(Request $request)
     {
         $token = uniqid();
 
-       $lupa =  DB::table('tb_users')
-                ->where('emailUser', $request->email)
-                ->where('telponUser', $request->telpon)
-                ->first();
+        $lupa =  DB::table('tb_users')
+            ->where('emailUser', $request->email)
+            ->where('telponUser', $request->telpon)
+            ->first();
 
 
-        if(!empty($lupa)){
+        if (!empty($lupa)) {
 
-                $id = $lupa->idUser;
+            $id = $lupa->idUser;
 
             DB::table('tb_users')
-            ->where('idUser', $id)
-            ->update(['token' => $token]);
+                ->where('idUser', $id)
+                ->update(['token' => $token]);
 
-            return redirect('/reset-pass/'.$token.'');
-
-        }else{
+            return redirect('/reset-pass/' . $token . '');
+        } else {
             return redirect('/lupa-pass/')->with('alert', 'Email / no telpon tidak di temukan');
         }
     }
@@ -124,13 +125,12 @@ class ProfilController extends Controller
             'password' => md5($request->password),
             'token' => ''
         ];
-            DB::table('tb_users')
+        DB::table('tb_users')
             ->where('token', $request->token)
             ->update($data);
 
 
-            return redirect('/customer/login/')->with('success', ' ubah password');
-        
+        return redirect('/customer/login/')->with('success', ' ubah password');
     }
 
 

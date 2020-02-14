@@ -79,7 +79,7 @@
                     @endforeach
                     @endif
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <h3>Billing Details</h3>
                         <input type="hidden"  name="prov-edit"  value="{{$prov}}">
                         <input type="hidden"  name="city-edit"  value="{{$city}}">
@@ -131,7 +131,7 @@
                             </div> --}}
 
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="order_box">
                             <h2>Your Order</h2>
                             <ul class="list">
@@ -145,7 +145,7 @@
    $tot_berat += $berat_brg;
  
 @endphp
-                                <li><a href="#">{{$c->name}} - {{$c->attributes->size}} <span class="middle">x{{$c->quantity}}</span> <span class="last">Rp.{{number_format($c->quantity*$c->price)}}</span></a></li>
+                                <li><a href="#">{{Illuminate\Support\Str::limit($c->name, 10)}}-{{$c->attributes->size}} <span class="middle">x{{$c->quantity}}</span> <span class="last">Rp.{{number_format($c->quantity*$c->price)}}</span></a></li>
                                 @endforeach
                             </ul>
                             <ul class="list list_2">
@@ -160,15 +160,9 @@
                                 <div class="radion_btn">
                                     <input type="radio" id="f-option6" name="selector">
                                     <label for="f-option6">Transfer Bank </label>
-                                    <img src="img/product/card.jpg" alt="">
                                     <div class="check"></div>
                                 </div>
-                                <p>Pembayaran Melalui transfer Bisa dilakukan melalui bank yang akan tercantum ketika sudah selesai checout.</p>
-                            </div>
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
-                                <label for="f-option4">I’ve read and accept the </label>
-                                <a href="#">terms & conditions*</a>
+                                <p>Nomer rekening akan diberikan oleh admin setelah anda menghubungi melalui nomor whatsapp admin yang tertera.</p>
                             </div>
                             <button type="submit" class="primary-btn" >Proceed to checkout </button>
                         </form>

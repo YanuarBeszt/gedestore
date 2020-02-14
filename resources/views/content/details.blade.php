@@ -51,13 +51,13 @@
             <div class="col-lg-6">
                 <div class="s_Product_carousel">
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
+						<img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
                     </div>
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
+						<img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
                     </div>
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
+						<img class="img-fluid" src="{{ url('/gambar_barang/'.$barang_gambar) }}" alt="">
                     </div>
                 </div>
             </div>
@@ -100,10 +100,10 @@
 
                                     @endforeach
                                 </select>
-                                <input type="submit" value="Tambah Keranjang" class="btn btn-outline-info ml-2">
+                                <input type="submit" value="Tambah ke Keranjang" class="btn btn-outline-info ml-2">
                             </form>
                             <!-- add to wishlist -->
-                            <a href="{{ url('wishlists/addToWishlists/'.$barang_id.'/'.session('user_id')) }}" class="btn btn-outline-info ml-2">+ Wishlist</a>
+                            <a href="{{ url('wishlists/addToWishlists/'.$barang_id.'/'.session('user_id')) }}" class="btn btn-outline-info ml-2">Tambah ke Wishlist</a>
                         </div>
 
                     </div>
@@ -113,8 +113,8 @@
     </div>
 </div>
 <!--================End Single Product Area =================-->
-<hr>
-<hr>
-<hr>
-<hr>
+<br>
+<br>
+<br>
+<br>
 @endsection

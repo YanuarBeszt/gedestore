@@ -102,7 +102,7 @@ class CheckoutController extends Controller
                 'transaksi_member_id' => $request->user_id,
                 'transaksi_tanggal' => date('Y-m-d'),
                 'transaksi_alamat_pengiriman' => $request->alamat,
-                'transaksi_jumlah_uang' => $total,
+                'transaksi_jumlah_uang' => $total + $request->service,
                 'ongkir' => $request->service,
                 'transaksi_status_pesanan' => 'Belum',
                 'transaksi_status' => 'online'
@@ -116,7 +116,7 @@ class CheckoutController extends Controller
                     'dt_barang_id' => $key->attributes->kode_brg,
                     'dt_barang_ukuran' => $key->attributes->size,
                     'dt_jumlah_barang' => $key->quantity,
-                    'dt_jumlah_harga' => $key->quantity * $key->price + $request->service
+                    'dt_jumlah_harga' => $key->quantity * $key->price
 
                 ];
 

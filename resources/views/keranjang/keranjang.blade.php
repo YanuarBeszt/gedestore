@@ -78,7 +78,7 @@
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img width="100" height="100" src="/img/product/{{ $c->attributes->gambar }}" alt="">
+                                        <img width="100" height="100" src="/gambar_barang/{{ $c->attributes->gambar }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <p>{{$c->name}}</p>
@@ -226,7 +226,7 @@
                                     @if(session('login_user'))
                                     <a class="primary-btn" href="/checkout-shop">Proceed to checkout</a>
                                     @else
-                                    <a class="primary-btn" href="#">Login to checkout</a>
+                                    <a class="primary-btn" href="/customer/login">Login to checkout</a>
 
                                     @endif
                                 </div>

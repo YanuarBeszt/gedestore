@@ -86,7 +86,7 @@
 					<!-- single product -->
 					<div class="col-lg-4 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="{{ url('/gambar_barang/'.$b->barang_gambar) }}" alt="">
+						    <img class="img-fluid" src="{{ url('/gambar_barang/'.$b->barang_gambar) }}" alt="">
 							<div class="product-details">
 								<a href="{{ route('showProduct', $b->barang_id) }}">
 									<h6>{{ $b->barang_nama }}</h6>
